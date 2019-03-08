@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load fashionpointapp_template_tags %}
+{% load staticfiles %}
+
+
+<html>
+    <head lang="en">
+        <meta charset="UTF-8" />
+        <title>
+
+            {% block title_block %}
+               FashiONpoint
+            {% endblock %}
+
+        </title>
+    </head>
+
+    <body>
+        <div>
+            {% block body_block %}
+            {% endblock %}
+        </div>
+
+        <hr />
+        <div>
+
+
+
+        </div>
+
+        <div>
+            {% block sidebar_block %}
+
+            {% endblock %}
+        </div>
+
+
+
+    </body>
+
+</html>
