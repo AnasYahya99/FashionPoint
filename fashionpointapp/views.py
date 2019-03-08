@@ -2,5 +2,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
- return HttpResponse("Winter is coming!")
+ return render(request, 'fashionpointapp/index.html',)
 
