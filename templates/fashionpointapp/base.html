@@ -14,14 +14,26 @@
             {% endblock %}
 
         </title>
-
         <img id="logo" src="{% static "images/logo.png"%}" />.
-        <hr />
-
-
     </head>
 
     <body id="bg" style="background-image: url('{% static "images/background.jpg"%}')";>
+	
+        <hr />
+
+        <div>
+            
+
+        
+            <div class="topnav">
+        			<a class="active" href="">Home</a>
+        			<a href="">Categories</a>
+        	</div>
+
+            <button id="btt" type="button">Log in</button>
+            <button id="btt" type="button">Sign up</button>
+
+        </div>
 
         <div>
             {% block body_block %}
@@ -29,20 +41,17 @@
             {% endblock %}
         </div>
 
-        <div>
+  
 
-
-
-        </div>
-
-        <div>
-            {% block sidebar_block %}
-
-            {% endblock %}
-        </div>
-
-
-
+     
+		<div class="navbar">
+			<hr />
+			<a href="">Contact Us</a>
+			<a href="">About us</a>
+			<a href="">Site Map</a>
+		</div>
+	 
+	 
     </body>
 
 </html>
