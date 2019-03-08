@@ -15,16 +15,25 @@
 
         </title>
         <img id="logo" src="{% static "images/logo.png"%}" />.
-        <hr />
     </head>
 
     <body id="bg" style="background-image: url('{% static "images/background.jpg"%}')";>
 	
-	<div class="topnav">
-			<a class="active" href="">Home</a>
-			<a href="">Categories</a>
-			
-	</div>
+        <hr />
+
+        <div>
+            
+
+        
+            <div class="topnav">
+        			<a class="active" href="">Home</a>
+        			<a href="">Categories</a>
+        	</div>
+
+            <button id="btt" type="button">Log in</button>
+            <button id="btt" type="button">Sign up</button>
+
+        </div>
 
         <div>
             {% block body_block %}
