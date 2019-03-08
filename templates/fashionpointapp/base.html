@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/style.css' %}">
+
 
 <html>
     <head lang="en">
@@ -12,9 +14,11 @@
             {% endblock %}
 
         </title>
+
     </head>
 
-    <body>
+    <body id="bg" style="background-image: url('{% static "images/background.jpg"%}')";>
+
         <div>
             {% block body_block %}
             {% endblock %}
