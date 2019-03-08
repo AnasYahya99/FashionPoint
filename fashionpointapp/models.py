@@ -49,8 +49,6 @@ class PostComment(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
 	comment = models.CharField(max_length=256,null=True,blank=True)
 	date = models.DateTimeField(auto_now=True)
-	numOfLikes = models.PositiveIntegerField(default=0)
-	numOfDislikes = models.PositiveIntegerField(default=0)
 	class Meta: 
 		verbose_name_plural = 'Post Comments'
 	def __str__(self):
@@ -61,8 +59,6 @@ class PollComment(models.Model):
 	poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
 	comment = models.CharField(max_length=256,null=True,blank=True)
 	date = models.DateTimeField(auto_now=True)
-	numOfLikes = models.PositiveIntegerField(default=0)
-	numOfDislikes = models.PositiveIntegerField(default=0)
 	class Meta: 
 		verbose_name_plural = 'Poll Comments'
 	def __str__(self):
