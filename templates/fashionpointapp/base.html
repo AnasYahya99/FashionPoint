@@ -15,16 +15,20 @@
 
         </title>
 
+        <img id="logo" src="{% static "images/logo.png"%}" />.
+        <hr />
+
+
     </head>
 
     <body id="bg" style="background-image: url('{% static "images/background.jpg"%}')";>
 
         <div>
             {% block body_block %}
+
             {% endblock %}
         </div>
 
-        <hr />
         <div>
 
 
