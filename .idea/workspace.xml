@@ -7,8 +7,11 @@
     <list default="true" id="240db5b7-8fc5-4c0d-91d9-06dc96d8c920" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/fashionpointapp/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/fashionpointapp/style.css" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/categories.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/categories.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/category.html" afterDir="false" />
+=======
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
       <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/cats.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/cats.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,6 +22,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/cats.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -54,15 +58,29 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/fashionpointapp/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="137" lean-forward="true" selection-start-line="137" selection-end-line="137" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="41" lean-forward="true" selection-start-column="41" selection-end-column="41" />
+=======
+        <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/cats.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
             </state>
           </provider>
         </entry>
@@ -97,11 +115,12 @@
         <option value="$PROJECT_DIR$/templates/fashionpointapp/cats.html" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/category.html" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/categories.html" />
+        <option value="$PROJECT_DIR$/templates/fashionpointapp/cats.html" />
         <option value="$PROJECT_DIR$/static/fashionpointapp/style.css" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="185" />
     <option name="y" value="70" />
     <option name="width" value="1750" />
@@ -116,17 +135,37 @@
         <subPane>
           <expand>
             <path>
+<<<<<<< HEAD
               <item name="fashionpoint" type="b2602c69:ProjectViewProjectNode" />
               <item name="fashionpoint" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fashionpoint" type="b2602c69:ProjectViewProjectNode" />
               <item name="fashionpoint" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="FashionPoint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FashionPoint" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FashionPoint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FashionPoint" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FashionPoint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FashionPoint" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="fashionpointapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FashionPoint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FashionPoint" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="fashionpoint" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fashionpoint" type="462c0819:PsiDirectoryNode" />
+              <item name="FashionPoint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FashionPoint" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="fashionpointapp" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -197,17 +236,18 @@
       <option name="presentableId" value="Default" />
       <updated>1552049568122</updated>
       <workItem from="1552049570338" duration="791000" />
+      <workItem from="1552160814771" duration="2195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="791000" />
+    <option name="totallyTimeSpent" value="2986000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18080357" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18322147" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -298,6 +338,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/fashionpointapp/templatetags/fashionpointapp_template_tags.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -306,34 +347,43 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fashionpointapp/urls.py">
+=======
+    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/base.html">
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="50" selection-start-line="6" selection-end-line="7" />
+        <state relative-caret-position="1040">
+          <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fashionpointapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fashionpointapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+=======
+        <state relative-caret-position="140">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fashionpointapp/views.py">
+    <entry file="file://$PROJECT_DIR$/fashionpointapp/templatetags/fashionpointapp_template_tags.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/index.html">
-      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state>
           <caret column="41" lean-forward="true" selection-start-column="41" selection-end-column="41" />
         </state>
@@ -346,27 +396,63 @@
           <folding>
             <element signature="n#style#0;n#hr#0;n#a#0;n#ul#0;n#!!top" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="100">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/category.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="306">
           <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+=======
+        <state relative-caret-position="180">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/categories.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="119">
           <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+=======
+        <state relative-caret-position="240">
+          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/cats.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/fashionpointapp/style.css">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="141">
           <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+=======
+        <state relative-caret-position="418">
+          <caret line="137" lean-forward="true" selection-start-line="137" selection-end-line="137" />
+>>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
         </state>
       </provider>
     </entry>
