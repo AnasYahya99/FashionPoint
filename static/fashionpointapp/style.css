@@ -87,15 +87,10 @@
   position: relative;
   top: -50px ; 
   padding: 15px 15px 15px 15px ; 
-<<<<<<< HEAD
-  margin-left: 5px;
-  border-radius: 5em ; 
+  margin-left: 10px;
+  border-radius: 11px;
   border-color: black ; 
   border-width: 15;
- 
-=======
-  margin-left: 8px;
-  border-color: black ; 
   text-decoration-color: black ; 
   font-size: 13px;
   box-shadow: 3px 6px;
@@ -111,11 +106,7 @@
   overflow-x: hidden;
   padding: 8px 0px;
   margin-top: 200px;
-<<<<<<< HEAD
   border-radius: 15px;
-=======
-
->>>>>>> 88db5e1e77d08ebd822f5cce07f27a8c42150469
 }
 
 .sidenav a {
@@ -157,6 +148,5 @@
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
->>>>>>> 87d4f0c05714771270aef50d39ea03894d8d8e10
 }
 
