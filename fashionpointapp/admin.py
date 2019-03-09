@@ -1,7 +1,10 @@
 from django.contrib import admin
 from fashionpointapp.models import Category, Post, Poll, PostComment, PollComment, Rating, Vote, UserProfile
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',)}
+
 admin.site.register(UserProfile)
-admin.site.register(Category)
+admin.site.register(Category,CategoryAdmin)
 admin.site.register(Post)
 admin.site.register(Poll)
 admin.site.register(PostComment)

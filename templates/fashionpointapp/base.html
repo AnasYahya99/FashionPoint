@@ -23,12 +23,13 @@
 
         <div>
             
-
-        
+            {% block top_bar %}
             <div class="topnav">
-        			<a class="active" href="">Home</a>
-        			<a href="">Categories</a>
+        			<a class="active" href="{% url 'index' %}">Home</a>
+        			<a href="{% url 'categories' %}">Categories</a>
         	</div>
+            {% endblock %}
+
 
             <button id="btt" type="button">Log in</button>
             <button id="btt" type="button">Sign up</button>
@@ -41,14 +42,18 @@
             {% endblock %}
         </div>
 
-  
+
+  <div>
+	{% block list %}
+    {% endblock %}
+</div>
 
      
 		<div class="navbar">
 			<hr />
-			<a href="">Contact Us</a>
-			<a href="">About us</a>
-			<a href="">Site Map</a>
+			<a href="{% url 'contact_us' %}">Contact Us</a>
+			<a href="{% url 'about_us' %}">About us</a>
+			<a href="{% url 'sitemap' %}">Site Map</a>
 		</div>
 	 
 	 

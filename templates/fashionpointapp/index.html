@@ -1,5 +1,6 @@
 {% extends 'fashionpointapp/base.html' %}
 {% load staticfiles %}
+{% load fashionpointapp_template_tags %}
 
 {% block title_block %}
  FashionPoint
@@ -8,8 +9,15 @@
 
 {% block body_block %}
 
+	<div class="main">
+		<p id="white"> Welcome </p>
+	</div>
 
-    <p id="white"> Welcome </p>
+    <div class="sidenav">
+        {% block list %}
+                {% get_category_list category %}
+    {% endblock %}
+    </div>
 
 
    
