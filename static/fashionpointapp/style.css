@@ -7,13 +7,12 @@
 
 #white{
 	color: white;
-
 }
 
 #logo{
 	height: 100px;
 	width: 500px;
-  padding-left: 20px;
+    padding-left: 20px;
 }
 
 
@@ -112,6 +111,7 @@
   overflow-x: hidden;
   padding: 8px 0px;
   margin-top: 200px;
+
 }
 
 .sidenav a {
@@ -125,12 +125,24 @@
 
 .sidenav a:hover {
   color: #064579;
+
 }
+
 
 .main {
   margin-right: 140px; /* Same width as the sidebar + left position in px */
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 10px 0px;
+}
+
+.link{
+
+  background-color: white;
+  color: black;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+
 }
 
 @media screen and (max-height: 450px) {
