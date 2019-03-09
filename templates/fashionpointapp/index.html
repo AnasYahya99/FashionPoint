@@ -12,12 +12,11 @@
 	<div class="main">
 		<p id="white"> Welcome </p>
 	</div>
-
+    {% block list %}
     <div class="sidenav">
-        {% block list %}
                 {% get_category_list category %}
-    {% endblock %}
     </div>
+    {% endblock %}
 
 
    

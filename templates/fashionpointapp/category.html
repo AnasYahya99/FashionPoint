@@ -17,11 +17,12 @@
 
 
     <h1 class='main' id="white"> {{ category.name }} </h1>
-	<div class="sidenav">
 	{% block list %}
+	<div class="sidenav">
 		{% get_category_list category %}
-    {% endblock %}
     </div>
+    {% endblock %}
+
 
 
 {% endblock %}
