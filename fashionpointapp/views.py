@@ -14,3 +14,11 @@ def show_category(request, category_name_slug):
   context_dict['category'] = None
  return render(request, 'fashionpointapp/category.html', context_dict)
 
+def contact_us(request):
+	return render(request, 'fashionpointapp/contact_us.html',)
+
+def about_us(request):
+	return render(request, 'fashionpointapp/about.html',)
+
+def sitemap(request):
+	return render(request, 'fashionpointapp/sitemap.html',)	
