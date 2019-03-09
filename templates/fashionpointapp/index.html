@@ -1,5 +1,6 @@
 {% extends 'fashionpointapp/base.html' %}
 {% load staticfiles %}
+{% load fashionpointapp_template_tags %}
 
 {% block title_block %}
  FashionPoint
@@ -13,10 +14,9 @@
 	</div>
 
     <div class="sidenav">
-    	<a href="#">test</a>
-    	<a href="#">test</a>
-    	<a href="#">test</a>
-    	<a href="#">test</a>
+        {% block list %}
+                {% get_category_list category %}
+    {% endblock %}
     </div>
 
 

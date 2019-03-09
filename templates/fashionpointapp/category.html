@@ -1,5 +1,6 @@
 {% extends 'fashionpointapp/base.html' %}
 {% load staticfiles %}
+{% load fashionpointapp_template_tags %}
 
 {% block title_block %}
     {{ category.name }}
@@ -15,8 +16,12 @@
 {% block body_block %}
 
 
-    <h1 id="white"> {{ category.name }} </h1>
-
+    <h1 class='main' id="white"> {{ category.name }} </h1>
+	<div class="sidenav">
+	{% block list %}
+		{% get_category_list category %}
+    {% endblock %}
+    </div>
 
 
 {% endblock %}

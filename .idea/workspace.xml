@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="240db5b7-8fc5-4c0d-91d9-06dc96d8c920" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fashionpointapp/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fashionpointapp/templatetags/fashionpointapp_template_tags.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/fashionpointapp/category.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/fashionpointapp/cats.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fashionpointapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/fashionpointapp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fashionpointapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/fashionpointapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fashionpointapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/fashionpointapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fashionpointapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fashionpointapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/categories.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/categories.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/fashionpointapp/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/fashionpointapp/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/cats.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/cats.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="11" selection-start-column="11" selection-end-column="11" />
+            <state relative-caret-position="238">
+              <caret line="47" column="18" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="47" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -38,11 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fashionpointapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -50,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/categories.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -77,11 +67,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/cats.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/fashionpointapp/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="110" column="12" selection-start-line="110" selection-start-column="12" selection-end-line="110" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -89,8 +88,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="18" />
+            <state relative-caret-position="323">
+              <caret line="19" column="10" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="19" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/category.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -112,19 +120,20 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/templates/fashionpoint/base.html" />
-        <option value="$PROJECT_DIR$/templates/fashionpointapp/index.html" />
         <option value="$PROJECT_DIR$/populate_rango.py" />
         <option value="$PROJECT_DIR$/fashionpointapp/admin.py" />
         <option value="$PROJECT_DIR$/fashionpointapp/models.py" />
         <option value="$PROJECT_DIR$/fashionpointapp/urls.py" />
-        <option value="$PROJECT_DIR$/templates/fashionpointapp/category.html" />
         <option value="$PROJECT_DIR$/fashionpointapp/templatetags/__init__.py" />
         <option value="$PROJECT_DIR$/fashionpointapp/templatetags/showCategories.py" />
         <option value="$PROJECT_DIR$/fashionpointapp/templatetags/fashionpointapp_template_tags.py" />
         <option value="$PROJECT_DIR$/fashionpointapp/views.py" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/base.html" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/categories.html" />
+        <option value="$PROJECT_DIR$/templates/fashionpointapp/index.html" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/cats.html" />
+        <option value="$PROJECT_DIR$/templates/fashionpointapp/category.html" />
+        <option value="$PROJECT_DIR$/static/fashionpointapp/style.css" />
       </list>
     </option>
   </component>
@@ -139,7 +148,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -155,13 +163,12 @@
             <path>
               <item name="fashionpoint" type="b2602c69:ProjectViewProjectNode" />
               <item name="fashionpoint" type="462c0819:PsiDirectoryNode" />
-              <item name="fashionpointapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fashionpoint" type="b2602c69:ProjectViewProjectNode" />
               <item name="fashionpoint" type="462c0819:PsiDirectoryNode" />
-              <item name="fashionpointapp" type="462c0819:PsiDirectoryNode" />
-              <item name="templatetags" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fashionpoint" type="b2602c69:ProjectViewProjectNode" />
@@ -178,6 +185,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -263,7 +271,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -273,11 +281,11 @@
       <window_info anchor="right" id="Database" order="4" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24925596" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18080357" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297587" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -286,7 +294,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -320,13 +328,6 @@
     <entry file="file://$PROJECT_DIR$/fashionpointapp/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fashionpointapp/templatetags/showCategories.py" />
     <entry file="file://$PROJECT_DIR$/fashionpointapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -348,6 +349,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fashionpointapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fashionpointapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -358,13 +366,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fashionpointapp/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="19" column="10" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="19" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -377,32 +382,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/categories.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        <state relative-caret-position="238">
+          <caret line="47" column="18" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="47" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/index.html">
+    <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/category.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="323">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/cats.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/fashionpointapp/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="110" column="12" selection-start-line="110" selection-start-column="12" selection-end-line="110" selection-end-column="12" />
         </state>
       </provider>
     </entry>
