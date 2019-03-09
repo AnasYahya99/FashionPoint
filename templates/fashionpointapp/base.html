@@ -23,12 +23,13 @@
 
         <div>
             
-
-        
+            {% block top_bar %}
             <div class="topnav">
-        			<a class="active" href="">Home</a>
-        			<a href="">Categories</a>
+        			<a class="active" href="{% url 'index' %}">Home</a>
+        			<a href="{% url 'categories' %}">Categories</a>
         	</div>
+            {% endblock %}
+
 
             <button id="btt" type="button">Log in</button>
             <button id="btt" type="button">Sign up</button>

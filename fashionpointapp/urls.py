@@ -4,4 +4,5 @@ from django.contrib import admin
 from fashionpointapp import views	
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^categories/$', views.categories, name="categories"),
 ]
