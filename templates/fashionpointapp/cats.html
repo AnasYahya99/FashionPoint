@@ -3,14 +3,12 @@
     {% for c in cats %}
         {% if c == act_cat %}
             <strong>
-                <a class=link href="{% url 'show_category' c.slug %}">{{ c.name }}</a>\
+                <a href="{% url 'show_category' c.slug %}">{{ c.name }}</a>\
 
             </strong>
         {% else %}
-                <br/>
-                <br/>
-                <br/>
-                <a class=link href="{% url 'show_category' c.slug %}">{{ c.name }}</a>
+
+                <a  href="{% url 'show_category' c.slug %}">{{ c.name }}</a>
         {% endif %}
     {% endfor %}
 {% else %}

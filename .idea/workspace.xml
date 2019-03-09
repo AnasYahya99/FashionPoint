@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="240db5b7-8fc5-4c0d-91d9-06dc96d8c920" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/fashionpointapp/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/fashionpointapp/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/fashionpointapp/cats.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fashionpointapp/cats.html" afterDir="false" />
     </list>
@@ -14,20 +13,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/fashionpointapp/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="143" column="28" lean-forward="true" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
+            <state relative-caret-position="418">
+              <caret line="137" lean-forward="true" selection-start-line="137" selection-end-line="137" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/cats.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+            <state relative-caret-position="200">
+              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -61,12 +60,12 @@
         <option value="$PROJECT_DIR$/templates/fashionpointapp/index.html" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/category.html" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/categories.html" />
-        <option value="$PROJECT_DIR$/static/fashionpointapp/style.css" />
         <option value="$PROJECT_DIR$/templates/fashionpointapp/cats.html" />
+        <option value="$PROJECT_DIR$/static/fashionpointapp/style.css" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="185" />
     <option name="y" value="70" />
     <option name="width" value="1750" />
@@ -173,12 +172,12 @@
       <option name="presentableId" value="Default" />
       <updated>1552049568122</updated>
       <workItem from="1552049570338" duration="791000" />
-      <workItem from="1552160814771" duration="2061000" />
+      <workItem from="1552160814771" duration="2195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2852000" />
+    <option name="totallyTimeSpent" value="2986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -326,13 +325,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/fashionpointapp/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="143" column="28" lean-forward="true" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/categories.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -342,8 +334,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/fashionpointapp/cats.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        <state relative-caret-position="200">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/fashionpointapp/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="137" lean-forward="true" selection-start-line="137" selection-end-line="137" />
         </state>
       </provider>
     </entry>
