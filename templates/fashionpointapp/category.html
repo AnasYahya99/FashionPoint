@@ -1,0 +1,22 @@
+{% extends 'fashionpointapp/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ category.name }}
+{% endblock %}
+{% block top_bar %}
+	<div class="topnav">
+		<a href="{% url 'index' %}">Home</a>
+		<a class="active" href="{% url 'categories' %}">Categories</a>
+	</div>
+{% endblock %}
+
+
+{% block body_block %}
+
+
+    <h1 id="white"> {{ category.name }} </h1>
+
+
+
+{% endblock %}

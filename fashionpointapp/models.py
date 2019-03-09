@@ -2,7 +2,7 @@ from django.db import models
 from datetime import date
 from datetime import datetime
 from django.contrib.auth.models import User
-
+from django.template.defaultfilters import slugify
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
@@ -12,7 +12,11 @@ class UserProfile(models.Model):
 	def __str__(self):
 		return self.user.username
 class Category(models.Model):
+	slug = models.SlugField(unique=True)
 	name = models.CharField(max_length=128, unique=True)
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.name)
+		super(Category, self).save(*args, **kwargs)
 	class Meta: 
 		verbose_name_plural = 'Categories'
 	def __str__(self):
@@ -49,8 +53,6 @@ class PostComment(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
 	comment = models.CharField(max_length=256,null=True,blank=True)
 	date = models.DateTimeField(auto_now=True)
-	numOfLikes = models.PositiveIntegerField(default=0)
-	numOfDislikes = models.PositiveIntegerField(default=0)
 	class Meta: 
 		verbose_name_plural = 'Post Comments'
 	def __str__(self):
@@ -61,8 +63,6 @@ class PollComment(models.Model):
 	poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
 	comment = models.CharField(max_length=256,null=True,blank=True)
 	date = models.DateTimeField(auto_now=True)
-	numOfLikes = models.PositiveIntegerField(default=0)
-	numOfDislikes = models.PositiveIntegerField(default=0)
 	class Meta: 
 		verbose_name_plural = 'Poll Comments'
 	def __str__(self):
