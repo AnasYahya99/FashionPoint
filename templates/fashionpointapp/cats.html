@@ -1,11 +1,17 @@
 <ul>
+    <strong>
+ <h>Categories</h>
+        </strong>
+<hr style="color: black; margin-left:-25px; margin-right:15px;"></hr>
 {% if cats %}
     {% for c in cats %}
         {% if c == act_cat %}
             <strong>
-                <a href="{% url 'show_category' c.slug %}">{{ c.name }}</a>
+                <a href="{% url 'show_category' c.slug %}">{{ c.name }}</a>\
+
             </strong>
         {% else %}
+
                 <a  href="{% url 'show_category' c.slug %}">{{ c.name }}</a>
         {% endif %}
     {% endfor %}
