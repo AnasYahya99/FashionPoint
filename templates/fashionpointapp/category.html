@@ -1,10 +1,8 @@
 {% extends 'fashionpointapp/base.html' %}
 {% load staticfiles %}
-{% load fashionpointapp_template_tags %}
 
 {% block title_block %}
- Categories
-
+    {{ category.name }}
 {% endblock %}
 {% block top_bar %}
 	<div class="topnav">
@@ -12,12 +10,13 @@
 		<a class="active" href="{% url 'categories' %}">Categories</a>
 	</div>
 {% endblock %}
-	{% block list %}
-        {% get_category_list category %}
-    {% endblock %}
+
 
 {% block body_block %}
-    <h1 id="white"> Categories </h1>
+
+
+    <h1 id="white"> {{ category.name }} </h1>
+
+
+
 {% endblock %}
-
-
