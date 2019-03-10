@@ -23,7 +23,7 @@
   width: 86%;
   border-radius: 1em;
   left: 50px;
-  margin-left: 20px;
+  margin-left: 14px;
   box-shadow: 3px 6px;
 
 }
@@ -87,15 +87,10 @@
   position: relative;
   top: -50px ; 
   padding: 15px 15px 15px 15px ; 
-<<<<<<< HEAD
-  margin-left: 5px;
-  border-radius: 5em ; 
+  margin-left: 10px;
+  border-radius: 11px;
   border-color: black ; 
   border-width: 15;
- 
-=======
-  margin-left: 8px;
-  border-color: black ; 
   text-decoration-color: black ; 
   font-size: 13px;
   box-shadow: 3px 6px;
@@ -106,21 +101,34 @@
   position: fixed;
   z-index: 1;
   top: 20px;
-  right: 10px;
+  right: 20px;
   background: #eee;
   overflow-x: hidden;
   padding: 8px 0px;
   margin-top: 200px;
-
+  border-radius: 15px;
 }
 
 .sidenav a {
-  margin-left: -15px;
+  margin-left: -10px;
   margin-center: 0px;
   text-decoration: none;
   font-size: 15px;
   color: #000000;
   display: block;
+}
+.sidenav a {
+  margin-left: -10px;
+  margin-center: 0px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #000000;
+  display: block;
+}
+.sidenav h {
+  margin-left: -25px;
+  font-size: 20px;
+  color: #000000;
 }
 
 .sidenav a:hover {
@@ -132,7 +140,7 @@
 .main {
   margin-right: 140px; /* Same width as the sidebar + left position in px */
   font-size: 28px; /* Increased text to enable scrolling */
-  padding: 10px 0px;
+  padding: 10px 0px 0px 25px;
 }
 
 
@@ -140,6 +148,5 @@
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
->>>>>>> 87d4f0c05714771270aef50d39ea03894d8d8e10
 }
 

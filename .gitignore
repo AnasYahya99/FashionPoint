@@ -7,3 +7,4 @@ book/_build/
 *.db
 .DS_Store
 keys.py
+.idea/workspace.xml
