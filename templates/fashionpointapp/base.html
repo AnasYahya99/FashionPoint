@@ -37,7 +37,7 @@
             {% if user.is_authenticated %}
                <button id="btt" type="button" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
             {% else %}
-                <button id="btt" type="button">Log in</button>
+                <button id="btt" type="button" onclick="window.location.href='{% url 'login' %}'">Log in</button>
                 <button id="btt" type="button">Sign up</button>
              {% endif %}
 
