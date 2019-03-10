@@ -9,22 +9,24 @@
 
 {% block body_block %}
 
-<form action="action_page.php">
+<form id="PostForm" method="post" action="/fashionpoint/newpost/">
   <div class="container">
     <h1 id=mylabel >Create a new post</h1>
 
     <hr>
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+         <h1 id=mylabel >Write a Caption</h1>
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
 
-    <label id=mylabel for="Post Discription"><b>Discription</b></label>
-
-    <input type="text" placeholder="Type in your enquiry" name="Discription" required>
-
-    <input type="file" name="fileToUpload" id="fileToUpload">
-
-    <button type="submit" class="registerbtn">Post</button>
+    <button type="submit" class="registerbtn" >Post</button>
   </div>
-
-
 
 </form>
 

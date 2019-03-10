@@ -6,6 +6,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from fashionpointapp.forms import PostForm
 
 def index(request):
  return render(request, 'fashionpointapp/index.html',)
@@ -29,8 +30,20 @@ def about_us(request):
 def sitemap(request):
 	return render(request, 'fashionpointapp/sitemap.html',)
 
+
+@login_required
 def PostaPost(request):
-	return render(request, 'fashionpointapp/PostaPost.html',)
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+        # Save the new category to the database.
+            form.save(commit=True)
+            return index(request)
+    else:
+        print(form.errors)
+    return render(request, 'fashionpointapp/PostaPost.html', {'form': form})
+
 
 @login_required
 def user_logout(request):
