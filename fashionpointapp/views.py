@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from fashionpointapp.models import Category
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
 
 def index(request):
  return render(request, 'fashionpointapp/index.html',)
@@ -29,4 +32,10 @@ def sitemap(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return render(request, 'fashionpointapp/index.html', )
+    return HttpResponseRedirect(reverse('index'))
+
+
+def user_login(request):
+    user = authenticate(username='Anas', password='Anas1234')
+    login(request, user)
+    return HttpResponseRedirect(reverse('index'))
