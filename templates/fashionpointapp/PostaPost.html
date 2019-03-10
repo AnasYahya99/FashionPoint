@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'fashionpointapp/base.html' %}
+{% load staticfiles %}
+{% load fashionpointapp_template_tags %}
+
+
+{% block title_block %}
+    <p>A new post </p>
+{% endblock %}
+
+{% block body_block %}
+
+<form action="action_page.php">
+  <div class="container">
+    <h1>Create a new post</h1>
+
+    <hr>
+
+    <label for="Post Discription"><b>Discription</b></label>
+
+    <input type="text" placeholder="Type in your enquiry" name="Discription" required>
+
+    <input type="file" name="fileToUpload" id="fileToUpload">
+
+    <button type="submit" class="registerbtn">Post</button>
+  </div>
+
+
+
+</form>
+
+{% endblock %}
