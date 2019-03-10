@@ -29,6 +29,9 @@ def about_us(request):
 def sitemap(request):
 	return render(request, 'fashionpointapp/sitemap.html',)
 
+def PostaPost(request):
+	return render(request, 'fashionpointapp/PostaPost.html',)
+
 @login_required
 def user_logout(request):
     logout(request)
