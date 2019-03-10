@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from fashionpointapp.models import Category
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 def index(request):
  return render(request, 'fashionpointapp/index.html',)
 def categories(request):
@@ -21,4 +24,9 @@ def about_us(request):
 	return render(request, 'fashionpointapp/about.html',)
 
 def sitemap(request):
-	return render(request, 'fashionpointapp/sitemap.html',)	
+	return render(request, 'fashionpointapp/sitemap.html',)
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return render(request, 'fashionpointapp/index.html', )
