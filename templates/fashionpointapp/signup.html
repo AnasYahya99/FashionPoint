@@ -1,23 +1,23 @@
 {% extends 'fashionpointapp/base.html' %}
-{% load crispy_forms_tags %}
 {% load staticfiles %}
 
-{% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already Have An Account? <a class="ml-2" href="#">Sign In</a>
-            </small>
-        </div>
-    </div>
-{% endblock content %}
+{% block body_block %}
+    <h1>Join us</h1>
+    {% if registered %}
+        FashionPointapp says: <strong>Thank you for signing up!</strong>
+        <a href="{% url 'index' %}">Return to the homepage.</a><br />
+    {% else %}
+        FashionPointapp says: <strong>Sign up here!</strong><br />
+        <form id="form" method="post" action="{% url 'signup' %}"
+            enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <!-- Display each form -->
+        {{ form.as_p }}
+
+        <!-- Provide a button to click to submit the form. -->
+       <input type="submit" name="submit" value="signup" />
+    </form>
+    {% endif %}
+{% endblock %}
