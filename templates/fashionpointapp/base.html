@@ -20,9 +20,14 @@
     <body id="bg" style="background-image: url('{% static "images/background.jpg"%}')";>
 
         <hr />
-
-        <div>
-            
+	 {% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }}">
+					{{ message }}
+			 </div>
+		{% endfor %}
+	{% endif %}
+	    <div>
             {% block top_bar %}
             <div class="topnav">
         			<a class="active" href="{% url 'index' %}">Home</a>

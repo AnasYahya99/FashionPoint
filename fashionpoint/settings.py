@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fashionpointapp',
+	'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ print(TEMPLATE_DIR)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,3 +133,4 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
