@@ -2,22 +2,22 @@
 {% load staticfiles %}
 
 {% block body_block %}
+            <div style="color:white;">
+
     <h1>Join us</h1>
     {% if registered %}
-        FashionPointapp says: <strong>Thank you for signing up!</strong>
-        <a href="{% url 'index' %}">Return to the homepage.</a><br />
+        <strong>Thank you for signing up!</strong>
     {% else %}
-        FashionPointapp says: <strong>Sign up here!</strong><br />
-        <form id="form" method="post" action="{% url 'signup' %}"
-            enctype="multipart/form-data">
-
+         <strong>Sign up here!</strong><br />
+        <form id="user_form" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <!-- Display each form -->
-        {{ form.as_p }}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
 
-        <!-- Provide a button to click to submit the form. -->
-       <input type="submit" name="submit" value="signup" />
+    <button type="submit" class="registerbtn" >Sign up</button>
     </form>
     {% endif %}
+                <div/>
+
 {% endblock %}

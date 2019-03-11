@@ -43,7 +43,7 @@
                <button id="btt" type="button" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
             {% else %}
                 <button id="btt" type="button" onclick="window.location.href='{% url 'login' %}'">Log in</button>
-                <button id="btt" type="button">Sign up</button>
+                <button id="btt" type="button" onclick="window.location.href='{% url 'signup' %}'">Sign up</button>
              {% endif %}
 
         </div>

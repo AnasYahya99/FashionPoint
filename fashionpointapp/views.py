@@ -7,14 +7,9 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-<<<<<<< HEAD
 from fashionpointapp.models import UserProfile
-
-
-
-=======
-from .forms import RegisterForm
->>>>>>> aa431a088a0f9f258115b64f04f71426d52bab1c
+from datetime import datetime
+from fashionpointapp.forms import UserForm,UserProfileForm
 
 def index(request):
  return render(request, 'fashionpointapp/index.html',)
@@ -37,17 +32,31 @@ def about_us(request):
 def sitemap(request):
 	return render(request, 'fashionpointapp/sitemap.html',)
 
-def signup(request):
-		if request.method == 'POST':
-			form = RegisterForm(request.POST)
-			if form.is_valid() :
-				form.save()
-				username = form.cleaned_data.get('username')
-				messages.success(request, f'Successfly created the account!')
-				return redirect(request, 'fashionpointapp/index.html',)
+def register(request):
+	registered = False
+	if request.method == 'POST':
+		user_form = UserForm(data=request.POST)
+		profile_form = UserProfileForm(data=request.POST)
+		if user_form.is_valid() and profile_form.is_valid():
+			user = user_form.save()
+			user.set_password(user.password)
+			user.save()
+			profile = profile_form.save(commit=False)
+			profile.user = user
+			if 'picture' in request.FILES:
+				profile.picture = request.FILES['picture']
+			profile.save()
+			registered = True
 		else:
-			form = RegisterForm()
-		return render(request, 'fashionpointapp/signup.html',{'form': form}) 
+			print(user_form.errors, profile_form.errors)
+	else:
+		user_form = UserForm()
+		profile_form = UserProfileForm()
+	return render(request,
+				'fashionpointapp/signup.html',
+				{'user_form': user_form,
+				'profile_form': profile_form,
+				'registered': registered})
 @login_required
 def PostaPost(request):
     form = PostForm()
@@ -86,11 +95,8 @@ def user_logout(request):
 	return HttpResponseRedirect(reverse('index'))
 def visitor_cookie_handler(request):
 	visits = int(get_server_side_cookie(request, 'visits', '1'))
-	last_visit_cookie = get_server_side_cookie(request,
-											   'last_visit',
-											   str(datetime.now()))
-	last_visit_time = datetime.strptime(last_visit_cookie[:-7],
-							'%Y-%m-%d %H:%M:%S')
+	last_visit_cookie = get_server_side_cookie(request,'last_visit',str(datetime.now()))
+	last_visit_time = datetime.strptime(last_visit_cookie[:-7],'%Y-%m-%d %H:%M:%S')
 	if (datetime.now() - last_visit_time).days > 0:
 		visits = visits + 1
 		request.session['last_visit'] = str(datetime.now())
