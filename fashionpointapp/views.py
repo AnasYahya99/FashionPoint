@@ -7,6 +7,10 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
+from fashionpointapp.models import UserProfile
+
+
+
 
 def index(request):
  return render(request, 'fashionpointapp/index.html',)
@@ -35,13 +39,14 @@ def sitemap(request):
 def PostaPost(request):
     form = PostForm()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES )
         if form.is_valid():
-        # Save the new category to the database.
-            form.save(commit=True)
+            candidate = form.save(commit=False)
+            candidate.userPofile = UserProfile.objects.get(user=request.user)  # use your own profile here
+            candidate.save()
             return index(request)
-    else:
-        print(form.errors)
+        else:
+            print(form.errors)
     return render(request, 'fashionpointapp/PostaPost.html', {'form': form})
 
 

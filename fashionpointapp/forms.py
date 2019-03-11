@@ -4,12 +4,11 @@ from fashionpointapp.models import Post,Category
 
 
 class PostForm(forms.ModelForm):
-    description = forms.CharField(max_length=256)
-    avgRating = forms.FloatField(widget=forms.HiddenInput(), initial=0)
+    category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(),required=False )
+    description = forms.CharField(max_length=128,required=False)
     photo = forms.ImageField()
-    date = forms.DateTimeField(widget=forms.HiddenInput())
-    category = forms.MultipleChoiceField(choices=Category.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
-    #userPofile = forms.HiddenInput(intial = user)
+    date = forms.DateTimeField(widget=forms.HiddenInput(),required=False)
+    avgRating = forms.FloatField(widget=forms.HiddenInput(),required=False,initial=0)
     class Meta:
         model = Post
-        fields = ('description','photo','category')
+        fields=['photo','description','category']

@@ -8,26 +8,25 @@
 {% endblock %}
 
 {% block body_block %}
-
-<form id="PostForm" method="post" action="/fashionpoint/newpost/">
-  <div class="container">
     <h1 id=mylabel >Create a new post</h1>
-
     <hr>
+
+<form id="PostForm" method="post" action="/fashionpoint/newpost/"  enctype="multipart/form-data">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
-         <h1 id=mylabel >Write a Caption</h1>
+
         {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
+            <div style="color:white;">
+                {{ form.path }}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            </div>
         {% endfor %}
 
     <button type="submit" class="registerbtn" >Post</button>
-  </div>
-
 </form>
 
 {% endblock %}

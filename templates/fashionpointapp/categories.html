@@ -11,7 +11,7 @@
 		<a href="{% url 'index' %}">Home</a>
 		<a class="active" href="{% url 'categories' %}">Categories</a>
 		 {% if user.is_authenticated %}
-			<a href="{% url 'PostaPost' %}">New Post</a>
+			<a href="{% url 'newpost' %}">New Post</a>
 			<a href="{% url 'categories' %}">New Poll</a>
 			<a href="{% url 'categories' %}">My Account</a>
 		{% endif %}

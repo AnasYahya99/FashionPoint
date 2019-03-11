@@ -1,8 +1,8 @@
 from django.db import models
 from datetime import date
 from datetime import datetime
-from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
