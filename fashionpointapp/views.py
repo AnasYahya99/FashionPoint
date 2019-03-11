@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
+from .forms import UserRegisterForm
 
 def index(request):
  return render(request, 'fashionpointapp/index.html',)
@@ -26,11 +27,20 @@ def contact_us(request):
 
 def about_us(request):
 	return render(request, 'fashionpointapp/about.html',)
-
 def sitemap(request):
 	return render(request, 'fashionpointapp/sitemap.html',)
-
-
+	
+def signup(request):
+		if request.method == 'POST':
+			form = UserRegisterForm(request.POST)
+			if form.is_valid():
+				form.save()
+				username = form.cleaned_data.get('username')
+				messages.success(request, f'Account created for {username}!')
+				return redirect(request, 'fashionpointapp/index.html',)
+		else:
+			form = UserRegisterForm()
+		return render(request, 'fashionpointapp/signup.html',{'form': form}) 
 @login_required
 def PostaPost(request):
     form = PostForm()
