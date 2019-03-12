@@ -66,6 +66,7 @@ def PostaPost(request):
 			candidate = form.save(commit=False)
 			candidate.userPofile = UserProfile.objects.get(user=request.user)
 			candidate.save()
+			form.save_m2m()
 			return index(request)
 		else:
 			print(form.errors)
