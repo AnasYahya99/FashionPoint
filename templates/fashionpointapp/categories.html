@@ -1,6 +1,5 @@
 {% extends 'fashionpointapp/base.html' %}
 {% load staticfiles %}
-{% load fashionpointapp_template_tags %}
 
 {% block title_block %}
  Categories
@@ -18,7 +17,6 @@
 	</div>
 {% endblock %}
 	{% block list %}
-{% get_category_list category %}
     {% endblock %}
 
 {% block body_block %}

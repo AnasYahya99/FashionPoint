@@ -20,7 +20,7 @@ class UserProfileForm(forms.ModelForm):
             'dateOfBirth': DateInput(attrs={'type': 'date'})
         }
 class PostForm(forms.ModelForm):
-    category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(),required=False )
+    category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False)
     description = forms.CharField(max_length=128,required=False)
     photo = forms.ImageField()
     avgRating = forms.FloatField(widget=forms.HiddenInput(),required=False,initial=0)

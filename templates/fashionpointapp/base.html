@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load fashionpointapp_template_tags %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/style.css' %}">
 
@@ -55,11 +56,11 @@
         </div>
 
 
-  <div>
-	{% block list %}
+    {% block list %}
+    <div class="sidenav">
+        {% get_category_list category %}
+    </div>
     {% endblock %}
-</div>
-
      
 		<div class="navbar">
 			<hr />

@@ -3,6 +3,17 @@
 {% block title_block %}
     Login
 {% endblock %}
+{% block top_bar %}
+            <div class="topnav">
+        			<a href="{% url 'index' %}">Home</a>
+        			<a href="{% url 'categories' %}">Categories</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'newpost' %}">New Post</a>
+                        <a href="{% url 'categories' %}">New Poll</a>
+                        <a href="{% url 'categories' %}">My Account</a>
+                    {% endif %}
+        	</div>
+{% endblock %}
 {% block body_block %}
             <div style="color:white;">
 

@@ -59,17 +59,17 @@ def register(request):
 				'registered': registered})
 @login_required
 def PostaPost(request):
-    form = PostForm()
-    if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES )
-        if form.is_valid():
-            candidate = form.save(commit=False)
-            candidate.userPofile = UserProfile.objects.get(user=request.user)  # use your own profile here
-            candidate.save()
-            return index(request)
-        else:
-            print(form.errors)
-    return render(request, 'fashionpointapp/PostaPost.html', {'form': form})
+	form = PostForm()
+	if request.method == 'POST':
+		form = PostForm(request.POST, request.FILES )
+		if form.is_valid():
+			candidate = form.save(commit=False)
+			candidate.userPofile = UserProfile.objects.get(user=request.user)
+			candidate.save()
+			return index(request)
+		else:
+			print(form.errors)
+	return render(request, 'fashionpointapp/PostaPost.html', {'form': form})
 def user_login(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
