@@ -3,31 +3,18 @@
 {% block title_block %}
     Login
 {% endblock %}
-{% block top_bar %}
-            <div class="topnav">
-        			<a href="{% url 'index' %}">Home</a>
-        			<a href="{% url 'categories' %}">Categories</a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'newpost' %}">New Post</a>
-                        <a href="{% url 'categories' %}">New Poll</a>
-                        <a href="{% url 'categories' %}">My Account</a>
-                    {% endif %}
-        	</div>
-{% endblock %}
-{% block body_block %}
-           <div class="wrapper fadeInDown">
+    {% block body_block %}
+<div class="wrapper fadeInDown">
            <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/login.css' %}">
   <div id="formContent">
     <!-- Tabs Titles -->
     <h2 class="active"> Sign In </h2>
     <!-- Icon -->
-
-
+      </br>
+      <label>{{type}}</label>
 
     <form id="login_form" method="post" action="{% url 'login' %}">
-
-<form id="login_form" method="post" action="{% url 'login' %}">
-    {% csrf_token %}
+        {% csrf_token %}
     Username: <input type="text" name="username" value="" size="50" />
     <br />
     Password: <input type="password" name="password" value="" size="50" />

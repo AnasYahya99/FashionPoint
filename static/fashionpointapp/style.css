@@ -62,9 +62,9 @@
   color: black;
   text-align: center;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 15px;
   padding-left: 3px;
-  top: -15px; 
+  top: -17px;
 }
 
 /* Place the navbar at the bottom of the page, and make it stick */
@@ -223,7 +223,7 @@ a {
   width: 30px;
   height: 30px;
   margin-left: 4px;
-  bottom: 5px;
+  bottom: 8px;
   border-radius: 20px;
 
 }

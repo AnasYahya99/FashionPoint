@@ -3,30 +3,37 @@
 
 }
 
+#formContent {
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  width: 200%;
+  max-width: 450px;
+  position: relative;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  animation: arrive 1500ms ease-in-out 0s forwards;
+  text-align: center;
+}
+
 .whitehead label  {
-    color: white;
-	font-family: 'Dancing Script', cursive;
-	font-size: 20px;
-	margin-bottom: 30px;
+    color: Black;
+	font-family: "Poppins", sans-serif;
+	font-size: 16px;
 }
 
 .whitehead span {
-
-     color: white;
-	font-family: 'Dancing Script', cursive;
+    color: Black;
+	font-family: "Poppins", sans-serif;
 	font-size: 12px;
-	margin-bottom: 30px;
-
-}
-
-h3{
-color: white;
 }
 
 .user {
-    width: 90%;
-    max-width: 340px;
-    margin: 10vh auto;
+    display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
 }
 
 .user__header {
@@ -34,8 +41,17 @@ color: white;
     opacity: 0;
     transform: translate3d(0, 500px, 0);
     animation: arrive 500ms ease-in-out 0.7s forwards;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display:inline-block;
+    margin: 0px 8px -90px 8px;
 }
-
+h2.active {
+  color: #0d0d0d;
+  border-bottom: 2px solid #5fbae9;
+}
 .user__header img {
      filter:gray(200%);
 
@@ -45,7 +61,7 @@ color: white;
 
     margin-bottom: -10px;
     font-weight: 500;
-    color: white;
+    color: Black;
     font-family: 'Dancing Script', cursive;
 	font-size: 50px;
 
@@ -116,7 +132,50 @@ input[type=button], input[type=submit], input[type=reset]  {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
+input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+input[type=text]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
 @keyframes NO {
   from, to {
     -webkit-transform: translate3d(0, 0, 0);

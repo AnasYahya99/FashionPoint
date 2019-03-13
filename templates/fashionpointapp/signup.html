@@ -4,42 +4,28 @@
 {% block title_block %}
     Sign Up
 {% endblock %}
-{% block top_bar %}
-            <div class="topnav">
-        			<a href="{% url 'index' %}">Home</a>
-        			<a href="{% url 'categories' %}">Categories</a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'newpost' %}">New Post</a>
-                        <a href="{% url 'categories' %}">New Poll</a>
-                        <a href="{% url 'categories' %}">My Account</a>
-                    {% endif %}
-        	</div>
-            {% endblock %}
 {% block body_block %}
-    <div class="user">
     <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
-
-
+    <div class="user">
+          <div id="formContent">
     <header class="user__header">
-        <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/pants-154-885153.png" alt="" />
-        <h1 class="user__title">Sign up</h1>
+        <h2 class="active">Sign up</h2>
     </header>
 
-      <form class="form" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
-
+     <form class="form" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class =whitehead
+        <div class =whitehead>
         {{ user_form.as_p }}
         {{ profile_form.as_p }}
-        </div>>
+        </div>
     <input type="submit" value="Register">
     </form>
-
     </div>
+</div>
 {% endblock %}
 
  {% block list %}
     <div class="sidenav">
-                {% get_category_list category %}
+        {% get_category_list category %}
     </div>
     {% endblock %}

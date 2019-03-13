@@ -16,8 +16,8 @@ def index(request):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
-		length = len(request.user.username)
-		context_dict['length']= 88 - length
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
 	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
 
@@ -27,8 +27,8 @@ def categories(request):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
-		length = len(request.user.username)
-		context_dict['length']= 88 - length	
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
 	context_dict['pos']=2
 	return render(request, 'fashionpointapp/categories.html',context_dict)
 
@@ -37,8 +37,8 @@ def show_category(request, category_name_slug):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
-		length = len(request.user.username)
-		context_dict['length']= 88 - length
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
 	try:
  		category = Category.objects.get(slug=category_name_slug)
  		context_dict['category'] = category
@@ -51,8 +51,8 @@ def contact_us(request):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
-		length = len(request.user.username)
-		context_dict['length']= 88 - length
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
 	return render(request, 'fashionpointapp/contact_us.html',context_dict)
 
 def about_us(request):
@@ -60,8 +60,8 @@ def about_us(request):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
-		length = len(request.user.username)
-		context_dict['length']= 88 - length
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
 	return render(request, 'fashionpointapp/about.html',context_dict)
 
 def sitemap(request):
@@ -69,8 +69,8 @@ def sitemap(request):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
-		length = len(request.user.username)
-		context_dict['length']= 88 - length
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
 	return render(request, 'fashionpointapp/sitemap.html',context_dict)
 
 def register(request):
@@ -78,8 +78,6 @@ def register(request):
 	if request.method == 'POST':
 		user_form = UserForm(data=request.POST)
 		profile_form = UserProfileForm(data=request.POST)
-
-
 		if user_form.is_valid() and profile_form.is_valid():
 			user = user_form.save()
 			user.set_password(user.password)
@@ -90,6 +88,11 @@ def register(request):
 				profile.picture = request.FILES['picture']
 			profile.save()
 			registered = True
+			username = request.POST.get('username')
+			password = request.POST.get('password')
+			user = authenticate(username=username, password=password)
+			login(request, user)
+			return HttpResponseRedirect(reverse('index'))
 		else:
 			print(user_form.errors, profile_form.errors)
 	else:
@@ -109,8 +112,8 @@ def PostaPost(request):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
-		length = len(request.user.username)
-		context_dict['length']= 88 - length
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES )
 		if form.is_valid():
@@ -129,6 +132,8 @@ def PostaPost(request):
 
 def user_login(request):
 	context_dict = {}
+	context_dict['pos'] = 4
+	context_dict['type'] = "";
 	if request.method == 'POST':
 		username = request.POST.get('username')
 		password = request.POST.get('password')
@@ -138,15 +143,14 @@ def user_login(request):
 				login(request, user)
 				return HttpResponseRedirect(reverse('index'))
 			else:
-				return HttpResponse("Account is disabled.")
+				context_dict['type'] = "Account is Disabled";
+				return render(request, 'Fashionpointapp/login.html', context_dict)
 		else:
+			context_dict['type'] = "Invalid login details";
 			print("Invalid login details: {0}, {1}".format(username, password))
-			return HttpResponse("Invalid login details supplied.")
+			return render(request, 'Fashionpointapp/login.html', context_dict)
 	else:
-		context_dict['pos']=4
 		return render(request, 'Fashionpointapp/login.html', context_dict)
-
-
 
 
 @login_required

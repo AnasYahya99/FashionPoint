@@ -76,7 +76,7 @@
             {% endblock %}
             {% if user.is_authenticated %}
                 <button id="btt" style="height: 48px;" href="{% url 'categories' %}">
-                    <p id="c1">{{ user.username }}</p>
+                    <p id="c1">{{ user.first_name }}</p>
                     <img id="profilepic" src ="{{userProfile.picture.url}}"/> 
                 </button>
                 <button id="btt" type="button" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
