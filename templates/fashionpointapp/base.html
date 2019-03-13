@@ -36,12 +36,14 @@
                     {% if user.is_authenticated %}
                         <a href="{% url 'newpost' %}">New Post</a>
                         <a href="{% url 'categories' %}">New Poll</a>
-                        <a href="{% url 'categories' %}">My Account</a>
+                        <a href="{% url 'categories' %}">{{ user.username }}
+                            <img src ="{{userProfile.picture.url}}" width="50px" height="50px"/>
+                        </a>
                     {% endif %}
         	</div>
             {% endblock %}
             {% if user.is_authenticated %}
-               <button id="btt" type="button" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
+                <button id="btt" type="button" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
             {% else %}
                 <button id="btt" type="button" onclick="window.location.href='{% url 'login' %}'">Log in</button>
                 <button id="btt" type="button" onclick="window.location.href='{% url 'signup' %}'">Sign up</button>

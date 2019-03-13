@@ -12,7 +12,11 @@ from datetime import datetime
 from fashionpointapp.forms import UserForm,UserProfileForm
 
 def index(request):
- return render(request, 'fashionpointapp/index.html',)
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+	return render(request, 'fashionpointapp/index.html',context_dict)
 def categories(request):
  return render(request, 'fashionpointapp/categories.html',)
 def show_category(request, category_name_slug):
