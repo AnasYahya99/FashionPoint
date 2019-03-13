@@ -76,6 +76,8 @@ def register(request):
 	if request.method == 'POST':
 		user_form = UserForm(data=request.POST)
 		profile_form = UserProfileForm(data=request.POST)
+
+
 		if user_form.is_valid() and profile_form.is_valid():
 			user = user_form.save()
 			user.set_password(user.password)
@@ -116,7 +118,10 @@ def PostaPost(request):
 			return index(request)
 		else:
 			print(form.errors)
+
 	return render(request, 'fashionpointapp/PostaPost.html', context_dict)
+
+
 
 def user_login(request):
 	if request.method == 'POST':
@@ -134,6 +139,9 @@ def user_login(request):
 			return HttpResponse("Invalid login details supplied.")
 	else:
 		return render(request, 'Fashionpointapp/login.html', {})
+
+
+
 
 @login_required
 def user_logout(request):

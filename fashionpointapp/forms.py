@@ -14,7 +14,7 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('picture','dateOfBirth')
         labels = {
-            'dateOfBirth': ('D.O.B'),
+            ' ': ('D.O.B'),
         }
         widgets = {
             'dateOfBirth': DateInput(attrs={'type': 'date'})

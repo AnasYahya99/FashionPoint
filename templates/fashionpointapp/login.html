@@ -15,9 +15,16 @@
         	</div>
 {% endblock %}
 {% block body_block %}
-            <div style="color:white;">
+           <div class="wrapper fadeInDown">
+           <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/login.css' %}">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Sign In </h2>
+    <!-- Icon -->
 
-<h1>Sign in !</h1>
+
+
+    <form id="login_form" method="post" action="{% url 'login' %}">
 
 <form id="login_form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
@@ -25,13 +32,9 @@
     <br />
     Password: <input type="password" name="password" value="" size="50" />
     <br />
-    <input type="submit" value="submit" />
+    <input type="submit" value="Log in" />
 </form>
 </div>
-<div class="border-top pt-3">
 
-            <small class="text-muted">
-                Do not have an account? <a class="ml-2" href="{% url 'signup' %}">Sign Up Now</a>
-            </small>
 </div>
 {% endblock %}
