@@ -30,7 +30,10 @@
 }
 span.helptext{
 float: left;
-margin: 5px 50px;
+margin: 5px 60px;
+}
+label[for=id_category]{
+margin: 0px  -105px 20px 0px;
 }
 .user {
     display: flex;
@@ -62,7 +65,7 @@ h2.active {
 
 }
 select {
-margin: 20px 50px -65px 30px;
+margin: 20px 50px -65px 120px;
 padding: 0px 0px 0spx 50px;
 }
 .user__title {
