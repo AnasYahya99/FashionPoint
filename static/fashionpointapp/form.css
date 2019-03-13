@@ -15,6 +15,7 @@
   text-align: center;
 }
 
+
 .whitehead label  {
     color: Black;
 	font-family: "Poppins", sans-serif;
@@ -25,8 +26,12 @@
     color: Black;
 	font-family: "Poppins", sans-serif;
 	font-size: 12px;
-}
 
+}
+span.helptext{
+float: left;
+margin: 5px 50px;
+}
 .user {
     display: flex;
   align-items: center;
@@ -56,7 +61,10 @@ h2.active {
      filter:gray(200%);
 
 }
-
+select {
+margin: 20px 50px -65px 30px;
+padding: 0px 0px 0spx 50px;
+}
 .user__title {
 
     margin-bottom: -10px;
@@ -67,7 +75,15 @@ h2.active {
 
 
 }
-
+#id_photo{
+margin: 20px 20px 20px 100px;
+}
+#id_picture{
+margin: 20px 20px 20px 100px;
+}
+#id_dateOfBirth{
+margin: 20px 20px 20px 20px;
+}
 .form {
     margin-top: 40px;
     border-radius: 6px;
@@ -141,7 +157,7 @@ input[type=text] {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 5px;
+  margin: 15px;
   width: 85%;
   border: 2px solid #f6f6f6;
   -webkit-transition: all 0.5s ease-in-out;

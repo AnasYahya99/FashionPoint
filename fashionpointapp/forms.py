@@ -2,6 +2,8 @@ from django import forms
 from fashionpointapp.models import Post,Category,UserProfile
 from django.contrib.auth.models import User
 from django.forms.widgets import DateInput
+from django.utils.translation import ugettext_lazy as _
+
 
 
 class UserForm(forms.ModelForm):
@@ -29,11 +31,13 @@ class UserProfileForm(forms.ModelForm):
 
         }
 class PostForm(forms.ModelForm):
-    category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False)
-    description = forms.CharField(max_length=128,required=False)
-    photo = forms.ImageField()
+    category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False,label='Select categories:',
+                                              help_text='hold control or </br> command to select </br> more than one')
+    description = forms.CharField(max_length=128,required=False,label='Write a caption:')
+    photo = forms.ImageField(label='Upload a picture:')
     avgRating = forms.FloatField(widget=forms.HiddenInput(),required=False,initial=0)
     date = forms.DateTimeField(widget=forms.HiddenInput(),required=False)
     class Meta:
         model = Post
-        fields=['photo','description','category']
+        fields=['description','photo','category']
+
