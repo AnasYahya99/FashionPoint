@@ -16,24 +16,26 @@
         	</div>
             {% endblock %}
 {% block body_block %}
-            <div style="color:white;">
+    <div class="user">
+    <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
 
-    <h1>Join us</h1>
-    {% if registered %}
-        <strong>Thank you for signing up!</strong>
-    {% else %}
-         <strong>Sign up here!</strong><br />
-        <form id="user_form" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+
+    <header class="user__header">
+        <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/pants-154-885153.png" alt="" />
+        <h1 class="user__title">Sign up</h1>
+    </header>
+
+      <form class="form" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+
         {% csrf_token %}
-
+        <div class =whitehead
         {{ user_form.as_p }}
         {{ profile_form.as_p }}
-
-    <button type="submit" class="registerbtn" >Sign up</button>
+        </div>>
+    <input type="submit" value="Register">
     </form>
-    {% endif %}
-                <div/>
 
+    </div>
 {% endblock %}
 
  {% block list %}
