@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile
 from datetime import datetime
-from fashionpointapp.forms import UserForm,UserProfileForm
+from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
 
 def index(request):
 	context_dict = {}
@@ -127,6 +127,30 @@ def PostaPost(request):
 
 	context_dict['pos']=3
 	return render(request, 'fashionpointapp/PostaPost.html', context_dict)
+
+@login_required
+def PollaPoll(request):
+	form = PollForm()
+	context_dict = {'form': form}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
+	if request.method == 'POST':
+		form = PollForm(request.POST, request.FILES )
+		if form.is_valid():
+			candidate = form.save(commit=False)
+			candidate.userPofile = UserProfile.objects.get(user=request.user)
+			candidate.save()
+			form.save_m2m()
+			return index(request)
+		else:
+			print(form.errors)
+
+	context_dict['pos']=6
+	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
+
 
 
 

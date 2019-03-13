@@ -1,5 +1,5 @@
 from django import forms
-from fashionpointapp.models import Post,Category,UserProfile
+from fashionpointapp.models import Post,Category,UserProfile,Poll
 from django.contrib.auth.models import User
 from django.forms.widgets import DateInput
 
@@ -37,3 +37,16 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields=['photo','description','category']
+
+class PollForm(forms.ModelForm):
+    category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False)
+    description = forms.CharField(max_length=128, required=False)
+    picture1 = forms.ImageField()
+    picture2=forms.ImageField()
+    date = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
+    picture1Clicks = forms.IntegerField(widget=forms.HiddenInput(),required=False)
+    picture2Clicks = forms.IntegerField(widget=forms.HiddenInput(),required=False)
+
+    class Meta:
+            model = Poll
+            fields = ['picture1','picture2','category','description']

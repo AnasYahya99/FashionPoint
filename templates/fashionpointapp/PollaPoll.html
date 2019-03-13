@@ -1,0 +1,31 @@
+{% extends 'fashionpointapp/base.html' %}
+{% load staticfiles %}
+
+
+{% block title_block %}
+    A new Poll
+{% endblock %}
+
+{% block body_block %}
+    <h1 id=mylabel >Create a new Poll</h1>
+    <hr>
+
+<form id="PollForm" method="post" action="/fashionpoint/newpoll /"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            <div style="color:white;">
+                {{ form.path }}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            </div>
+        {% endfor %}
+
+    <button type="submit" class="registerbtn" >Ask the PEOPLE !</button>
+</form>
+
+{% endblock %}

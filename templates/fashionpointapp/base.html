@@ -51,7 +51,12 @@
                         <a href="{% url 'newpost' %}">New Post</a>
                         {% endif %}
 
-                        <a href="{% url 'categories' %}">New Poll</a>
+                          {% if pos == 6 %}
+                        <a class="active" href="{% url 'newpoll' %}">New Poll</a>
+                        {% else %}
+                        <a href="{% url 'newpoll' %}">New Poll</a>
+                        {% endif %}
+
                         <a href="{% url 'categories' %}">My Account</a>
                 </div>
                 {% else %}

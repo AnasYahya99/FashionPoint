@@ -8,4 +8,4 @@ book/_build/
 .DS_Store
 keys.py
 .idea/workspace.xml
-*.sqlite3
+ 

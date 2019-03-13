@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^login/$', views.user_login, name="login"),
 	url(r'^signup/$', views.register, name="signup"),
     url(r'^newpost/$', views.PostaPost , name="newpost"),
+    url(r'^newpoll/$', views.PollaPoll , name="newpoll"),
 
 ]
