@@ -31,22 +31,47 @@
 	    <div>
             {% block top_bar %}
 
-            {% if user.is_authenticated %}
-            <div class="topnav" style="width: {{length}}%;">
-                    <a class="active" href="{% url 'index' %}">Home</a>
-                    <a href="{% url 'categories' %}">Categories</a>
-                    <a href="{% url 'newpost' %}">New Post</a>
-                    <a href="{% url 'categories' %}">New Poll</a>
-                    <a href="{% url 'categories' %}">My Account</a>
-            </div>
-            {% else %}
+                {% if user.is_authenticated %}
+                <div class="topnav" style="width: {{length}}%;">
+                        {% if pos == 1 %}
+                        <a class="active" href="{% url 'index' %}">Home</a>
+                        {% else %}
+                        <a href="{% url 'index' %}">Home</a>
+                        {% endif %}
 
-            <div class="topnav">
-                    <a class="active" href="{% url 'index' %}">Home</a>
-                    <a href="{% url 'categories' %}">Categories</a>
-            </div>
+                        {% if pos == 2 %}
+                         <a class="active" href="{% url 'categories' %}">Categories</a>
+                        {% else %}
+                        <a href="{% url 'categories' %}">Categories</a>
+                        {% endif %}
 
-            {% endif %}
+                        {% if pos == 3 %}
+                        <a class="active" href="{% url 'newpost' %}">New Post</a>
+                        {% else %}
+                        <a href="{% url 'newpost' %}">New Post</a>
+                        {% endif %}
+
+                        <a href="{% url 'categories' %}">New Poll</a>
+                        <a href="{% url 'categories' %}">My Account</a>
+                </div>
+                {% else %}
+
+                <div class="topnav">
+                        {% if pos == 1 %}
+                        <a class="active" href="{% url 'index' %}">Home</a>
+                        {% else %}
+                        <a href="{% url 'index' %}">Home</a>
+                        {% endif %}
+
+                        {% if pos == 2 %}
+                         <a class="active" href="{% url 'categories' %}">Categories</a>
+                        {% else %}
+                        <a href="{% url 'categories' %}">Categories</a>
+                        {% endif %}
+
+                </div>
+                {% endif %}
+            
 
             {% endblock %}
             {% if user.is_authenticated %}
@@ -56,8 +81,20 @@
                 </button>
                 <button id="btt" type="button" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
             {% else %}
+                {% if pos == 4 %}
+                <button style="color: #2196F3;" id="btt" type="button" onclick="window.location.href='{% url 'login' %}'">Log in</button>
+                {% else %}
                 <button id="btt" type="button" onclick="window.location.href='{% url 'login' %}'">Log in</button>
+                {% endif %}
+
+
+                {% if pos == 5 %}
+                <button style="color: #2196F3;" id="btt" type="button" onclick="window.location.href='{% url 'signup' %}'">Sign up</button>
+                {% else %}
                 <button id="btt" type="button" onclick="window.location.href='{% url 'signup' %}'">Sign up</button>
+                {% endif %}
+
+                
              {% endif %}
 
         </div>

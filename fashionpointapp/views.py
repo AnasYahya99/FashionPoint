@@ -18,6 +18,7 @@ def index(request):
 		context_dict['userProfile'] = userProfile
 		length = len(request.user.username)
 		context_dict['length']= 88 - length
+	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
 
 
@@ -28,6 +29,7 @@ def categories(request):
 		context_dict['userProfile'] = userProfile
 		length = len(request.user.username)
 		context_dict['length']= 88 - length	
+	context_dict['pos']=2
 	return render(request, 'fashionpointapp/categories.html',context_dict)
 
 def show_category(request, category_name_slug):
@@ -97,7 +99,8 @@ def register(request):
 				'fashionpointapp/signup.html',
 				{'user_form': user_form,
 				'profile_form': profile_form,
-				'registered': registered})
+				'registered': registered,
+				'pos': 5})
 
 @login_required
 def PostaPost(request):
@@ -119,11 +122,13 @@ def PostaPost(request):
 		else:
 			print(form.errors)
 
+	context_dict['pos']=3
 	return render(request, 'fashionpointapp/PostaPost.html', context_dict)
 
 
 
 def user_login(request):
+	context_dict = {}
 	if request.method == 'POST':
 		username = request.POST.get('username')
 		password = request.POST.get('password')
@@ -138,7 +143,8 @@ def user_login(request):
 			print("Invalid login details: {0}, {1}".format(username, password))
 			return HttpResponse("Invalid login details supplied.")
 	else:
-		return render(request, 'Fashionpointapp/login.html', {})
+		context_dict['pos']=4
+		return render(request, 'Fashionpointapp/login.html', context_dict)
 
 
 
