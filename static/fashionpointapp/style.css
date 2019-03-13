@@ -25,7 +25,6 @@
   left: 50px;
   margin-left: 14px;
   box-shadow: 3px 6px;
-
 }
 
 
@@ -52,11 +51,21 @@
   color: white;
 }
 
+#c1 {
+  position: relative;
+  display: inline;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+  padding-left: 3px;
+  top: -15px; 
+}
+
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar {
-  
-  overflow: hidden;
   position: fixed;
+  overflow: hidden;
   bottom: 0;
   width: 100%;
 }
@@ -204,4 +213,13 @@ a {
   color: dodgerblue;
 }
 
+#profilepic{
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-left: 4px;
+  bottom: 5px;
+  border-radius: 20px;
+
+}
 

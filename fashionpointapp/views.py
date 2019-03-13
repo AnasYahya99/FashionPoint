@@ -16,25 +16,60 @@ def index(request):
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
+		length = len(request.user.username)
+		context_dict['length']= 88 - length
 	return render(request, 'fashionpointapp/index.html',context_dict)
+
+
 def categories(request):
- return render(request, 'fashionpointapp/categories.html',)
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.username)
+		context_dict['length']= 88 - length	
+	return render(request, 'fashionpointapp/categories.html',context_dict)
+
 def show_category(request, category_name_slug):
- context_dict = {}
- try:
-  category = Category.objects.get(slug=category_name_slug)
-  context_dict['category'] = category
- except Category.DoesNotExist:
-  context_dict['category'] = None
- return render(request, 'fashionpointapp/category.html', context_dict)
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.username)
+		context_dict['length']= 88 - length
+	try:
+ 		category = Category.objects.get(slug=category_name_slug)
+ 		context_dict['category'] = category
+	except Category.DoesNotExist:
+ 		context_dict['category'] = None
+	return render(request, 'fashionpointapp/category.html', context_dict)
 
 def contact_us(request):
-	return render(request, 'fashionpointapp/contact_us.html',)
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.username)
+		context_dict['length']= 88 - length
+	return render(request, 'fashionpointapp/contact_us.html',context_dict)
 
 def about_us(request):
-	return render(request, 'fashionpointapp/about.html',)
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.username)
+		context_dict['length']= 88 - length
+	return render(request, 'fashionpointapp/about.html',context_dict)
+
 def sitemap(request):
-	return render(request, 'fashionpointapp/sitemap.html',)
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.username)
+		context_dict['length']= 88 - length
+	return render(request, 'fashionpointapp/sitemap.html',context_dict)
 
 def register(request):
 	registered = False
@@ -61,9 +96,16 @@ def register(request):
 				{'user_form': user_form,
 				'profile_form': profile_form,
 				'registered': registered})
+
 @login_required
 def PostaPost(request):
 	form = PostForm()
+	context_dict = {'form': form}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.username)
+		context_dict['length']= 88 - length
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES )
 		if form.is_valid():
@@ -74,7 +116,8 @@ def PostaPost(request):
 			return index(request)
 		else:
 			print(form.errors)
-	return render(request, 'fashionpointapp/PostaPost.html', {'form': form})
+	return render(request, 'fashionpointapp/PostaPost.html', context_dict)
+
 def user_login(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
@@ -91,13 +134,12 @@ def user_login(request):
 			return HttpResponse("Invalid login details supplied.")
 	else:
 		return render(request, 'Fashionpointapp/login.html', {})
-@login_required
-def restricted(request):
-	return render(request,'Fashionpointapp/restricted.html',{})
+
 @login_required
 def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('index'))
+
 def visitor_cookie_handler(request):
 	visits = int(get_server_side_cookie(request, 'visits', '1'))
 	last_visit_cookie = get_server_side_cookie(request,'last_visit',str(datetime.now()))

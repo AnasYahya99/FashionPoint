@@ -30,19 +30,30 @@
 	{% endif %}
 	    <div>
             {% block top_bar %}
+
+            {% if user.is_authenticated %}
+            <div class="topnav" style="width: {{length}}%;">
+                    <a class="active" href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'categories' %}">Categories</a>
+                    <a href="{% url 'newpost' %}">New Post</a>
+                    <a href="{% url 'categories' %}">New Poll</a>
+                    <a href="{% url 'categories' %}">My Account</a>
+            </div>
+            {% else %}
+
             <div class="topnav">
-        			<a class="active" href="{% url 'index' %}">Home</a>
-        			<a href="{% url 'categories' %}">Categories</a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'newpost' %}">New Post</a>
-                        <a href="{% url 'categories' %}">New Poll</a>
-                        <a href="{% url 'categories' %}">{{ user.username }}
-                            <img src ="{{userProfile.picture.url}}" width="50px" height="50px"/>
-                        </a>
-                    {% endif %}
-        	</div>
+                    <a class="active" href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'categories' %}">Categories</a>
+            </div>
+
+            {% endif %}
+
             {% endblock %}
             {% if user.is_authenticated %}
+                <button id="btt" style="height: 48px;" href="{% url 'categories' %}">
+                    <p id="c1">{{ user.username }}</p>
+                    <img id="profilepic" src ="{{userProfile.picture.url}}"/> 
+                </button>
                 <button id="btt" type="button" onclick="window.location.href='{% url 'logout' %}'">Log out</button>
             {% else %}
                 <button id="btt" type="button" onclick="window.location.href='{% url 'login' %}'">Log in</button>
