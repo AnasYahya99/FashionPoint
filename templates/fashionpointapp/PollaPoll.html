@@ -3,29 +3,25 @@
 
 
 {% block title_block %}
-    A new Poll
+    A new post
 {% endblock %}
 
 {% block body_block %}
-    <h1 id=mylabel >Create a new Poll</h1>
-    <hr>
+<link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
+    <div class="user">
+          <div id="formContent">
 
-<form id="PollForm" method="post" action="/fashionpoint/newpoll /"  enctype="multipart/form-data">
+<header style='margin: 0px 8px 0px 8px;' class="user__header">
+        <h2 class="active">Create a Poll</h2>
+    </header>
+
+<form  id="PollForm" method="post" action="/fashionpoint/newpoll/"  enctype="multipart/form-data">
         {% csrf_token %}
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-
-        {% for field in form.visible_fields %}
-            <div style="color:white;">
-                {{ form.path }}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            </div>
-        {% endfor %}
-
-    <button type="submit" class="registerbtn" >Ask the PEOPLE !</button>
+        <div class =whitehead>
+        {{form}}
+        </div>
+    <input style="margin: 50px 20px 20px 20px;" type="submit" value="Ask the PEOPLE !">
 </form>
-
+          </div>
+</div>
 {% endblock %}

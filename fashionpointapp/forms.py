@@ -42,16 +42,17 @@ class PostForm(forms.ModelForm):
         fields=['photo','description','category']
 
 class PollForm(forms.ModelForm):
-    category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False)
-    description = forms.CharField(max_length=128, required=False)
-    picture1 = forms.ImageField()
-    picture2=forms.ImageField()
+    category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False,label='Select categories:',
+                                              help_text='hold control or </br> command to select </br> more than one')
+    description = forms.CharField(max_length=128, required=False,label='Write a caption:')
+    picture1 = forms.ImageField(label='Upload the first picture:')
+    picture2=forms.ImageField(label='Upload the first picture:')
     date = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
     picture1Clicks = forms.IntegerField(widget=forms.HiddenInput(),required=False)
     picture2Clicks = forms.IntegerField(widget=forms.HiddenInput(),required=False)
 
     class Meta:
             model = Poll
-            fields = ['picture1','picture2','category','description']
+            fields = ['description','picture1','picture2','category']
 
 
