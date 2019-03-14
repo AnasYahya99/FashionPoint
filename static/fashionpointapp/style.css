@@ -69,8 +69,11 @@
 
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar {
-  background-color: Red;
-  position: fixed;
+  clear: both;
+  position: relative;
+  height: 57px;
+  margin-top: -20px;
+  background-color: transparent;
   overflow: hidden;
   bottom: 0;
   width: 100%;
@@ -78,7 +81,6 @@
 
 /* Style the links inside the navigation bar */
 .navbar a {
-
   float: left;
   display: block;
   color: #f2f2f2;
@@ -113,7 +115,7 @@
 
 .sidenav {
   width: 130px;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   top: 20px;
   right: 20px;
