@@ -28,7 +28,6 @@ class UserProfileForm(forms.ModelForm):
         }
         widgets = {
             'dateOfBirth': DateInput(attrs={'type': 'date'})
-
         }
 class PostForm(forms.ModelForm):
     category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False,label='Select categories:',
@@ -50,7 +49,6 @@ class PollForm(forms.ModelForm):
     date = forms.DateTimeField(widget=forms.HiddenInput(), required=False)
     picture1Clicks = forms.IntegerField(widget=forms.HiddenInput(),required=False)
     picture2Clicks = forms.IntegerField(widget=forms.HiddenInput(),required=False)
-
     class Meta:
             model = Poll
             fields = ['description','picture1','picture2','category']

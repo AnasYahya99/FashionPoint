@@ -16,7 +16,31 @@
   text-align: center;
 }
 
+#formContent2 {
+  display: inline-block;
+  vertical-align:top;
+  border-radius: 10px 10px 10px 10px;
+  margin: 0px 0px 0px 100px;
+  background: #fff;
+  padding: 30px;
+  width: 500%;
+  max-width: 300px;
+  position: relative;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  animation: arrive 1500ms ease-in-out 0s forwards;
+  text-align: center;
+}
+.tie{
+height: 40px;
+width: 40px;
+}
 
+.postPic{
+margin-left: -5px;
+height:250px;
+width:250px;
+object-fit: cover;
+}
 .whitehead label  {
     color: Black;
 	font-family: "Poppins", sans-serif;

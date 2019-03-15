@@ -7,9 +7,43 @@
 {% endblock %}
 
 {% block body_block %}
-
+    <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
+			<script type="text/javascript" src="{% static 'fashionpointapp/ties.js' %}"></script>
 	<div class="main">
 		<p id="white"> Welcome </p>
+        <div class=whitehead>
+		<div id="formContent2" style="margin-left:-10px; margin-right:-80px;max-width:70px;"></div>
+		<div id="formContent2" style="margin-right:-80px;">
+			<div id="ties1">
+			</div>
+			<script	>printTies({{arp1}},"ties1");</script>
+			<hr/>
+			<img class="postPic" src="/media/{{post1.photo}}">
+			<hr/>
+			<label>{{post1.description}}</label>
+			<hr/>
+		</div>
+		<div id="formContent2" style="margin-right:-80px;animation: arrive 1700ms ease-in-out 0s forwards;">
+			<div id="ties2">
+			</div>
+			<script	>printTies({{arp2}},"ties2");</script>
+			<hr/>
+			<img class="postPic" src="/media/{{post2.photo}}">
+			<hr/>
+			<label>{{post2.description}}</label>
+			<hr/>
+		</div>
+		<div id="formContent2" style="margin-right:-80px;animation: arrive 1900ms ease-in-out 0s forwards;">
+			<div id="ties3">
+			</div>
+			<script	>printTies({{arp3}},"ties3");</script>
+			<hr/>
+			<img class="postPic" src="/media/{{post3.photo}}">
+			<hr/>
+			<label>{{post3.description}}</label>
+			<hr/>
+		</div>
+			<div id="formContent2" style="max-width:70px;"></div>
+		</div>
 	</div>
-
 {% endblock %}

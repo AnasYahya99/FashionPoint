@@ -7,12 +7,19 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-from fashionpointapp.models import UserProfile
+from fashionpointapp.models import UserProfile,Post
 from datetime import datetime
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
-
 def index(request):
+	ind = 1
 	context_dict = {}
+	post = Post.objects.all()
+	context_dict['post1'] = post[ind*3]
+	context_dict['post2'] = post[ind*3+1]
+	context_dict['post3'] = post[ind*3+2]
+	context_dict['arp1'] = int(round(post[ind*3].avgRating*2))
+	context_dict['arp2'] = int(round(post[ind*3+1].avgRating*2))
+	context_dict['arp3'] = int(round(post[ind*3+2].avgRating*2))
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
@@ -20,6 +27,7 @@ def index(request):
 		context_dict['length']= 87 - length
 	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
+
 
 
 def categories(request):
