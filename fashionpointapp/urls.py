@@ -15,5 +15,5 @@ urlpatterns = [
 	url(r'^signup/$', views.register, name="signup"),
     url(r'^newpost/$', views.PostaPost , name="newpost"),
     url(r'^newpoll/$', views.PollaPoll , name="newpoll"),
-
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
