@@ -94,6 +94,8 @@ def register(request):
 			profile.user = user
 			if 'picture' in request.FILES:
 				profile.picture = request.FILES['picture']
+			else:
+				profile.picture = Image.open("/static/images/default.jpg")
 			profile.save()
 			registered = True
 			username = request.POST.get('username')
@@ -158,8 +160,6 @@ def PollaPoll(request):
 
 	context_dict['pos']=6
 	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
-
-
 
 
 def user_login(request):

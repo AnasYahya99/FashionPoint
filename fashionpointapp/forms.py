@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django.forms.widgets import DateInput
 from django.utils.translation import ugettext_lazy as _
 
-
-
 class UserForm(forms.ModelForm):
     confirm_password=forms.CharField(widget=forms.PasswordInput())
     password = forms.CharField(widget=forms.PasswordInput())
@@ -52,5 +50,3 @@ class PollForm(forms.ModelForm):
     class Meta:
             model = Poll
             fields = ['description','picture1','picture2','category']
-
-

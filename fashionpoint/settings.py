@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fashionpointapp',
 	'crispy_forms',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'fashionpoint.urls'
@@ -65,7 +67,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-	 	'django.template.context_processors.media'
+                'django.template.context_processors.media',
+                'social_django.context_processors.backends', 
+                'social_django.context_processors.login_redirect'
             ],
         },
     },
@@ -109,6 +113,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.open_id.OpenIdAuth',  
+    'social_core.backends.google.GoogleOpenId',  
+    'social_core.backends.google.GoogleOAuth2', 
+    'social_core.backends.google.GooglePlusAuth',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -134,3 +149,10 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'index'
+LOGIN_REDIRECT_URL = 'index'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='814511528983-flsnth5k58rfquadd6jeihc1r6q5qs9e.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'pH3P2zDPejq2sTaNkX--5nsX'
+SOCIAL_AUTH_FACEBOOK_KEY = '2476640362406516'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'bc7069e1df34fc42433a9dadebd14ddb'  # App Secret
