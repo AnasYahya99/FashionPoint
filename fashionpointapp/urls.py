@@ -4,7 +4,7 @@ from django.contrib import admin
 from fashionpointapp import views	 
 
 urlpatterns = [
-    url(r'^$', views.indexReset, name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'^categories/$', views.categories, name="categories"),
     url(r'^categories/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name='show_category'),
     url(r'^posts/(?P<post_id>[0-9]+)/$', views.show_post, name='show_post'),
@@ -22,7 +22,7 @@ urlpatterns = [
 	url(r'^myaccount/$', views.view_profile, name='view_profile'),
     url(r'^edit/$', views.edit_profile, name='edit_profile'),
     url(r'^auth/', include('social_django.urls', namespace='social')),
-    url(r'^nextPosts/$', views.indexNext, name="indNext"),
-    url(r'^previousPosts/$', views.indexPrev, name="indPrev"),
+    url(r'^updatePosts/$', views.updatePosts, name='updatePosts'),
+    url(r'^updatePolls/$', views.updatePolls, name='updatePolls'),
 
 ]

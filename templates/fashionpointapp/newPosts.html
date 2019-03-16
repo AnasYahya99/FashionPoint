@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<dev>
+    <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
+{% if state1 != 1 %}
+		<div id="formContent2" style="margin-left:20px; margin-right:-80px;max-width:70px; margin-top:190px;animation:arrive 800ms ease-in-out 0s forwards;">
+				<img class="arrow" style="margin-left: -10px;" onclick="prev()" src="{% static "images/left.png"%}">
+		</div>
+		{%endif%}
+		<div id="formContent2" {% if state1 == 1 %}
+			 style="margin-left:115px;margin-right:-80px;"
+			 {%else%}
+			 style="margin-right:-80px;"
+			 {% endif %}>
+			<div id="ties1">
+                {% for i in onp1%}
+				<img class="tie" src="{% static 'images/54458077_364690717465481_2362712318992711680_n.png'%}"/>
+			{%endfor%}
+			{%if hp1 == 1%}
+				<img class="tie" src="{% static 'images/53856595_2337553366296088_1102890933814296576_n.png'%}"/>
+			{%endif%}
+			{% for i in offp1%}
+				<img class="tie" src="{% static 'images/54255324_381448649078050_8592250154898161664_n.png'%}"/>
+			{%endfor%}
+			</div>
+			<hr/>
+			<img class="postPic" src="/media/{{post1.photo}}">
+			<hr/>
+			<label>{{post1.description}}</label>
+			<hr/>
+            {{post1}}
+		</div>
+		<div id="formContent2" style="margin-right:-80px;animation: arrive 1200ms ease-in-out 0s forwards;">
+			<div id="ties2">
+                {% for i in onp2%}
+				<img class="tie" src="{% static 'images/54458077_364690717465481_2362712318992711680_n.png'%}"/>
+			{%endfor%}
+			{%if hp2 == 1%}
+				<img class="tie" src="{% static 'images/53856595_2337553366296088_1102890933814296576_n.png'%}"/>
+			{%endif%}
+			{% for i in offp2%}
+				<img class="tie" src="{% static 'images/54255324_381448649078050_8592250154898161664_n.png'%}"/>
+			{%endfor%}
+			</div>
+			<hr/>
+			<img class="postPic" src="/media/{{post2.photo}}">
+			<hr/>
+			<label>{{post2.description}}</label>
+			<hr/>
+            {{post2}}
+		</div>
+		<div id="formContent2" style="margin-right:-80px;animation: arrive 1400ms ease-in-out 0s forwards;">
+			<div id="ties3">
+                {% for i in onp3%}
+				<img class="tie" src="{% static 'images/54458077_364690717465481_2362712318992711680_n.png'%}"/>
+			{%endfor%}
+			{%if hp3 == 1%}
+				<img class="tie" src="{% static 'images/53856595_2337553366296088_1102890933814296576_n.png'%}"/>
+			{%endif%}
+			{% for i in offp3%}
+				<img class="tie" src="{% static 'images/54255324_381448649078050_8592250154898161664_n.png'%}"/>
+			{%endfor%}
+			</div>
+			<hr/>
+			<img class="postPic" src="/media/{{post3.photo}}">
+			<hr/>
+			<label>{{post3.description}}</label>
+			<hr/>
+            {{post3}}
+		</div>
+			{% if state2 != 1 %}
+			<div id="formContent2" style="max-width:70px; margin-top:190px;animation:arrive 1600ms ease-in-out 0s forwards;">
+			<img class="arrow" onclick="next()" src="{% static "images/right.png"%}"></div>
+    </dev>
+{%endif%}
