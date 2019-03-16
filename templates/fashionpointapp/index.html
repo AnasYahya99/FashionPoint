@@ -31,29 +31,33 @@
 								document.getElementById("everything").innerHTML=response;
 					});
 				}
-				function printTies(n,x){
-					var text="";
-					for (var i = 0; i < n; i++) {
-						if(i%2==1){
-	 						text+="	<img class=\"tie\" src=\"/static/images/54458077_364690717465481_2362712318992711680_n.png\"/> ";
-						 }
-					}
-					if(n%2==1){
-						text+="<img class='tie' src=\"/static/images/53856595_2337553366296088_1102890933814296576_n.png\" //> \n";
-					}
-					n = 10-n;
-					for(var i = 0; i< n;i++){
-						if(i%2==1){
-	 						text+="<img class='tie' src=\"/static/images/54255324_381448649078050_8592250154898161664_n.png\"//> \n";
-		 				}
-					}
-					document.getElementById(x).innerHTML=text;
+				var inc2 = 0;
+				function nextPolls(){
+					inc2+=2;
+					$.ajax({
+						type:"GET",
+						url: "{% url 'updatePolls'%}",
+						data: {'inc': inc2}})
+						.done(function(response) {
+								document.getElementById("everything2").innerHTML=response;
+					});
+				}
+				function prevPolls(){
+					inc2-=2;
+					$.ajax({
+						type:"GET",
+						url: "{% url 'updatePolls'%}",
+						data: {'inc': inc2}})
+						.done(function(response) {
+								document.getElementById("everything2").innerHTML=response;
+					});
 				}
 
 			</script>
 	<div class="main">
-		<p id="white"> Welcome </p>
-
+	<div id="formContent2" style="max-height:90px;max-width:960px;margin:50px 0px 50px 110px;text-align:top;background: #d0f8ff;" >
+<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">Review Posts
+</label></div>
         <div class=whitehead id="everything">
 		{% if state1 != 1 %}
 		<div id="formContent2" style="margin-left:20px; margin-right:-80px;max-width:70px; margin-top:190px;animation:arrive 800ms ease-in-out 0s forwards;">
@@ -133,5 +137,51 @@
 			</div>
 			{%endif%}
 		</div>
+		<div id="formContent2" style="max-height:90px;max-width:960px;margin:80px 0px 80px 110px;text-align:top;background: #d0f8ff;" >
+<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">Vote on Polls
+</label>
 	</div>
+		<div class=whitehead style="margin-top:0px;" id="everything2">
+		{% if state3 != 1 %}
+		<div id="formContent2" style="margin-left:20px; margin-right:-80px;max-width:70px; margin-top:140px;animation:arrive 800ms ease-in-out 0s forwards;">
+				<img class="arrow" style="margin-left: -10px;" onclick="prevPolls();" src="{% static "images/left.png"%}">
+		</div>
+		{%endif%}
+		<div id="formContent2" style="{% if state1 == 1 %}
+			 margin-left:115px;
+			 {% endif %}
+			 margin-right:-80px;max-width:463px">
+			<hr/>
+			<div id="poll" style="display: inline-block;margin-top:15px;margin-bottom:15px;transition-duration: 0.25s;">
+			<img class="pollPic" src="/media/{{poll1.picture1}}">
+			<img class="pollPic" src="/media/{{poll1.picture2}}">
+			</div>
+			<hr/>
+			<label>{{poll1.description}}</label>
+			<hr/>
+		{{poll1}}
+		</div>
+			<div id="formContent2" style="margin-right:-80px;max-width:463px">
+			<hr/>
+			<div id="poll" style="display: inline-block;margin-top:15px;margin-bottom:15px;transition-duration: 0.25s;">
+			<img class="pollPic" src="/media/{{poll2.picture1}}">
+			<img class="pollPic" src="/media/{{poll2.picture2}}">
+			</div>
+			<hr/>
+			<label>{{poll2.description}}</label>
+			<hr/>
+		{{poll2}}
+		</div>
+
+			{% if state4 != 1 %}
+			<div id="formContent2" style="max-width:70px; margin-top:140px;animation:arrive 1400ms ease-in-out 0s forwards;">
+			<img class="arrow"
+			{% if state3 != 1 %}
+				 style="margin-top: -30px;"
+			{% endif %}
+			onclick="nextPolls();" src="{% static "images/right.png"%}">
+			</div>
+			{%endif%}
+		</div>
+		</div>
 {% endblock %}

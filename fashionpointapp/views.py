@@ -7,13 +7,12 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-from fashionpointapp.models import UserProfile,Post
+from fashionpointapp.models import UserProfile,Post,Poll
 from datetime import datetime
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
 def updatePosts(request):
 	context_dict = {}
 	ind = int(request.GET['inc'])
-	print(ind)
 	post = Post.objects.all()[ind:ind+3]
 	length = len(Post.objects.all())
 	state2 = 0
@@ -55,17 +54,41 @@ def updatePosts(request):
 	context_dict['offp3'] = startate(offp3)
 	context_dict['hp3'] = hp3
 	return render(request, 'fashionpointapp/newPosts.html',context_dict)
+def updatePolls(request):
+	context_dict = {}
+	ind = int(request.GET['inc'])
+	poll = Poll.objects.all()[ind:ind+2]
+	length = len(Poll.objects.all())
+	state3 = 0
+	state4 = 0
+	if (ind + 2 >= length):
+		state4 = 1
+	if (ind == 0):
+		state3 = 1
+	context_dict['state3'] = state3
+	context_dict['state4'] = state4
+	context_dict['poll1'] = poll[0]
+	context_dict['poll2'] = poll[1]
+	return render(request, 'fashionpointapp/newPolls.html',context_dict)
 def index(request):
 	context_dict = {}
 	post = Post.objects.all()
+	poll = Poll.objects.all()
 	state2 = 0
+	state4=0
 	if (len(post)<=3):
 		state2 = 1
+	if (len(poll) <= 3):
+		state4 = 1
 	context_dict['state1'] = 1
 	context_dict['state2'] = state2
+	context_dict['state3'] = 1
+	context_dict['state4'] = state2
 	context_dict['post1'] = post[0]
 	context_dict['post2'] = post[1]
 	context_dict['post3'] = post[2]
+	context_dict['poll1'] = poll[0]
+	context_dict['poll2'] = poll[1]
 	arp1 = round(post[0].avgRating * 2)
 	onp1= int(arp1/2)
 	offp1 = int((10 - arp1)/2)
@@ -280,5 +303,4 @@ def startate(x):
 	text=""
 	for i in  range(0,x):
 		text = text + "*"
-	print(text)
 	return text

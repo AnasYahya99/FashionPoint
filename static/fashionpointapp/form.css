@@ -69,10 +69,22 @@ width: 40px;
 }
 
 .postPic{
-  transition-duration: 0.25s,1s;
+transition-duration: 0.25s;
 margin-left: -5px;
 height:250px;
 width:250px;
+object-fit: cover;
+}
+#poll:hover{
+transform: scale(1.15);
+cursor: pointer ;
+filter: brightness(50%);
+}
+.pollPic{
+display:inline-block
+margin-left: -5px;
+height:195px;
+width:195px;
 object-fit: cover;
 }
 .whitehead label  {
