@@ -30,6 +30,7 @@
   left: 50px;
   margin-left: 14px;
   box-shadow: 3px 6px;
+
 }
 
 
@@ -69,14 +70,20 @@
 
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar {
+<<<<<<< HEAD
+
+  position: absolute;
+=======
   clear: both;
   position: relative;
   height: 57px;
   margin-top: -20px;
   background-color: transparent;
+>>>>>>> b390f05383221d73b6532855a26be4f887e94d8b
   overflow: hidden;
-  bottom: 0;
   width: 100%;
+
+
 }
 
 /* Style the links inside the navigation bar */
@@ -85,9 +92,9 @@
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 170px ;
+  padding: 10px 170px ;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 13px;
   align-content : center; 
   font-weight : bold ; 
  
@@ -95,7 +102,7 @@
 
 /* Change the color of links on hover */
 .navbar a:hover {
-  background-color: #ddd;
+
   color: black;
 }
 
@@ -234,4 +241,337 @@ a {
 
 
 /* ------------------------------------------------Form css */
+
+.post {
+
+  animation: arrive 1500ms ease-in-out 0s forwards;
+  margin-top: 50px;
+  display: flex;
+  background-color: #f6f6f6;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-color: black;
+  border-radius: 3em;
+  max-width: 85%;
+  margin-left: 20px;
+box-shadow: 5px 5px 5px 5px #0d0d0d;
+
+}
+
+
+#commentstab {
+
+  animation: arrive 3000ms ease-in-out 0s forwards;
+  margin-top: 50px;
+  display: flex;
+  background-color: #f6f6f6;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-color: #5fbae9;
+  border-radius: 15px;
+  max-width: 80%;
+  margin-left: 10px;
+    box-shadow: 5px 5px 5px 5px #5fbae9;
+
+}
+
+.post label {
+    color: Black;
+  	font-family: "Poppins", sans-serif;
+	font-size: 20px;
+}
+#column {
+
+  flex: 20%;
+  padding: 5px;
+  margin-left: 20px
+
+
+
+
+}
+.post img {
+    -moz-box-shadow: 5px 5px 0px #999;
+    -webkit-box-shadow: 5px 5px 0px #999;
+  box-shadow: 8px 8px 8px 8px #999;
+
+  border-radius: 15px;
+  width: 30%;
+  height: 30%;
+  padding: 10px 10px 10px 10px;
+  object-fit: cover;
+  animation: arrive 2000ms ease-in-out 0s forwards;
+
+
+}
+
+#discription{
+
+
+    justify-content: left;
+    color: Black;
+  	font-family: "Poppins", sans-serif;
+    text-align: left;
+    text-justify: initial;
+
+}
+
+#discription2{
+
+
+    justify-content: left;
+    color: Black;
+  	font-family: "Poppins", sans-serif;
+    text-align: left;
+    text-justify: initial;
+    font-size: 25px;
+
+}
+
+
+
+@keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0
+    }
+
+    50% {
+        background-position: 100% 0
+    }
+
+    100% {
+        background-position: 0 0
+    }
+}
+
+
+
+/*Rating
+
+ */
+.rating {
+    float:left;
+    max-width: 50%;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    clip:rect(10px,0,0,0);
+
+}
+
+
+
+.rating:not(:checked) > label {
+
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ffffff;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(4,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content : url("/static/images/bow.png");
+    opacity: 10%;
+}
+
+.rating > input:checked ~ label {
+    color: #fff;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    border-color: Black;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: black;
+    text-shadow:1px 1px goldenrod, 2px 2px white, .1em .1em .2em rgba(0,0,0,.5);
+    content: unset;
+
+}
+
+.rating > label:active {
+
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+/* end of Lea's code */
+
+/*
+ * Clearfix from html5 boilerplate
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: "  "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+
+}
+
+/* my stuff */
+#status, button {
+    margin: 10px 10px;
+}
+
+
+#commentstab {
+
+    display: block;
+
+}
+
+#ratefield {
+
+  border-color: black;
+  background:#5fbae9;
+
+}
+
+#username{
+
+    float: left;
+    font-weight: bold;
+    justify-content: left;
+
+}
+
+
+#date {
+
+    font-size: 10px;
+
+
+}
+
+#comment{
+
+    float: left;
+    justify-content: left;
+
+
+}
+
+
+#commenttab{
+
+
+
+}
+
+.ratebutton{
+
+  margin-right: 350px;
+  background:#5fbae9;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+
+}
+.ratebutton:hover{
+  background:#fff;
+  color:#5fbae9;
+}
+.ratebutton:before,#ratebutton:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #5fbae9;
+  transition:400ms ease all;
+}
+.ratebutton:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.ratebutton:hover:before,.ratebutton:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+#AcutalComment {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 

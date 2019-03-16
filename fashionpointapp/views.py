@@ -1,16 +1,34 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from fashionpointapp.models import Category
+from fashionpointapp.models import Category , Post ,PostComment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile,Post,Poll
 from datetime import datetime
+
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
+<<<<<<< HEAD
 def updatePosts(request):
+=======
+
+
+from django.http import JsonResponse
+
+from django.shortcuts import get_object_or_404
+
+from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import update_session_auth_hash
+ind = 0
+
+def index(request):
+>>>>>>> 90f1a3eca1720c338e5bd1d423cb08ca480c0626
 	context_dict = {}
 	ind = int(request.GET['inc'])
 	post = Post.objects.all()[ind:ind+3]
@@ -276,6 +294,15 @@ def user_login(request):
 			return render(request, 'Fashionpointapp/login.html', context_dict)
 	else:
 		return render(request, 'Fashionpointapp/login.html', context_dict)
+@login_required
+def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+
+    return render(request, 'fashionpointapp/myaccount.html', args)
 
 
 @login_required
@@ -299,8 +326,82 @@ def get_server_side_cookie(request, cookie, default_val=None):
 	if not val:
 		val = default_val
 	return val
+<<<<<<< HEAD
 def startate(x):
 	text=""
 	for i in  range(0,x):
 		text = text + "*"
 	return text
+=======
+@login_required	
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('fashionpointapp:view_profile'))
+    else:
+        form = EditForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'fashionpointapp/edit_profile.html', args)
+
+
+
+def show_post(request , post_id):
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
+	context_dict['post'] = Post.objects.get(id=int(post_id))
+	comments = PostComment.objects.filter(post=int(post_id))
+	context_dict['Comments'] = comments
+	return render(request,'Fashionpointapp/post.html',context_dict)
+
+
+
+def update_avg(request , post_id ):
+
+	if request.method == 'POST' and request.is_ajax():
+		try:
+			id = post_id
+			value = request.POST.get('value')
+			obj = Post.objects.get(id=post_id)
+			obj.avgRating = value
+			obj.save()
+			return HttpResponse(value)
+		except Post.DoesNotExist:
+			return HttpResponse('did not work')
+
+
+def makeacomment(request , post_id ):
+
+	if request.method == 'POST' and request.is_ajax():
+		userProfile = UserProfile.objects.get(user=request.user)
+		try:
+			id = post_id
+			comment = PostComment()
+			comment.comment = request.POST.get('comment')
+			comment.post = Post.objects.get(id=post_id)
+			comment.userPofile = userProfile
+			comment.save()
+			return HttpResponse("It did work")
+		except Post.DoesNotExist:
+			return HttpResponse('did not work')
+	else :
+
+		return HttpResponse('did not work')
+
+def update_comments(request, post_id):
+	print('yes')
+	context_dict={}
+	context_dict['Comments'] = PostComment.objects.filter(post=int(post_id))
+	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+
+
+
+
+
+>>>>>>> 90f1a3eca1720c338e5bd1d423cb08ca480c0626

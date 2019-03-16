@@ -1,0 +1,33 @@
+{% extends 'fashionpointapp/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+{% block body_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/profile.css' %}">
+    <div class="user">
+          <div id="formContent">
+
+<header style='margin: 0px 8px 0px 8px;' class="user__header">
+        <h2 class="active">My Account</h2>
+    </header>
+
+<form  id="EditForm" method="view_profile" action="/fashionpoint/myaccount/"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class =whitehead>
+        {{form}}
+        </div>
+    <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name}}</p>
+    <p>Email: {{ user.email }}</p>
+    {% if user.userprofile.image %}
+    <img src="{{ user.userprofile.image.url }}" width="240">
+	{% endif %}
+	<input type="button"onclick="window.location.href='{% url 'edit_profile' %}'" value="edit" />
+               
+</form>
+          </div>
+</div>
+{% endblock %}

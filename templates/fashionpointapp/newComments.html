@@ -1,0 +1,6 @@
+             {% for p in Comments %}
+                     <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
+                     <hr />
+              {% endfor %}
+
+
