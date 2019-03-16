@@ -10,24 +10,89 @@ from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile,Post
 from datetime import datetime
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
-ind = 0
+def updatePosts(request):
+	context_dict = {}
+	ind = int(request.GET['inc'])
+	print(ind)
+	post = Post.objects.all()[ind:ind+3]
+	length = len(Post.objects.all())
+	state2 = 0
+	state1 = 0
+	if (ind+3 >= length):
+		state2 = 1
+	if (ind == 0):
+		state1 = 1
+	context_dict['state1'] = state1
+	context_dict['state2'] = state2
+	context_dict['post1'] = post[0]
+	context_dict['post2'] = post[1]
+	context_dict['post3'] = post[2]
+	arp1 = round(post[0].avgRating * 2)
+	onp1 = int(arp1 / 2)
+	offp1 = int((10 - arp1) / 2)
+	hp1 = 0
+	if (arp1 % 2 == 1):
+		hp1 = 1;
+	arp2 = round(post[1].avgRating * 2)
+	onp2 = int(arp2 / 2)
+	offp2 = int((10 - arp2) / 2)
+	hp2 = 0
+	if (arp2 % 2 == 1):
+		hp2 = 1;
+	arp3 = round(post[2].avgRating * 2)
+	onp3 = int(arp3 / 2)
+	offp3 = int((10 - arp3) / 2)
+	hp3 = 0
+	if (arp3 % 2 == 1):
+		hp3 = 1;
+	context_dict['onp1'] = startate(onp1)
+	context_dict['offp1'] = startate(offp1)
+	context_dict['hp1'] = hp1
+	context_dict['onp2'] = startate(onp2)
+	context_dict['offp2'] = startate(offp2)
+	context_dict['hp2'] = hp2
+	context_dict['onp3'] = startate(onp3)
+	context_dict['offp3'] = startate(offp3)
+	context_dict['hp3'] = hp3
+	return render(request, 'fashionpointapp/newPosts.html',context_dict)
 def index(request):
 	context_dict = {}
 	post = Post.objects.all()
-	state1 = 0
 	state2 = 0
-	if (ind == 0):
-		state1 = 1
-	if (ind * 3 + 3 >= len(post)):
+	if (len(post)<=3):
 		state2 = 1
-	context_dict['state1'] = state1
+	context_dict['state1'] = 1
 	context_dict['state2'] = state2
-	context_dict['post1'] = post[ind*3]
-	context_dict['post2'] = post[ind*3+1]
-	context_dict['post3'] = post[ind*3+2]
-	context_dict['arp1'] = int(round(post[ind*3].avgRating*2))
-	context_dict['arp2'] = int(round(post[ind*3+1].avgRating*2))
-	context_dict['arp3'] = int(round(post[ind*3+2].avgRating*2))
+	context_dict['post1'] = post[0]
+	context_dict['post2'] = post[1]
+	context_dict['post3'] = post[2]
+	arp1 = round(post[0].avgRating * 2)
+	onp1= int(arp1/2)
+	offp1 = int((10 - arp1)/2)
+	hp1 = 0
+	if(arp1 %2 == 1):
+		hp1 = 1;
+	arp2 = round(post[1].avgRating * 2)
+	onp2 = int(arp2 / 2)
+	offp2 = int((10 - arp2) / 2)
+	hp2 = 0
+	if (arp2 % 2 == 1):
+		hp2 = 1;
+	arp3 = round(post[2].avgRating * 2)
+	onp3 = int(arp3 / 2)
+	offp3 = int((10 - arp3) / 2)
+	hp3 = 0
+	if (arp3 % 2 == 1):
+		hp3 = 1;
+	context_dict['onp1'] = startate(onp1)
+	context_dict['offp1'] = startate(offp1)
+	context_dict['hp1'] = hp1
+	context_dict['onp2'] = startate(onp2)
+	context_dict['offp2'] = startate(offp2)
+	context_dict['hp2'] = hp2
+	context_dict['onp3'] = startate(onp3)
+	context_dict['offp3'] = startate(offp3)
+	context_dict['hp3'] = hp3
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
@@ -35,21 +100,6 @@ def index(request):
 		context_dict['length']= 87 - length
 	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
-def indexReset(request):
-	global ind
-	ind = 0
-	return index(request)
-def indexNext(request):
-	post = Post.objects.all()
-	global ind
-	if (ind * 3 + 3 < len(post)):
-		ind = ind + 1
-	return index(request)
-def indexPrev(request):
-	global ind
-	if (ind != 0):
-		ind = ind - 1
-	return index(request)
 def categories(request):
 	context_dict = {}
 	if request.user.is_authenticated:
@@ -226,4 +276,9 @@ def get_server_side_cookie(request, cookie, default_val=None):
 	if not val:
 		val = default_val
 	return val
-
+def startate(x):
+	text=""
+	for i in  range(0,x):
+		text = text + "*"
+	print(text)
+	return text

@@ -1,63 +1,9 @@
-{% extends 'fashionpointapp/base.html' %}
 {% load staticfiles %}
-
-{% block title_block %}
- FashionPoint
-
-{% endblock %}
-
-{% block body_block %}
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<dev>
     <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
-		<script>
-				var inc = 0;
-				function next(){
-					inc+=3;
-					$.ajax({
-						type:"GET",
-						url: "{% url 'updatePosts'%}",
-						data: {'inc': inc}})
-						.done(function(response) {
-								document.getElementById("everything").innerHTML=response;
-					});
-				}
-				function prev(){
-					inc-=3;
-					$.ajax({
-						type:"GET",
-						url: "{% url 'updatePosts'%}",
-						data: {'inc': inc}})
-						.done(function(response) {
-								document.getElementById("everything").innerHTML=response;
-					});
-				}
-				function printTies(n,x){
-					var text="";
-					for (var i = 0; i < n; i++) {
-						if(i%2==1){
-	 						text+="	<img class=\"tie\" src=\"/static/images/54458077_364690717465481_2362712318992711680_n.png\"/> ";
-						 }
-					}
-					if(n%2==1){
-						text+="<img class='tie' src=\"/static/images/53856595_2337553366296088_1102890933814296576_n.png\" //> \n";
-					}
-					n = 10-n;
-					for(var i = 0; i< n;i++){
-						if(i%2==1){
-	 						text+="<img class='tie' src=\"/static/images/54255324_381448649078050_8592250154898161664_n.png\"//> \n";
-		 				}
-					}
-					document.getElementById(x).innerHTML=text;
-				}
-
-			</script>
-	<div class="main">
-		<p id="white"> Welcome </p>
-
-        <div class=whitehead id="everything">
-		{% if state1 != 1 %}
+{% if state1 != 1 %}
 		<div id="formContent2" style="margin-left:20px; margin-right:-80px;max-width:70px; margin-top:190px;animation:arrive 800ms ease-in-out 0s forwards;">
-				<img class="arrow" style="margin-left: -10px;" onclick="prev();" src="{% static "images/left.png"%}">
+				<img class="arrow" style="margin-left: -10px;" onclick="prev()" src="{% static "images/left.png"%}">
 		</div>
 		{%endif%}
 		<div id="formContent2" {% if state1 == 1 %}
@@ -66,7 +12,7 @@
 			 style="margin-right:-80px;"
 			 {% endif %}>
 			<div id="ties1">
-			{% for i in onp1%}
+                {% for i in onp1%}
 				<img class="tie" src="{% static 'images/54458077_364690717465481_2362712318992711680_n.png'%}"/>
 			{%endfor%}
 			{%if hp1 == 1%}
@@ -81,11 +27,11 @@
 			<hr/>
 			<label>{{post1.description}}</label>
 			<hr/>
-		{{post1}}
+            {{post1}}
 		</div>
 		<div id="formContent2" style="margin-right:-80px;animation: arrive 1200ms ease-in-out 0s forwards;">
 			<div id="ties2">
-			{% for i in onp2%}
+                {% for i in onp2%}
 				<img class="tie" src="{% static 'images/54458077_364690717465481_2362712318992711680_n.png'%}"/>
 			{%endfor%}
 			{%if hp2 == 1%}
@@ -100,11 +46,11 @@
 			<hr/>
 			<label>{{post2.description}}</label>
 			<hr/>
-			{{post2}}
+            {{post2}}
 		</div>
 		<div id="formContent2" style="margin-right:-80px;animation: arrive 1400ms ease-in-out 0s forwards;">
 			<div id="ties3">
-			{% for i in onp3%}
+                {% for i in onp3%}
 				<img class="tie" src="{% static 'images/54458077_364690717465481_2362712318992711680_n.png'%}"/>
 			{%endfor%}
 			{%if hp3 == 1%}
@@ -115,23 +61,14 @@
 			{%endfor%}
 			</div>
 			<hr/>
-			<div class="dim">
 			<img class="postPic" src="/media/{{post3.photo}}">
-			</div>
 			<hr/>
 			<label>{{post3.description}}</label>
 			<hr/>
-			{{post3}}
+            {{post3}}
 		</div>
 			{% if state2 != 1 %}
 			<div id="formContent2" style="max-width:70px; margin-top:190px;animation:arrive 1600ms ease-in-out 0s forwards;">
-			<img class="arrow"
-			{% if state1 != 1 %}
-				 style="margin-top: -30px;"
-			{% endif %}
-			onclick="next();" src="{% static "images/right.png"%}">
-			</div>
-			{%endif%}
-		</div>
-	</div>
-{% endblock %}
+			<img class="arrow" onclick="next()" src="{% static "images/right.png"%}"></div>
+    </dev>
+{%endif%}
