@@ -12,7 +12,13 @@
 	<div class="main">
 		<p id="white"> Welcome </p>
         <div class=whitehead>
-		<div id="formContent2" style="margin-left:-10px; margin-right:-80px;max-width:70px;"></div>
+		{% if state1 != 1 %}
+		<div id="formContent2" style="margin-left:20px; margin-right:-80px;max-width:70px; margin-top:190px;animation:arrive 1300ms ease-in-out 0s forwards;">
+			<a href="{% url 'indPrev' %}">
+				<img class="arrow" style="margin-left: -10px;" src="{% static "images/left.png"%}">
+				<a/>
+		</div>
+		{%endif%}
 		<div id="formContent2" style="margin-right:-80px;">
 			<div id="ties1">
 			</div>
@@ -43,7 +49,15 @@
 			<label>{{post3.description}}</label>
 			<hr/>
 		</div>
-			<div id="formContent2" style="max-width:70px;"></div>
+			{% if state2 != 1 %}
+			<div id="formContent2" style="max-width:70px; margin-top:190px;animation:arrive 2100ms ease-in-out 0s forwards;">
+				<a href="{% url 'indNext' %}"><img class="arrow"
+												   {% if state1 != 1 %}
+												   style="margin-top: -30px;
+												   {% endif %}
+ 												   " src="{% static "images/right.png"%}"><a/>
+			</div>
+			{%endif%}
 		</div>
 	</div>
 {% endblock %}

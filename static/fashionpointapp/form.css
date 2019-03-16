@@ -30,6 +30,16 @@
   animation: arrive 1500ms ease-in-out 0s forwards;
   text-align: center;
 }
+.arrow:hover{
+transform: scale(1.2);
+cursor: pointer ;
+}
+.arrow{
+margin-left: -5px;
+margin-bottom: -10px;
+height: 100px;
+width: 30px;
+}
 .tie{
 height: 40px;
 width: 40px;

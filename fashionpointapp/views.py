@@ -10,10 +10,18 @@ from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile,Post
 from datetime import datetime
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
+ind = 0
 def index(request):
-	ind = 1
 	context_dict = {}
 	post = Post.objects.all()
+	state1 = 0
+	state2 = 0
+	if (ind == 0):
+		state1 = 1
+	if (ind * 3 + 3 >= len(post)):
+		state2 = 1
+	context_dict['state1'] = state1
+	context_dict['state2'] = state2
 	context_dict['post1'] = post[ind*3]
 	context_dict['post2'] = post[ind*3+1]
 	context_dict['post3'] = post[ind*3+2]
@@ -27,9 +35,21 @@ def index(request):
 		context_dict['length']= 87 - length
 	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
-
-
-
+def indexReset(request):
+	global ind
+	ind = 0
+	return index(request)
+def indexNext(request):
+	post = Post.objects.all()
+	global ind
+	if (ind * 3 + 3 < len(post)):
+		ind = ind + 1
+	return index(request)
+def indexPrev(request):
+	global ind
+	if (ind != 0):
+		ind = ind - 1
+	return index(request)
 def categories(request):
 	context_dict = {}
 	if request.user.is_authenticated:
