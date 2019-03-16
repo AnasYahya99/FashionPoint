@@ -9,18 +9,22 @@ from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile
 from datetime import datetime
-from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
+from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import update_session_auth_hash
+
 
 def index(request):
 	context_dict = {}
 	if request.user.is_authenticated:
-		userProfile = UserProfile.objects.get(user=request.user)
-		context_dict['userProfile'] = userProfile
-		length = len(request.user.first_name)
-		context_dict['length']= 87 - length
-	context_dict['pos']=1
+			userProfile = UserProfile.objects.get(user=request.user)
+			context_dict['userProfile'] = userProfile
+			length = len(request.user.first_name)
+			context_dict['length']= 87 - length
+			context_dict['pos']=1
+	
 	return render(request, 'fashionpointapp/index.html',context_dict)
-
 
 def categories(request):
 	context_dict = {}
@@ -152,8 +156,6 @@ def PollaPoll(request):
 	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
 
 
-
-
 def user_login(request):
 	context_dict = {}
 	context_dict['pos'] = 4
@@ -175,6 +177,15 @@ def user_login(request):
 			return render(request, 'Fashionpointapp/login.html', context_dict)
 	else:
 		return render(request, 'Fashionpointapp/login.html', context_dict)
+@login_required
+def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+
+    return render(request, 'fashionpointapp/myaccount.html', args)
 
 
 @login_required
@@ -198,4 +209,16 @@ def get_server_side_cookie(request, cookie, default_val=None):
 	if not val:
 		val = default_val
 	return val
+@login_required	
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('fashionpointapp:view_profile'))
+    else:
+        form = EditForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'fashionpointapp/edit_profile.html', args)
 

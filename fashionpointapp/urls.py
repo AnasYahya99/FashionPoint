@@ -4,8 +4,8 @@ from django.contrib import admin
 from fashionpointapp import views	 
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^categories/$', views.categories, name="categories"),
+	url(r'^$',views.index , name='index'),
+	url(r'^categories/$', views.categories, name="categories"),
     url(r'^categories/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name='show_category'),
     url(r'^contact/$', views.contact_us, name="contact_us"),
     url(r'^about/$', views.about_us, name="about_us"),
@@ -15,5 +15,7 @@ urlpatterns = [
 	url(r'^signup/$', views.register, name="signup"),
     url(r'^newpost/$', views.PostaPost , name="newpost"),
     url(r'^newpoll/$', views.PollaPoll , name="newpoll"),
+	url(r'^myaccount/$', views.view_profile, name='view_profile'),
+    	url(r'^edit/$', views.edit_profile, name='edit_profile'),
 
 ]
