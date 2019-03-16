@@ -9,17 +9,11 @@ from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile,Post
 from datetime import datetime
-<<<<<<< HEAD
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import update_session_auth_hash
-
-
-=======
-from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
 ind = 0
->>>>>>> 01bcae22bf18263763417be650840d1cc21e5b32
 def index(request):
 	context_dict = {}
 	post = Post.objects.all()
@@ -38,16 +32,12 @@ def index(request):
 	context_dict['arp2'] = int(round(post[ind*3+1].avgRating*2))
 	context_dict['arp3'] = int(round(post[ind*3+2].avgRating*2))
 	if request.user.is_authenticated:
-			userProfile = UserProfile.objects.get(user=request.user)
-			context_dict['userProfile'] = userProfile
-			length = len(request.user.first_name)
-			context_dict['length']= 87 - length
-			context_dict['pos']=1
-	
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
+	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
-<<<<<<< HEAD
-
-=======
 def indexReset(request):
 	global ind
 	ind = 0
@@ -63,7 +53,6 @@ def indexPrev(request):
 	if (ind != 0):
 		ind = ind - 1
 	return index(request)
->>>>>>> 01bcae22bf18263763417be650840d1cc21e5b32
 def categories(request):
 	context_dict = {}
 	if request.user.is_authenticated:
