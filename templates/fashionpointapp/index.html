@@ -19,7 +19,11 @@
 				<a/>
 		</div>
 		{%endif%}
-		<div id="formContent2" style="margin-right:-80px;">
+		<div id="formContent2" {% if state1 == 1 %}
+			 style="margin-left:115px;margin-right:-80px;"
+			 {%else%}
+			 style="margin-right:-80px;"
+			 {% endif %}>
 			<div id="ties1">
 			</div>
 			<script	>printTies({{arp1}},"ties1");</script>

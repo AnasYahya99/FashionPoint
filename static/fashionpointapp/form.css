@@ -30,6 +30,12 @@
   animation: arrive 1500ms ease-in-out 0s forwards;
   text-align: center;
 }
+.postPic:hover{
+height: 350px;
+length: 350px;
+object-fit: scale-down;
+transform:scale(1.2);
+ }
 .arrow:hover{
 transform: scale(1.2);
 cursor: pointer ;
