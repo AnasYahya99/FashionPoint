@@ -16,16 +16,26 @@
 	                <a href="{% url 'show_post' p.id %}">
 
 	                		<div id="formContent2" style="margin-right:-80px;max-width:350px;margin-bottom:30px;">
-	                			<p>{{ c.name }}</p>
 	                			<img class="postPic" src="/media/{{p.photo}}">
+	                			<p style="color:black;font-size: 20px;" >{{ p.description }}</p>
 	                		</div>
-	                		
-	                
 	                </a>
 	    {% endfor %}
-	{% else %}
-	        <li><strong>There are no categories present.</strong></li>
-	{% endif %}
+		{% endif %}
+
+		{% if polls %}
+		{% for p in polls %}
+		     <a href="{% url 'show_post' p.id %}">
+	                		<div id="formContent2" style="margin-right:-80px;max-width:350px;margin-bottom:30px;">
+	                			<div style="display: inline-block;">
+									<img style="width: 141px;" class="pollPic" src="/media/{{p.picture1}}">
+	                				<img style="width: 141px;" class="pollPic" src="/media/{{p.picture2}}">
+	                			</div>
+	                			<p style="color:black;font-size: 20px;" >{{ p.description }}</p>
+	                		</div>	               			                
+	                </a>
+	    {% endfor %}
+		{% endif %}
 	<div/>
 
 </div>
