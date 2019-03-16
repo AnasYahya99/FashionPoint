@@ -150,6 +150,7 @@ def show_category(request, category_name_slug):
  		category = Category.objects.get(slug=category_name_slug)
  		context_dict['category'] = category
  		context_dict['posts'] = Post.objects.filter(category=category)
+ 		context_dict['polls'] = Poll.objects.filter(category=category)
 	except Category.DoesNotExist:
  		context_dict['category'] = None
 	return render(request, 'fashionpointapp/category.html', context_dict)
