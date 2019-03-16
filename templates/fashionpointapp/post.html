@@ -99,19 +99,27 @@
                          <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
 
                         </fieldset>
-                        <button class = "ratebutton" class="submit clearfix">Submit</button>
+                        <button class = "ratebutton" id="ratebutton" class="submit clearfix">Submit</button>
                     </form>
             <hr>
 
 
+<<<<
             <div style="float: contour" >
                 <div id="commentstab" >
+====
+
+            {% if Comments %}
+            <div>
+                <div id="commentstab">
+>>>>
              {% for p in Comments %}
                      <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
                      <hr />
               {% endfor %}
 
             </div>
+            {% endif %}
             <br />
 
                 <p style="font-weight: bold">Give Your Opinion</p>  <input id="AcutalComment" type="text" size="12" maxlength="265"/><br />

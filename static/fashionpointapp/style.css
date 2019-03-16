@@ -427,6 +427,9 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 }
 
 
+#ratingForm{
+}
+
 
 /*Rating
 
@@ -495,12 +498,6 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
     top:2px;
     left:2px;
 }
-
-/* end of Lea's code */
-
-/*
- * Clearfix from html5 boilerplate
- */
 
 .clearfix:before,
 .clearfix:after {
