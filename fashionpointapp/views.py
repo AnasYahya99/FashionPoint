@@ -10,22 +10,20 @@ from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile,Post
 from datetime import datetime
-<<<<<<< HEAD
+
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
 
 
 from django.http import JsonResponse
 
 from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
 
-=======
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth import update_session_auth_hash
 ind = 0
->>>>>>> b390f05383221d73b6532855a26be4f887e94d8b
+
 def index(request):
 	context_dict = {}
 	post = Post.objects.all()
@@ -196,10 +194,7 @@ def PollaPoll(request):
 	context_dict['pos']=6
 	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
 
-<<<<<<< HEAD
-=======
 
->>>>>>> b390f05383221d73b6532855a26be4f887e94d8b
 def user_login(request):
 	context_dict = {}
 	context_dict['pos'] = 4

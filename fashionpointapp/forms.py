@@ -51,13 +51,11 @@ class PollForm(forms.ModelForm):
     class Meta:
             model = Poll
             fields = ['description','picture1','picture2','category']
-<<<<<<< HEAD
-            
-=======
-			
+
+
 class EditForm(UserChangeForm):
 		template_name='/myaccount/edit'
 		class Meta:
 			model = User
 			fields = ('email','first_name','last_name','password')
->>>>>>> b390f05383221d73b6532855a26be4f887e94d8b
+
