@@ -23,11 +23,10 @@
 			{%endfor%}
 			</div>
 			<hr/>
-			<img class="postPic" src="/media/{{post1.photo}}">
+			<a href="{% url 'show_post' post1%}"><img class="postPic" src="/media/{{post1.photo}}"></a>
 			<hr/>
 			<label>{{post1.description}}</label>
 			<hr/>
-            {{post1}}
 		</div>
 		<div id="formContent2" style="margin-right:-80px;animation: arrive 1200ms ease-in-out 0s forwards;">
 			<div id="ties2">
@@ -42,11 +41,10 @@
 			{%endfor%}
 			</div>
 			<hr/>
-			<img class="postPic" src="/media/{{post2.photo}}">
+            <a href="{% url 'show_post' post2%}"><img class="postPic" src="/media/{{post2.photo}}"></a>
 			<hr/>
 			<label>{{post2.description}}</label>
 			<hr/>
-            {{post2}}
 		</div>
 		<div id="formContent2" style="margin-right:-80px;animation: arrive 1400ms ease-in-out 0s forwards;">
 			<div id="ties3">
@@ -61,11 +59,10 @@
 			{%endfor%}
 			</div>
 			<hr/>
-			<img class="postPic" src="/media/{{post3.photo}}">
+			<a href="{% url 'show_post' post3%}" ><img class="postPic" src="/media/{{post3.photo}}"></a>
 			<hr/>
 			<label>{{post3.description}}</label>
 			<hr/>
-            {{post3}}
 		</div>
 			{% if state2 != 1 %}
 			<div id="formContent2" style="max-width:70px; margin-top:190px;animation:arrive 1600ms ease-in-out 0s forwards;">

@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^categories/$', views.categories, name="categories"),
     url(r'^categories/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name='show_category'),
     url(r'^posts/(?P<post_id>[0-9]+)/$', views.show_post, name='show_post'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/$', views.show_poll, name='show_poll'),
     url(r'^posts/(?P<post_id>[0-9]+)/update_avg/$', views.update_avg, name='update_avg'),
     url(r'^posts/(?P<post_id>[0-9]+)/makeacomment/$', views.makeacomment, name='makeComment'),
     url(r'^posts/(?P<post_id>[0-9]+)/refresh/$', views.update_comments, name='update_comments'),
@@ -24,5 +25,4 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^updatePosts/$', views.updatePosts, name='updatePosts'),
     url(r'^updatePolls/$', views.updatePolls, name='updatePolls'),
-
 ]

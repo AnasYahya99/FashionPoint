@@ -10,25 +10,9 @@ from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile,Post,Poll
 from datetime import datetime
-
-from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
-<<<<<<< HEAD
-def updatePosts(request):
-=======
-
-
-from django.http import JsonResponse
-
-from django.shortcuts import get_object_or_404
-
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth import update_session_auth_hash
-ind = 0
-
-def index(request):
->>>>>>> 90f1a3eca1720c338e5bd1d423cb08ca480c0626
+def updatePosts(request):
 	context_dict = {}
 	ind = int(request.GET['inc'])
 	post = Post.objects.all()[ind:ind+3]
@@ -326,18 +310,15 @@ def get_server_side_cookie(request, cookie, default_val=None):
 	if not val:
 		val = default_val
 	return val
-<<<<<<< HEAD
 def startate(x):
 	text=""
 	for i in  range(0,x):
 		text = text + "*"
 	return text
-=======
-@login_required	
+@login_required
 def edit_profile(request):
     if request.method == 'POST':
         form = EditForm(request.POST, instance=request.user)
-
         if form.is_valid():
             form.save()
             return redirect(reverse('fashionpointapp:view_profile'))
@@ -401,7 +382,7 @@ def update_comments(request, post_id):
 	return render(request, 'Fashionpointapp/newComments.html', context_dict)
 
 
+def show_poll(request,poll_id):
+	return render(request, 'fashionpointapp/myaccount.html',)
 
 
-
->>>>>>> 90f1a3eca1720c338e5bd1d423cb08ca480c0626
