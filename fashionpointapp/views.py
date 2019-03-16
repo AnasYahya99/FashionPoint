@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-from fashionpointapp.models import UserProfile,Post, Rating
+from fashionpointapp.models import UserProfile,Post, Rating, Poll
 from datetime import datetime
 
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
@@ -127,7 +127,7 @@ def index(request):
 		context_dict['length']= 87 - length
 	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
-	
+
 def categories(request):
 	context_dict = {}
 	if request.user.is_authenticated:
@@ -350,7 +350,6 @@ def show_post(request , post_id):
 
 
 def update_avg(request , post_id ):
-
 	if request.method == 'POST' and request.is_ajax():
 		userProfile = UserProfile.objects.get(user=request.user)
 		try:
@@ -371,7 +370,7 @@ def update_avg(request , post_id ):
 			return HttpResponse(value)
 		except Post.DoesNotExist:
 			return HttpResponse('did not work')
-	else: return	HttpResponse('did not work')
+	else: return HttpResponse('did not work 2')
 
 
 def makeacomment(request , post_id ):

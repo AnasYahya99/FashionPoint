@@ -104,7 +104,9 @@
             <hr>
 
 
-            <div >
+
+            {% if Comments %}
+            <div>
                 <div id="commentstab">
              {% for p in Comments %}
                      <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
@@ -112,6 +114,7 @@
               {% endfor %}
 
             </div>
+            {% endif %}
             <br />
 
                 <p style="font-weight: bold">Give Your Opinion</p>  <input id="AcutalComment" type="text" size="12" maxlength="265"/><br />

@@ -14,6 +14,7 @@ class UserProfile(models.Model):
 class Category(models.Model):
 	slug = models.SlugField(unique=True)
 	name = models.CharField(max_length=128, unique=True)
+	picture = models.ImageField(upload_to='cats', blank=True)
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
 		super(Category, self).save(*args, **kwargs)
