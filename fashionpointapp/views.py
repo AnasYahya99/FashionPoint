@@ -8,8 +8,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-from fashionpointapp.models import UserProfile
+from fashionpointapp.models import UserProfile,Post
 from datetime import datetime
+<<<<<<< HEAD
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
 
 
@@ -18,8 +19,30 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 
+=======
+from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import update_session_auth_hash
+ind = 0
+>>>>>>> b390f05383221d73b6532855a26be4f887e94d8b
 def index(request):
 	context_dict = {}
+	post = Post.objects.all()
+	state1 = 0
+	state2 = 0
+	if (ind == 0):
+		state1 = 1
+	if (ind * 3 + 3 >= len(post)):
+		state2 = 1
+	context_dict['state1'] = state1
+	context_dict['state2'] = state2
+	context_dict['post1'] = post[ind*3]
+	context_dict['post2'] = post[ind*3+1]
+	context_dict['post3'] = post[ind*3+2]
+	context_dict['arp1'] = int(round(post[ind*3].avgRating*2))
+	context_dict['arp2'] = int(round(post[ind*3+1].avgRating*2))
+	context_dict['arp3'] = int(round(post[ind*3+2].avgRating*2))
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
 		context_dict['userProfile'] = userProfile
@@ -27,8 +50,21 @@ def index(request):
 		context_dict['length']= 87 - length
 	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
-
-
+def indexReset(request):
+	global ind
+	ind = 0
+	return index(request)
+def indexNext(request):
+	post = Post.objects.all()
+	global ind
+	if (ind * 3 + 3 < len(post)):
+		ind = ind + 1
+	return index(request)
+def indexPrev(request):
+	global ind
+	if (ind != 0):
+		ind = ind - 1
+	return index(request)
 def categories(request):
 	context_dict = {}
 	if request.user.is_authenticated:
@@ -93,6 +129,8 @@ def register(request):
 			profile.user = user
 			if 'picture' in request.FILES:
 				profile.picture = request.FILES['picture']
+			else:
+				profile.picture = Image.open("/static/images/default.jpg")
 			profile.save()
 			registered = True
 			username = request.POST.get('username')
@@ -158,6 +196,10 @@ def PollaPoll(request):
 	context_dict['pos']=6
 	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b390f05383221d73b6532855a26be4f887e94d8b
 def user_login(request):
 	context_dict = {}
 	context_dict['pos'] = 4
@@ -179,6 +221,15 @@ def user_login(request):
 			return render(request, 'Fashionpointapp/login.html', context_dict)
 	else:
 		return render(request, 'Fashionpointapp/login.html', context_dict)
+@login_required
+def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+
+    return render(request, 'fashionpointapp/myaccount.html', args)
 
 
 @login_required
@@ -202,6 +253,18 @@ def get_server_side_cookie(request, cookie, default_val=None):
 	if not val:
 		val = default_val
 	return val
+@login_required	
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('fashionpointapp:view_profile'))
+    else:
+        form = EditForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'fashionpointapp/edit_profile.html', args)
 
 
 

@@ -20,6 +20,10 @@
     Password: <input type="password" name="password" value="" size="50" />
     <br />
     <input type="submit" value="Log in" />
+    <br />
+    <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+    <br />
+    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
 </form>
 </div>
 

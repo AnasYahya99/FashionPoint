@@ -32,7 +32,6 @@
 	{% endif %}
 	    <div>
             {% block top_bar %}
-
                 {% if user.is_authenticated %}
                 <div class="topnav" style="width: {{length}}%;">
                         {% if pos == 1 %}
@@ -59,7 +58,9 @@
                         <a href="{% url 'newpoll' %}">New Poll</a>
                         {% endif %}
 
-                        <a href="{% url 'categories' %}">My Account</a>
+                        <a href="{% url 'view_profile' %}">My Account</a>
+						
+          
                 </div>
                 {% else %}
 

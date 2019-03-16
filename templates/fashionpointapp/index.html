@@ -7,9 +7,61 @@
 {% endblock %}
 
 {% block body_block %}
-
+    <link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
+			<script type="text/javascript" src="{% static 'fashionpointapp/ties.js' %}"></script>
 	<div class="main">
 		<p id="white"> Welcome </p>
+        <div class=whitehead>
+		{% if state1 != 1 %}
+		<div id="formContent2" style="margin-left:20px; margin-right:-80px;max-width:70px; margin-top:190px;animation:arrive 1300ms ease-in-out 0s forwards;">
+			<a href="{% url 'indPrev' %}">
+				<img class="arrow" style="margin-left: -10px;" src="{% static "images/left.png"%}">
+				<a/>
+		</div>
+		{%endif%}
+		<div id="formContent2" {% if state1 == 1 %}
+			 style="margin-left:115px;margin-right:-80px;"
+			 {%else%}
+			 style="margin-right:-80px;"
+			 {% endif %}>
+			<div id="ties1">
+			</div>
+			<script	>printTies({{arp1}},"ties1");</script>
+			<hr/>
+			<img class="postPic" src="/media/{{post1.photo}}">
+			<hr/>
+			<label>{{post1.description}}</label>
+			<hr/>
+		</div>
+		<div id="formContent2" style="margin-right:-80px;animation: arrive 1700ms ease-in-out 0s forwards;">
+			<div id="ties2">
+			</div>
+			<script	>printTies({{arp2}},"ties2");</script>
+			<hr/>
+			<img class="postPic" src="/media/{{post2.photo}}">
+			<hr/>
+			<label>{{post2.description}}</label>
+			<hr/>
+		</div>
+		<div id="formContent2" style="margin-right:-80px;animation: arrive 1900ms ease-in-out 0s forwards;">
+			<div id="ties3">
+			</div>
+			<script	>printTies({{arp3}},"ties3");</script>
+			<hr/>
+			<img class="postPic" src="/media/{{post3.photo}}">
+			<hr/>
+			<label>{{post3.description}}</label>
+			<hr/>
+		</div>
+			{% if state2 != 1 %}
+			<div id="formContent2" style="max-width:70px; margin-top:190px;animation:arrive 2100ms ease-in-out 0s forwards;">
+				<a href="{% url 'indNext' %}"><img class="arrow"
+												   {% if state1 != 1 %}
+												   style="margin-top: -30px;
+												   {% endif %}
+ 												   " src="{% static "images/right.png"%}"><a/>
+			</div>
+			{%endif%}
+		</div>
 	</div>
-
 {% endblock %}
