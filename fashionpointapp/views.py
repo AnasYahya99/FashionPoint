@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from fashionpointapp.models import Category , Post ,PostComment
+from fashionpointapp.models import Category , Post ,PostComment ,Poll ,PollComment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile,Post
 from datetime import datetime
+
 
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
 
@@ -276,6 +277,19 @@ def show_post(request , post_id):
 	return render(request,'Fashionpointapp/post.html',context_dict)
 
 
+def show_poll(request , poll_id):
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
+	context_dict['poll'] = Poll.objects.get(id=int(poll_id))
+	comments = PollComment.objects.filter(poll=int(poll_id))
+	context_dict['Comments'] = comments
+	return render(request,'Fashionpointapp/poll.html',context_dict)
+
+
 
 def update_avg(request , post_id ):
 
@@ -299,7 +313,7 @@ def makeacomment(request , post_id ):
 			id = post_id
 			comment = PostComment()
 			comment.comment = request.POST.get('comment')
-			comment.post = Post.objects.get(id=post_id)
+			comment.post = Post.objects.get(id=int(post_id))
 			comment.userPofile = userProfile
 			comment.save()
 			return HttpResponse("It did work")
@@ -309,11 +323,53 @@ def makeacomment(request , post_id ):
 
 		return HttpResponse('did not work')
 
+
+def makeapollcomment(request, poll_id):
+    if request.method == 'POST' and request.is_ajax():
+        userProfile = UserProfile.objects.get(user=request.user)
+        try:
+            comment = PollComment()
+            comment.comment = request.POST.get('comment')
+            comment.poll = Poll.objects.get(id= int(poll_id))
+            comment.userPofile = userProfile
+            comment.save()
+            return HttpResponse("It did work")
+        except Post.DoesNotExist:
+            return HttpResponse('did not work')
+    else:
+        return HttpResponse('did not work')
+
 def update_comments(request, post_id):
-	print('yes')
 	context_dict={}
 	context_dict['Comments'] = PostComment.objects.filter(post=int(post_id))
 	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+
+
+def update_pollcomments(request , poll_id):
+    context_dict={}
+    context_dict['Comments'] = PollComment.objects.filter(poll=int(poll_id))
+    return render(request, 'Fashionpointapp/bewpollComments.html', context_dict)
+
+
+def click(request, poll_id):
+    if request.method == 'POST' and request.is_ajax():
+        try:
+            obj = Poll.objects.get(id=int(poll_id))
+            if (int(request.POST.get('picture') )== 1 ):
+                obj.picture1Clicks=obj.picture1Clicks+1
+                obj.save()
+                return HttpResponse("worked")
+            else :
+                obj.picture2Clicks=obj.picture2Clicks+1
+                obj.save()
+                return HttpResponse("worked")
+
+        except Poll.DoesNotExist:
+            return HttpResponse('did not work')
+
+
+
+
 
 
 

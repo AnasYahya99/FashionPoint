@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {{ post.id }}
+    Post {{ post.id }}
 {% endblock %}
 
 
@@ -81,7 +81,7 @@
 </script>
 
 
-    <div class="post">
+    <div class="post" >
 
 
         <img id="column" src="/media/{{ post.photo }}">
@@ -104,8 +104,8 @@
             <hr>
 
 
-            <div >
-                <div id="commentstab">
+            <div style="float: contour" >
+                <div id="commentstab" >
              {% for p in Comments %}
                      <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
                      <hr />
@@ -134,3 +134,5 @@
 
 
 {% endblock %}
+
+

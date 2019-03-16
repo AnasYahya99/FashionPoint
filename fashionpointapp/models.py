@@ -3,6 +3,8 @@ from datetime import date
 from datetime import datetime
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+
+
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
@@ -11,6 +13,7 @@ class UserProfile(models.Model):
 		verbose_name_plural = 'Users'
 	def __str__(self):
 		return self.user.username
+
 class Category(models.Model):
 	slug = models.SlugField(unique=True)
 	name = models.CharField(max_length=128, unique=True)

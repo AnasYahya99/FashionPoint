@@ -260,6 +260,26 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 
 }
 
+.post1 {
+
+
+    margin-top: 100px;
+  background-color: white;
+
+
+  border-top: 1px solid #dce8f1;
+    max-width: 90%;
+
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-color: black;
+  border-radius: 3em;
+
+  margin-left: 20px;
+box-shadow: 5px 5px 5px 5px #0d0d0d;
+
+}
+
 
 #commentstab {
 
@@ -316,6 +336,35 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
     color: Black;
   	font-family: "Poppins", sans-serif;
     text-align: left;
+    text-justify: initial;
+
+}
+
+#discriptionwhite{
+
+    margin-left: 50px;
+    color: black;
+  	font-family: "Poppins", sans-serif;
+    text-justify: initial;
+
+}
+
+
+#clicks1{
+    display: none;
+    margin-top: 200px;
+    margin-left: 50px;
+    color: black;
+  	font-family: "Poppins", sans-serif;
+    text-justify: initial;
+
+}
+#clicks2{
+    display: none;
+    margin-top: 200px;
+    margin-left: 50px;
+    color: black;
+  	font-family: "Poppins", sans-serif;
     text-justify: initial;
 
 }
@@ -483,9 +532,21 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 
     display: block;
 
+
+}
+
+#commentstab1 {
+
+    float: contour;
 }
 
 #ratefield {
+
+  border-color: black;
+  background:#5fbae9;
+
+}
+#ratefield1 {
 
   border-color: black;
   background:#5fbae9;
@@ -575,3 +636,57 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 }
 
 
+#mytitle
+{
+    animation: arrive 1000ms ease-in-out 0s forwards;
+    color: #000; font-family: 'Helvetica Neue', sans-serif; font-size: 70px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; float: contour
+
+}
+
+
+
+.pollimage {
+
+    max-width: 350px;
+    border-radius: 15px;
+
+
+
+}
+
+.pollimage:hover {
+
+
+
+transform:scale(1.2);
+}
+
+
+.row1 {
+    display: flex;
+    max-width: 80%;
+    margin-left :100px;
+    max-height: 35%;
+
+
+}
+
+.column1 {
+
+  flex: 33.33%;
+  animation: arrive 3000ms ease-in-out 0s forwards;
+  margin-top: 50px;
+  display: flex;
+  background-color: black;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-color: black;
+  border-radius: 3em;
+  max-width: 40%;
+  max-height:450px;
+   box-shadow: 5px 5px 5px 5px #0d0d0d;
+
+
+}

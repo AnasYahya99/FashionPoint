@@ -5,12 +5,18 @@ from fashionpointapp import views
 
 urlpatterns = [
     url(r'^$', views.indexReset, name='index'),
+
     url(r'^categories/$', views.categories, name="categories"),
     url(r'^categories/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name='show_category'),
     url(r'^posts/(?P<post_id>[0-9]+)/$', views.show_post, name='show_post'),
     url(r'^posts/(?P<post_id>[0-9]+)/update_avg/$', views.update_avg, name='update_avg'),
     url(r'^posts/(?P<post_id>[0-9]+)/makeacomment/$', views.makeacomment, name='makeComment'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/makeapollcomment/$', views.makeapollcomment, name='makepollComment'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/refreshpoll/$', views.update_pollcomments, name='update_pollcomments'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/$', views.show_poll, name='show_poll'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/click/$', views.click, name='click'),
     url(r'^posts/(?P<post_id>[0-9]+)/refresh/$', views.update_comments, name='update_comments'),
+
     url(r'^contact/$', views.contact_us, name="contact_us"),
     url(r'^about/$', views.about_us, name="about_us"),
     url(r'^sitemap/$', views.sitemap, name="sitemap"),
