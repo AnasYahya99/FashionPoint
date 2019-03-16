@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-from fashionpointapp.models import UserProfile,Post
+from fashionpointapp.models import UserProfile,Post, Rating
 from datetime import datetime
 
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
@@ -262,7 +262,6 @@ def edit_profile(request):
         return render(request, 'fashionpointapp/edit_profile.html', args)
 
 
-
 def show_post(request , post_id):
 	context_dict = {}
 	if request.user.is_authenticated:
@@ -276,19 +275,29 @@ def show_post(request , post_id):
 	return render(request,'Fashionpointapp/post.html',context_dict)
 
 
-
 def update_avg(request , post_id ):
 
 	if request.method == 'POST' and request.is_ajax():
+		userProfile = UserProfile.objects.get(user=request.user)
 		try:
 			id = post_id
 			value = request.POST.get('value')
 			obj = Post.objects.get(id=post_id)
-			obj.avgRating = value
+
+			rating = Rating()
+			rating.userPofile = userProfile
+			rating.post = obj
+			rating.rating = value
+			rating.save()
+
+			ratings = len(Rating.objects.filter(post=obj))
+			obj.avgRating = (obj.avgRating * (len(Rating.objects.filter(post=obj))-1) + int(value)) / len(Rating.objects.filter(post=obj))
+
 			obj.save()
 			return HttpResponse(value)
 		except Post.DoesNotExist:
 			return HttpResponse('did not work')
+	else: return	HttpResponse('did not work')
 
 
 def makeacomment(request , post_id ):
@@ -314,8 +323,4 @@ def update_comments(request, post_id):
 	context_dict={}
 	context_dict['Comments'] = PostComment.objects.filter(post=int(post_id))
 	return render(request, 'Fashionpointapp/newComments.html', context_dict)
-
-
-
-
 
