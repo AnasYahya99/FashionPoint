@@ -6,6 +6,28 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1 class='main' id="white"> {{ category.name }} </h1>
+<link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
+<div class="main">
+    <h1 id="white"> {{ category.name }} </h1>
+
+	<div class=whitehead id="everything" style="margin-bottom: 100px;">
+	    {% if posts %}
+	    {% for p in posts %}
+	                <a href="{% url 'show_post' p.id %}">
+
+	                		<div id="formContent2" style="margin-right:-80px;max-width:350px;margin-bottom:30px;">
+	                			<p>{{ c.name }}</p>
+	                			<img class="postPic" src="/media/{{p.photo}}">
+	                		</div>
+	                		
+	                
+	                </a>
+	    {% endfor %}
+	{% else %}
+	        <li><strong>There are no categories present.</strong></li>
+	{% endif %}
+	<div/>
+
+</div>
     
 {% endblock %}

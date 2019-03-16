@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-from fashionpointapp.models import UserProfile,Post, Rating, Poll
+from fashionpointapp.models import UserProfile,Post, Rating, Poll, Category
 from datetime import datetime
 
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
@@ -136,6 +136,7 @@ def categories(request):
 		length = len(request.user.first_name)
 		context_dict['length']= 87 - length
 	context_dict['pos']=2
+	context_dict['categories'] = Category.objects.all()
 	return render(request, 'fashionpointapp/categories.html',context_dict)
 
 def show_category(request, category_name_slug):
@@ -148,6 +149,7 @@ def show_category(request, category_name_slug):
 	try:
  		category = Category.objects.get(slug=category_name_slug)
  		context_dict['category'] = category
+ 		context_dict['posts'] = Post.objects.filter(category=category)
 	except Category.DoesNotExist:
  		context_dict['category'] = None
 	return render(request, 'fashionpointapp/category.html', context_dict)
