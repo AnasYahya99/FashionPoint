@@ -54,5 +54,4 @@ class PollForm(forms.ModelForm):
     class Meta:
             model = Poll
             fields = ['description','picture1','picture2','category']
-
-
+            

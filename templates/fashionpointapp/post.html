@@ -1,0 +1,136 @@
+{% extends 'fashionpointapp/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ post.id }}
+{% endblock %}
+
+
+
+{% block body_block %}
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+
+
+        $("#commentbutton").click(function (event) {
+
+
+        var comment = document.getElementById("AcutalComment").value ;
+
+
+         $.ajax({
+                url: '{% url 'makeComment'  post %} ',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    comment: comment ,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+
+            }).always(function () {
+               $.ajax({
+                url: '{% url 'update_comments'  post %} ' ,
+                type: "GET"}).done(function (response) {
+                    document.getElementById('commentstab').innerHTML=response
+                  })
+         });
+         document.getElementById("AcutalComment").value = "";
+         });
+
+
+
+         $("#ratebutton").click(function (event) {
+               var value = $('input:radio[name=rating]:checked').val();
+               var id = '{{ post.id }}' ;
+             event.preventDefault(); // prevent the default click action from being performed
+             if ($("#ratingForm :radio:checked").length == 0) {
+                 $('#status').html("nothing checked");
+                 return false;
+             } else {
+
+                 $('#rating1').html(value);
+             }
+
+             $.ajax({
+                url: "update_avg/",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    value: value,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+                success : function(json) {
+                    alert("Rating succesful with " +value + "Ties");
+                },
+                error : function(xhr,errmsg,err) {
+                    alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
+                }
+            });
+         });
+    });
+
+
+
+
+</script>
+
+
+    <div class="post">
+
+
+        <img id="column" src="/media/{{ post.photo }}">
+        <div id="column">
+         <p id="discription2">{{ post.userPofile.user.first_name }} Says : </p>
+         <p id="discription">{{ post.description }}</p>
+          <div id="status"></div>
+                    <form id="ratingForm" >
+                         <fieldset class="rating">
+                         <legend>How Stylish ? </legend>
+                         <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                         <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                         <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                         <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                         <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+
+                        </fieldset>
+                        <button class = "ratebutton" class="submit clearfix">Submit</button>
+                    </form>
+            <hr>
+
+
+            <div >
+                <div id="commentstab">
+             {% for p in Comments %}
+                     <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
+                     <hr />
+              {% endfor %}
+
+            </div>
+            <br />
+
+                <p style="font-weight: bold">Give Your Opinion</p>  <input id="AcutalComment" type="text" size="12" maxlength="265"/><br />
+                <button class="ratebutton"style="margin-right: 30px" id = "commentbutton" class="submit clearfix">Post it </button>
+
+
+             </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+{% endblock %}

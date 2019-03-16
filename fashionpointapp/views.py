@@ -1,15 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from fashionpointapp.models import Category
+from fashionpointapp.models import Category , Post ,PostComment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
 from fashionpointapp.models import UserProfile
 from datetime import datetime
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
+
+
+from django.http import JsonResponse
+
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 
 def index(request):
 	context_dict = {}
@@ -151,9 +158,6 @@ def PollaPoll(request):
 	context_dict['pos']=6
 	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
 
-
-
-
 def user_login(request):
 	context_dict = {}
 	context_dict['pos'] = 4
@@ -198,4 +202,62 @@ def get_server_side_cookie(request, cookie, default_val=None):
 	if not val:
 		val = default_val
 	return val
+
+
+
+def show_post(request , post_id):
+	context_dict = {}
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		context_dict['userProfile'] = userProfile
+		length = len(request.user.first_name)
+		context_dict['length']= 87 - length
+	context_dict['post'] = Post.objects.get(id=int(post_id))
+	comments = PostComment.objects.filter(post=int(post_id))
+	context_dict['Comments'] = comments
+	return render(request,'Fashionpointapp/post.html',context_dict)
+
+
+
+def update_avg(request , post_id ):
+
+	if request.method == 'POST' and request.is_ajax():
+		try:
+			id = post_id
+			value = request.POST.get('value')
+			obj = Post.objects.get(id=post_id)
+			obj.avgRating = value
+			obj.save()
+			return HttpResponse(value)
+		except Post.DoesNotExist:
+			return HttpResponse('did not work')
+
+
+def makeacomment(request , post_id ):
+
+	if request.method == 'POST' and request.is_ajax():
+		userProfile = UserProfile.objects.get(user=request.user)
+		try:
+			id = post_id
+			comment = PostComment()
+			comment.comment = request.POST.get('comment')
+			comment.post = Post.objects.get(id=post_id)
+			comment.userPofile = userProfile
+			comment.save()
+			return HttpResponse("It did work")
+		except Post.DoesNotExist:
+			return HttpResponse('did not work')
+	else :
+
+		return HttpResponse('did not work')
+
+def update_comments(request, post_id):
+	print('yes')
+	context_dict={}
+	context_dict['Comments'] = PostComment.objects.filter(post=int(post_id))
+	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+
+
+
+
 

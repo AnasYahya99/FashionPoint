@@ -28,6 +28,7 @@ class Post(models.Model):
 	avgRating = models.FloatField(default=0)
 	date = models.DateTimeField(auto_now=True)
 	photo = models.ImageField(upload_to="posts/")
+
 	class Meta: 
 		verbose_name_plural = 'Posts'
 	def __str__(self):

@@ -35,8 +35,7 @@ margin: 5px 60px;
 label[for=id_category]{
 margin: 0px  -105px 20px 0px;
 }
-.user {
-    display: flex;
+.user {display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
