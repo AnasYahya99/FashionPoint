@@ -3,8 +3,11 @@ from fashionpointapp.models import Post,Category,UserProfile,Poll
 from django.contrib.auth.models import User
 from django.forms.widgets import DateInput
 from django.utils.translation import ugettext_lazy as _
+<<<<<<< HEAD
 from django.contrib.auth.forms import UserChangeForm
 
+=======
+>>>>>>> 01bcae22bf18263763417be650840d1cc21e5b32
 
 class UserForm(forms.ModelForm):
     confirm_password=forms.CharField(widget=forms.PasswordInput())
@@ -28,7 +31,6 @@ class UserProfileForm(forms.ModelForm):
         }
         widgets = {
             'dateOfBirth': DateInput(attrs={'type': 'date'})
-
         }
 class PostForm(forms.ModelForm):
     category = forms.ModelMultipleChoiceField(Category.objects.all(), required=False,label='Select categories:',
@@ -53,6 +55,7 @@ class PollForm(forms.ModelForm):
     class Meta:
             model = Poll
             fields = ['description','picture1','picture2','category']
+<<<<<<< HEAD
 			
 class EditForm(UserChangeForm):
 		template_name='/myaccount/edit'
@@ -60,3 +63,5 @@ class EditForm(UserChangeForm):
 			model = User
 			fields = ('Email','First_name','Last_name','Password')
 
+=======
+>>>>>>> 01bcae22bf18263763417be650840d1cc21e5b32
