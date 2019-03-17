@@ -5,9 +5,6 @@ from fashionpointapp import views
 
 urlpatterns = [
 
-    url(r'^$', views.indexReset, name='index'),
-
-
     url(r'^$', views.index, name='index'),
 
     url(r'^categories/$', views.categories, name="categories"),
