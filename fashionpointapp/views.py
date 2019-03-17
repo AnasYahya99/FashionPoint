@@ -287,13 +287,13 @@ def user_login(request):
 		return render(request, 'Fashionpointapp/login.html', context_dict)
 @login_required
 def view_profile(request, pk=None):
-    if pk:
-        user = User.objects.get(pk=pk)
-    else:
-        user = request.user
-    args = {'user': user}
+	if pk:
+		user = User.objects.get(pk=pk)
+	else:
+		user = request.user
+		args = {'user': user}
 
-    return render(request, 'fashionpointapp/myaccount.html', args)
+	return render(request, 'fashionpointapp/myaccount.html', args)
 
 
 @login_required
@@ -338,7 +338,17 @@ def edit_profile(request):
         form = EditForm(instance=request.user)
         args = {'form': form}
         return render(request, 'fashionpointapp/edit_profile.html', args)
+def edit_pic(request):
+    if request.method == 'POST':
+        form = EditPic(request.POST, instance=request.user)
 
+        if form.is_valid():
+            form.save()
+            return  HttpResponseRedirect(reverse('view_profile'))
+    else:
+        form = EditForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'fashionpointapp/pic.html', args)
 
 def show_post(request , post_id):
 	context_dict = {}
@@ -455,8 +465,11 @@ def click(request, poll_id):
         except Poll.DoesNotExist:
             return HttpResponse('did not work')
 
+def account_page(request):
+	logged_in_user = request.user
+	logged_in_user_posts = Post.objects.filter(user=user)
 
-
+	return render(request, 'fashionpointapp/myaccount.html', {'posts': logged_in_user_posts})
 
 
 

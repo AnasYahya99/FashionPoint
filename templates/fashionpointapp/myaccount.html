@@ -5,29 +5,40 @@
 <title>Profile</title>
 {% endblock %}
 {% block body_block %}
-<link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/profile.css' %}">
     <div class="user">
           <div id="formContent">
 
 <header style='margin: 0px 8px 0px 8px;' class="user__header">
         <h2 class="active">My Account</h2>
     </header>
-
 <form  id="EditForm" method="view_profile" action="/fashionpoint/myaccount/"  enctype="multipart/form-data">
         {% csrf_token %}
         <div class =whitehead>
         {{form}}
         </div>
+	<img id="profilepic" src = "{{ user.UserProfileForm.picture.url }}" />
     <p>Username: {{ user }}</p>
     <p>First name: {{ user.first_name }}</p>
     <p>Last name: {{ user.last_name}}</p>
     <p>Email: {{ user.email }}</p>
-    {% if user.userprofile.image %}
-    <img src="{{ user.userprofile.image.url }}" width="240">
-	{% endif %}
-	<input type="button"onclick="window.location.href='{% url 'edit_profile' %}'" value="edit" />
+   	<input type="button"onclick="window.location.href='{% url 'edit_profile' %}'" value="edit" />
                
-</form>
-          </div>
+</form>	
+<div id="formContent2" style="max-height:90px;max-width:960px;margin:-380px 0px 50px 450px;text-align:top;background: #d0f8ff;" >
+<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">My Posts
+</label></div>
+<div>
+
+{% for post in posts %}
+		<a href="{% url 'show_post' c.slug %}">
+			<div id="formContent2" style="margin-right:-80px;max-width:350px;margin-bottom:30px;">
+					<p>{{ post.user.username }}</p>
+					<img class="postPic" src="/media/{{post.photo}}">
+  			</div>
+		</a>
+{% endfor %}
+</div>
+
 </div>
 {% endblock %}
