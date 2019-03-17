@@ -6,14 +6,23 @@
 <title>EDIT YOUR PROFILE</title>
 {% endblock %}
 
-{% block body %}
-<div class="container">
-    <form method="post">
+{% block body_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'fashionpointapp/form.css' %}">
+    <div class="user">
+          <div id="formContent">
+
+<header style='margin: 0px 8px 0px 8px;' class="user__header">
+        <h2 class="active">My Account</h2>
+    </header>
+
+
+<form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-    <br>
-</div>
+		<input type="submit"" value="save" />
+       
+</form>
 
+          </div>
+</div>
 {% endblock %}

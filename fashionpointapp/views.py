@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
-from fashionpointapp.forms import PostForm
+from fashionpointapp.forms import PostForm,EditForm
 from fashionpointapp.models import UserProfile,Post, Rating, Poll, Category
 from datetime import datetime
 
@@ -333,7 +333,7 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect(reverse('fashionpointapp:view_profile'))
+            return  HttpResponseRedirect(reverse('view_profile'))
     else:
         form = EditForm(instance=request.user)
         args = {'form': form}
