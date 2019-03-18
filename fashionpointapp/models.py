@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
-	dateOfBirth = models.DateField();
+	dateOfBirth = models.DateField(null=True);
 	class Meta: 
 		verbose_name_plural = 'Users'
 	def __str__(self):
@@ -25,6 +25,7 @@ class Category(models.Model):
 		verbose_name_plural = 'Categories'
 	def __str__(self):
 		return self.name
+
 class Post(models.Model):
 	userPofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	category = models.ManyToManyField(Category)
@@ -38,6 +39,7 @@ class Post(models.Model):
 	def __str__(self):
 		stringID = str(self.id)
 		return stringID
+
 class Poll(models.Model):
 	userPofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	category = models.ManyToManyField(Category)
@@ -63,6 +65,7 @@ class PostComment(models.Model):
 	def __str__(self):
 		stringID = str(self.id)
 		return stringID
+
 class PollComment(models.Model):
 	userPofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
@@ -73,6 +76,7 @@ class PollComment(models.Model):
 	def __str__(self):
 		stringID = str(self.id)
 		return stringID
+
 class Rating(models.Model):
 	userPofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -82,6 +86,7 @@ class Rating(models.Model):
 	def __str__(self):
 		stringID = str(self.id)
 		return stringID
+		
 class Vote(models.Model):
 	userPofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
