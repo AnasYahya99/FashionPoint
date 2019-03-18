@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
-from fashionpointapp.forms import PostForm
+from fashionpointapp.forms import PostForm,EditForm
 from fashionpointapp.models import UserProfile,Post, Rating, Poll, Category
 from datetime import datetime
 
@@ -286,14 +286,15 @@ def user_login(request):
 	else:
 		return render(request, 'Fashionpointapp/login.html', context_dict)
 @login_required
-def view_profile(request, pk=None):
-    if pk:
-        user = User.objects.get(pk=pk)
-    else:
-        user = request.user
-    args = {'user': user}
-
-    return render(request, 'fashionpointapp/myaccount.html', args)
+def view_profile(request):
+	context_dict = {}
+	user = request.user
+	userProfile = UserProfile.objects.get(user=user)
+	context_dict['userProfile'] = userProfile
+	logged_in_user_posts = Post.objects.filter(userPofile=userProfile)	
+	context_dict['posts'] =logged_in_user_posts
+	context_dict['polls'] = Poll.objects.filter(userPofile=userProfile)
+	return render(request, 'fashionpointapp/myaccount.html', context_dict)
 
 
 @login_required
@@ -333,12 +334,22 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect(reverse('fashionpointapp:view_profile'))
+            return  HttpResponseRedirect(reverse('view_profile'))
     else:
         form = EditForm(instance=request.user)
         args = {'form': form}
         return render(request, 'fashionpointapp/edit_profile.html', args)
+def edit_pic(request):
+    if request.method == 'POST':
+        form = EditPic(request.POST, instance=request.user)
 
+        if form.is_valid():
+            form.save()
+            return  HttpResponseRedirect(reverse('view_profile'))
+    else:
+        form = EditForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'fashionpointapp/pic.html', args)
 
 def show_post(request , post_id):
 	context_dict = {}
@@ -436,7 +447,7 @@ def update_comments(request, post_id):
 def update_pollcomments(request , poll_id):
     context_dict={}
     context_dict['Comments'] = PollComment.objects.filter(poll=int(poll_id))
-    return render(request, 'Fashionpointapp/bewpollComments.html', context_dict)
+    return render(request, 'Fashionpointapp/newpollComments.html', context_dict)
 
 
 def click(request, poll_id):
@@ -455,8 +466,10 @@ def click(request, poll_id):
         except Poll.DoesNotExist:
             return HttpResponse('did not work')
 
+def account_page(request):
 
 
+	return render(request, 'fashionpointapp/myaccount.html', {'posts': logged_in_user_posts})
 
 
 

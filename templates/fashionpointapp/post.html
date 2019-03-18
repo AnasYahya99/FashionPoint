@@ -66,7 +66,7 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     },
                 success : function(json) {
-                    alert("Rating succesful with " +value + "Ties");
+                    alert("Rating successful with " +value + "Ties");
                 },
                 error : function(xhr,errmsg,err) {
                     alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);

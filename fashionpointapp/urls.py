@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^updatePosts/$', views.updatePosts, name='updatePosts'),
     url(r'^updatePolls/$', views.updatePolls, name='updatePolls'),
-
+	url(r'^pic/$', views.edit_pic, name='edit_pic'),
+	
 ]
