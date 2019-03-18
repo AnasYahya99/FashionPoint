@@ -286,14 +286,15 @@ def user_login(request):
 	else:
 		return render(request, 'Fashionpointapp/login.html', context_dict)
 @login_required
-def view_profile(request, pk=None):
-	if pk:
-		user = User.objects.get(pk=pk)
-	else:
-		user = request.user
-		args = {'user': user}
-
-	return render(request, 'fashionpointapp/myaccount.html', args)
+def view_profile(request):
+	context_dict = {}
+	user = request.user
+	userProfile = UserProfile.objects.get(user=user)
+	context_dict['userProfile'] = userProfile
+	logged_in_user_posts = Post.objects.filter(userPofile=userProfile)	
+	context_dict['posts'] =logged_in_user_posts
+	context_dict['polls'] = Poll.objects.filter(userPofile=userProfile)
+	return render(request, 'fashionpointapp/myaccount.html', context_dict)
 
 
 @login_required
@@ -446,7 +447,7 @@ def update_comments(request, post_id):
 def update_pollcomments(request , poll_id):
     context_dict={}
     context_dict['Comments'] = PollComment.objects.filter(poll=int(poll_id))
-    return render(request, 'Fashionpointapp/bewpollComments.html', context_dict)
+    return render(request, 'Fashionpointapp/newpollComments.html', context_dict)
 
 
 def click(request, poll_id):
@@ -466,8 +467,7 @@ def click(request, poll_id):
             return HttpResponse('did not work')
 
 def account_page(request):
-	logged_in_user = request.user
-	logged_in_user_posts = Post.objects.filter(user=user)
+
 
 	return render(request, 'fashionpointapp/myaccount.html', {'posts': logged_in_user_posts})
 

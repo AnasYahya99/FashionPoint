@@ -10,14 +10,14 @@
           <div id="formContent">
 
 <header style='margin: 0px 8px 0px 8px;' class="user__header">
-        <h2 class="active">My Account</h2>
+        <h2 class="active">{{user}}</h2>
     </header>
 <form  id="EditForm" method="view_profile" action="/fashionpoint/myaccount/"  enctype="multipart/form-data">
         {% csrf_token %}
         <div class =whitehead>
         {{form}}
         </div>
-	<img id="profilepic" src = "{{ user.UserProfileForm.picture.url }}" />
+	<img id="profilepic1" style="height: 200px;width: 200px;" src = "{{ userProfile.picture.url }}" />
     <p>Username: {{ user }}</p>
     <p>First name: {{ user.first_name }}</p>
     <p>Last name: {{ user.last_name}}</p>
@@ -25,19 +25,41 @@
    	<input type="button"onclick="window.location.href='{% url 'edit_profile' %}'" value="edit" />
                
 </form>	
-<div id="formContent2" style="max-height:90px;max-width:960px;margin:-380px 0px 50px 450px;text-align:top;background: #d0f8ff;" >
-<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">My Posts
+</div>
+<div id="formContent2" style="max-height:90px;max-width:800px;margin:-650px 0px 0px 300px;text-align:top;background: #d0f8ff;" >
+<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">{{ user }}'s  Posts
 </label></div>
-<div>
+	
+<div class="main">
+    <h1 id="white"> {{ post.userPofile.user.first_name}} </h1>
 
-{% for post in posts %}
-		<a href="{% url 'show_post' c.slug %}">
-			<div id="formContent2" style="margin-right:-80px;max-width:350px;margin-bottom:30px;">
-					<p>{{ post.user.username }}</p>
-					<img class="postPic" src="/media/{{post.photo}}">
-  			</div>
-		</a>
-{% endfor %}
+	<div class=whitehead id="everything" style="margin-bottom: 100px;">
+	    {% for p in posts %}
+	                <a href="{% url 'show_post' p.id %}">
+	                		<div id="formContent2" style="margin-right:-85px;max-width:400px;margin-bottom:10px;">
+	                			<p style="color:black;font-size: 20px;" >{{ p.description }}</p>
+								<p style="color:black;font-size: 20px;" >{{ p.date }}</p>
+	                		</div>
+	                </a>
+	    {% endfor %}
+		</div>
+</div>		
+<div id="formContent2" style="max-height:90px;max-width:800px;margin:-200px 0px 0px 300px;text-align:top;background: #d0f8ff;" >
+<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">{{ user }}'s  Polls
+</label></div>
+<div class="main1">
+    <h1 id="white"> {{ poll.userPofile.user.first_name}} </h1>
+	<div class=whitehead id="everything" style="margin-bottom: 100px;">
+		{% for p in polls %}
+		     <a href="{% url 'show_poll' p.id %}">
+	                		<div id="formContent2" style="margin-right:325px;max-width:400px;margin-bottom:10px;">
+	                			<p style="color:black;font-size: 20px;" >{{ p.description }}</p>
+							<p style="color:black;font-size: 20px;" >{{ p.date }}</p>
+	                		</div>	               			                
+	                </a>
+	    {% endfor %}
+	
+		</div>
 </div>
 
 </div>
