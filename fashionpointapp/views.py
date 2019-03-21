@@ -302,13 +302,13 @@ def user_login(request):
 				return HttpResponseRedirect(reverse('index'))
 			else:
 				context_dict['type'] = "Account is Disabled";
-				return render(request, 'Fashionpointapp/login.html', context_dict)
+				return render(request, 'fashionpointapp/login.html', context_dict)
 		else:
 			context_dict['type'] = "Invalid login details";
 			print("Invalid login details: {0}, {1}".format(username, password))
-			return render(request, 'Fashionpointapp/login.html', context_dict)
+			return render(request, 'fashionpointapp/login.html', context_dict)
 	else:
-		return render(request, 'Fashionpointapp/login.html', context_dict)
+		return render(request, 'fashionpointapp/login.html', context_dict)
 @login_required
 def view_profile(request,user_n):
 	context_dict = {}
@@ -387,7 +387,7 @@ def show_post(request , post_id):
 	context_dict['post'] = Post.objects.get(id=int(post_id))
 	comments = PostComment.objects.filter(post=int(post_id))
 	context_dict['Comments'] = comments
-	return render(request,'Fashionpointapp/post.html',context_dict)
+	return render(request,'fashionpointapp/post.html',context_dict)
 
 
 def show_poll(request , poll_id):
@@ -400,7 +400,7 @@ def show_poll(request , poll_id):
 	context_dict['poll'] = Poll.objects.get(id=int(poll_id))
 	comments = PollComment.objects.filter(poll=int(poll_id))
 	context_dict['Comments'] = comments
-	return render(request,'Fashionpointapp/poll.html',context_dict)
+	return render(request,'fashionpointapp/poll.html',context_dict)
 
 
 
@@ -466,14 +466,14 @@ def makeapollcomment(request, poll_id):
 def update_comments(request, post_id):
 	context_dict={}
 	context_dict['Comments'] = PostComment.objects.filter(post=int(post_id))
-	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+	return render(request, 'fashionpointapp/newComments.html', context_dict)
 
 
 
 def update_pollcomments(request , poll_id):
     context_dict={}
     context_dict['Comments'] = PollComment.objects.filter(poll=int(poll_id))
-    return render(request, 'Fashionpointapp/bewpollComments.html', context_dict)
+    return render(request, 'fashionpointapp/bewpollComments.html', context_dict)
 
 
 def click(request, poll_id):
