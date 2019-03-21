@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+﻿@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 
 
@@ -70,20 +70,14 @@
 
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar {
-<<<<<<< HEAD
-
   position: absolute;
-=======
   clear: both;
   position: relative;
   height: 57px;
   margin-top: -20px;
   background-color: transparent;
->>>>>>> b390f05383221d73b6532855a26be4f887e94d8b
   overflow: hidden;
   width: 100%;
-
-
 }
 
 /* Style the links inside the navigation bar */
