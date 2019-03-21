@@ -10,8 +10,11 @@ from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm,EditForm
 from fashionpointapp.models import UserProfile,Post, Rating, Poll, Category
 from datetime import datetime
-
-
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+    UpdateView,
+    DeleteView
+)
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
 def updatePosts(request):
 	context_dict = {}
@@ -218,7 +221,7 @@ def register(request):
 				'pos': 5})
 
 @login_required
-def PostaPost(request):
+def Post_form(request):
 	form = PostForm()
 	context_dict = {'form': form}
 	if request.user.is_authenticated:
@@ -238,7 +241,7 @@ def PostaPost(request):
 			print(form.errors)
 
 	context_dict['pos']=3
-	return render(request, 'fashionpointapp/PostaPost.html', context_dict)
+	return render(request, 'fashionpointapp/post_form.html', context_dict)
 
 @login_required
 def PollaPoll(request):
@@ -262,7 +265,28 @@ def PollaPoll(request):
 
 	context_dict['pos']=6
 	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['description','photo']
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.userPofile.user:
+            return True
+        return False
+
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = Post
+	success_url = '/fashionpoint'
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.userPofile.user:
+				return True
+		return False
 
 def user_login(request):
 	context_dict = {}
@@ -286,9 +310,11 @@ def user_login(request):
 	else:
 		return render(request, 'Fashionpointapp/login.html', context_dict)
 @login_required
-def view_profile(request):
+def view_profile(request,user_n):
 	context_dict = {}
 	user = request.user
+	print(user)
+	
 	userProfile = UserProfile.objects.get(user=user)
 	context_dict['userProfile'] = userProfile
 	logged_in_user_posts = Post.objects.filter(userPofile=userProfile)	
@@ -447,7 +473,7 @@ def update_comments(request, post_id):
 def update_pollcomments(request , poll_id):
     context_dict={}
     context_dict['Comments'] = PollComment.objects.filter(poll=int(poll_id))
-    return render(request, 'Fashionpointapp/newpollComments.html', context_dict)
+    return render(request, 'Fashionpointapp/bewpollComments.html', context_dict)
 
 
 def click(request, poll_id):
