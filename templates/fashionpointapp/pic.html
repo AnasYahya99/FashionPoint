@@ -13,14 +13,12 @@
 
 <header style='margin: 0px 8px 0px 8px;' class="user__header">
         <h2 class="active">My Account</h2>
-			
     </header>
-       
+
 
 <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
 		<input type="submit"" value="save" />
        
 </form>
