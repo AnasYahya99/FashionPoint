@@ -14,6 +14,7 @@ class UserProfile(models.Model):
 class Category(models.Model):
 	slug = models.SlugField(unique=True)
 	name = models.CharField(max_length=128, unique=True)
+	picture = models.ImageField(upload_to='cats', blank=True)
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
 		super(Category, self).save(*args, **kwargs)
@@ -54,6 +55,8 @@ class PostComment(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
 	comment = models.CharField(max_length=256,null=True,blank=True)
 	date = models.DateTimeField(auto_now=True)
+	nol = models.PositiveIntegerField(default=0)
+	nod = models.PositiveIntegerField(default=0)
 	class Meta: 
 		verbose_name_plural = 'Post Comments'
 	def __str__(self):
@@ -87,3 +90,13 @@ class Vote(models.Model):
 	def __str__(self):
 		stringID = str(self.id)
 		return stringID
+class Like(models.Model):
+	userPofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	comment = models.ForeignKey(PostComment, on_delete=models.CASCADE)
+	type = models.PositiveIntegerField(default=0)
+	class Meta:
+		verbose_name_plural = 'likes'
+	def __str__(self):
+		stringID = str(self.id)
+		return stringID
+

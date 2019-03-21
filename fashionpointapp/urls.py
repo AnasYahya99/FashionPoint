@@ -25,4 +25,7 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^updatePosts/$', views.updatePosts, name='updatePosts'),
     url(r'^updatePolls/$', views.updatePolls, name='updatePolls'),
+    url(r'^posts/(?P<post_id>[0-9]+)/showMore/$', views.showMore, name='showMore'),
+    url(r'^posts/(?P<post_id>[0-9]+)/updateLike/$', views.updateLike, name='updateLike'),
+
 ]

@@ -1,6 +1,27 @@
-             {% for p in Comments %}
-                     <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
-                     <hr />
-              {% endfor %}
+{% load staticfiles %}
+{% for p, a in comments %}
+<img style="width:50px;height:50px;box-shadow: none;border-radius: 20px;margin:-100px 550px -20px -25px;   animation:none;filter: none;" src="{{p.userPofile.picture.url}}">
+<span style="margin:-20px 0px 0px 20px;font-family: 'Poppins', sans-serif;font-size:14px;" id="username"> {{p.userPofile.user.first_name }}: </span>
+<label  style="margin:10px 0px 10px -40px;font-size:13px;" id ="comment"> {{ p.comment}} </label>
+<hr style="margin: 0px 0px 0px -10px;width:430px"/>
+<img id="like{{p}}" {% if a == 1%}
+     class="likeClicked"
+     {%else%}
+     class="like"
+     {%endif%}
+     onclick="like({{p}},0,{{p.nol}},{{p.nod}})" src="{% static 'images/like.png'%}">
+<label style="font-size:13px ;margin:0px 0px 20px 30px;" id="likes{{p}}"> {{p.nol}}</label>
+<img id="dislike{{p}}" {% if a == 2%}
+     class="dislikeClicked"
+     {%else%}
+     class="dislike"
+     {%endif%} onclick="like({{p}},1,{{p.nol}},{{p.nod}})" src="{% static 'images/dislike.png'%}">
+<label style="font-size:13px;margin:0px 0px 20px 0px;" id="dislikes{{p}}"> {{p.nod}}</label>
+<label id="date" style="margin:0px 0px 0px 200px;">{{ p.date }}</label>
+<hr style=" margin: 0px 0px 20px -10px;width:430px"/>
+{% endfor %}
+{% if more == 1 %}
+<a onclick="showMore(1)" style="cursor:pointer;">show more</a>
+{%endif%}
 
 

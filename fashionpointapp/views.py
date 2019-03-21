@@ -8,10 +8,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from fashionpointapp.forms import PostForm
-from fashionpointapp.models import UserProfile,Post,Poll
+from fashionpointapp.models import UserProfile,Post, Rating, Poll,Like
 from datetime import datetime
 from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
-from django.contrib.auth.models import User
+
 def updatePosts(request):
 	context_dict = {}
 	ind = int(request.GET['inc'])
@@ -56,6 +56,7 @@ def updatePosts(request):
 	context_dict['offp3'] = startate(offp3)
 	context_dict['hp3'] = hp3
 	return render(request, 'fashionpointapp/newPosts.html',context_dict)
+
 def updatePolls(request):
 	context_dict = {}
 	ind = int(request.GET['inc'])
@@ -72,6 +73,7 @@ def updatePolls(request):
 	context_dict['poll1'] = poll[0]
 	context_dict['poll2'] = poll[1]
 	return render(request, 'fashionpointapp/newPolls.html',context_dict)
+
 def index(request):
 	context_dict = {}
 	post = Post.objects.all()
@@ -125,6 +127,7 @@ def index(request):
 		context_dict['length']= 87 - length
 	context_dict['pos']=1
 	return render(request, 'fashionpointapp/index.html',context_dict)
+
 def categories(request):
 	context_dict = {}
 	if request.user.is_authenticated:
@@ -310,12 +313,15 @@ def get_server_side_cookie(request, cookie, default_val=None):
 	if not val:
 		val = default_val
 	return val
+
 def startate(x):
 	text=""
 	for i in  range(0,x):
 		text = text + "*"
 	return text
-@login_required
+
+
+@login_required	
 def edit_profile(request):
     if request.method == 'POST':
         form = EditForm(request.POST, instance=request.user)
@@ -328,33 +334,61 @@ def edit_profile(request):
         return render(request, 'fashionpointapp/edit_profile.html', args)
 
 
-
 def show_post(request , post_id):
 	context_dict = {}
+	context_dict['post'] = Post.objects.get(id=int(post_id))
+	comments = PostComment.objects.filter(post=int(post_id))
+	more = 0
+	if (len(comments) > 5):
+		comments = comments[:5]
+		more = 1
+	context_dict['more'] = more
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
+		test = Rating.objects.filter(userPofile=userProfile,post=int(post_id)).count()
+		print(test)
+		rate = 0
+		if(test == 1):
+			rate = Rating.objects.get(userPofile=userProfile,post=int(post_id)).rating;
+		context_dict['rate']=rate
 		context_dict['userProfile'] = userProfile
 		length = len(request.user.first_name)
 		context_dict['length']= 87 - length
-	context_dict['post'] = Post.objects.get(id=int(post_id))
-	comments = PostComment.objects.filter(post=int(post_id))
-	context_dict['Comments'] = comments
+		likes = []
+		for i in comments:
+			test = Like.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = Like.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments = zip(comments, likes)
+	context_dict['comments'] = comments
+	print(rate)
 	return render(request,'Fashionpointapp/post.html',context_dict)
 
 
-
 def update_avg(request , post_id ):
-
 	if request.method == 'POST' and request.is_ajax():
+		userProfile = UserProfile.objects.get(user=request.user)
 		try:
 			id = post_id
 			value = request.POST.get('value')
 			obj = Post.objects.get(id=post_id)
-			obj.avgRating = value
+
+			rating = Rating()
+			rating.userPofile = userProfile
+			rating.post = obj
+			rating.rating = value
+			rating.save()
+
+			ratings = len(Rating.objects.filter(post=obj))
+			obj.avgRating = (obj.avgRating * (len(Rating.objects.filter(post=obj))-1) + int(value)) / len(Rating.objects.filter(post=obj))
+
 			obj.save()
 			return HttpResponse(value)
 		except Post.DoesNotExist:
 			return HttpResponse('did not work')
+	else: return HttpResponse('did not work 2')
 
 
 def makeacomment(request , post_id ):
@@ -376,13 +410,84 @@ def makeacomment(request , post_id ):
 		return HttpResponse('did not work')
 
 def update_comments(request, post_id):
-	print('yes')
 	context_dict={}
-	context_dict['Comments'] = PostComment.objects.filter(post=int(post_id))
+	comments = PostComment.objects.filter(post=int(post_id))
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		likes = []
+		for i in comments:
+			test = Like.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = Like.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments=zip(comments,likes)
+	context_dict['more'] = 0
+	context_dict['comments'] = comments
 	return render(request, 'Fashionpointapp/newComments.html', context_dict)
 
 
 def show_poll(request,poll_id):
 	return render(request, 'fashionpointapp/myaccount.html',)
+
+def showMore(request, post_id):
+	context_dict={}
+	ind = int(request.GET['ind'])
+	comments = PostComment.objects.filter(post=int(post_id))
+	comments = comments[:min(ind + 5, len(comments))]
+	more = 0
+	if (ind + 5 <= len(comments)):
+		more = 1
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		likes = []
+		for i in comments:
+			test = Like.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = Like.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments=zip(comments,likes)
+	context_dict['comments'] = comments
+	context_dict['more'] = more
+	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+def updateLike(request,post_id):
+	if request.method == 'POST' and request.is_ajax():
+		userProfile = UserProfile.objects.get(user=request.user)
+		commentID = request.POST.get('comment')
+		comment = PostComment.objects.get(id=commentID)
+		x = request.POST.get('type')
+		x = int(x)
+		like, created = Like.objects.get_or_create(userPofile=userProfile,comment=comment)
+		if(created):
+			like.comment = comment
+			like.userPofile = userProfile
+		if(x == 0):
+			comment.nol += 1
+		if (x == 2):
+			comment.nol += 1
+			comment.nod -= 1
+		if (x == 3):
+			comment.nod += 1
+		if (x == 4):
+			comment.nol -= 1
+			comment.nod += 1
+		if (x == 1):
+			comment.nol -= 1
+		if (x == 5):
+			comment.nod -= 1
+		comment.save()
+		if(x == 0 or x == 2):
+			like.type= 1
+		if(x == 3 or x == 4):
+			like.type= 2
+		if (x == 1 or x == 5):
+			like.type = 0
+		like.save()
+	return HttpResponse('Updated')
+
+
+
+
 
 
