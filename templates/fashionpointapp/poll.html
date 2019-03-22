@@ -50,6 +50,10 @@
                         showMoreP(50);
             });
 }
+    function calc(c1,c2){
+             var x = parseInt(c2/(c1+c2)*100);
+return x;
+    }
      function clicking(c1,c2,type){
        $.ajax({
                 url: '{% url 'click'  poll %} ',
@@ -117,7 +121,7 @@
                 {% if vote == 0%}
                 <div class="circle">Or</div>
                 {% else %}
-            <div class="pie" style="--segment1: {{ratio}}; --segment2: 100;"></div>
+            <div class="pie" style="--segment1:{{ratio}}; --segment2: 100;"></div>
             <span class="dot" style="background-color: #398AD7;"></span> <label style="margin-right:10px;">left picture</label>
             <span class="dot" ></span> <label>right picture</label>
             {%endif%}

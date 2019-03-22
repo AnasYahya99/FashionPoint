@@ -313,7 +313,7 @@ def user_login(request):
 		return render(request, 'fashionpointapp/login.html', context_dict)
 
 @login_required
-def view_profile(request):
+def view_profile(request,user_n):
 	context_dict = {}
 	user = request.user
 	print(user)
