@@ -31,11 +31,11 @@ urlpatterns = [
 	url(r'^signup/$', views.register, name="signup"),
     url(r'^newpost/$', views.Post_form , name="newpost"),
     url(r'^newpoll/$', views.PollaPoll , name="newpoll"),
-	url(r'^(?P<user_n>[A-Za-z0-9]+)/$', views.view_profile, name='view_profile'),
+	url(r'^myaccount/$', views.view_profile, name='view_profile'),
     url(r'^edit/$', views.edit_profile, name='edit_profile'),
     url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^updatePosts/$', views.updatePosts, name='updatePosts'),
     url(r'^updatePolls/$', views.updatePolls, name='updatePolls'),
-	url(r'^pic/$', views.edit_pic, name='edit_pic'),
+	
 	
 ]
