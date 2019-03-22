@@ -9,6 +9,7 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
 	dateOfBirth = models.DateField(null=True);
+	fashionista = models.BooleanField(default=False)
 	class Meta: 
 		verbose_name_plural = 'Users'
 	def __str__(self):

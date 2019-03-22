@@ -41,4 +41,5 @@ urlpatterns = [
     url(r'^(?P<user_n>[A-Za-z0-9]+)/$', views.view_profile, name='view_profile'),
     url(r'^posts/(?P<pk>\d+)/update/$', PostUpdateView.as_view(), name='post_update'),
     url(r'^posts/(?P<pk>\d+)/delete/$', PostDeleteView.as_view(), name='Post_Delete'),
+
 ]

@@ -11,6 +11,7 @@ from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
 from fashionpointapp.forms import PostForm,EditForm
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from itertools import chain
 from django.views.generic import (
     UpdateView,
     DeleteView
@@ -353,7 +354,7 @@ def startate(x):
 
 
 @login_required	
-def edit_profile(request):
+def edit_profile(request,user_n):
     if request.method == 'POST':
         form = EditForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -363,22 +364,20 @@ def edit_profile(request):
         form = EditForm(instance=request.user)
         args = {'form': form}
         return render(request, 'fashionpointapp/edit_profile.html', args)
-def edit_pic(request):
-    if request.method == 'POST':
-        form = EditPic(request.POST, instance=request.user)
 
-        if form.is_valid():
-            form.save()
-            return  HttpResponseRedirect(reverse('view_profile'))
-    else:
-        form = EditForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'fashionpointapp/pic.html', args)
 
 def show_post(request , post_id):
 	context_dict = {}
 	context_dict['post'] = Post.objects.get(id=int(post_id))
-	comments = PostComment.objects.filter(post=int(post_id))
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PostComment.objects.filter(post=int(post_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
 	more = 0
 	if (len(comments) > 5):
 		comments = comments[:5]
@@ -404,14 +403,20 @@ def show_post(request , post_id):
 			likes.append(type)
 		comments = zip(comments, likes)
 	context_dict['comments'] = comments
-	return render(request,'Fashionpointapp/post.html',context_dict)
-
-
+	return render(request,'fashionpointapp/post.html',context_dict)
 
 def show_poll(request , poll_id):
 	context_dict = {}
 	poll = Poll.objects.get(id=int(poll_id))
-	comments = PollComment.objects.filter(poll=int(poll_id))
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PollComment.objects.filter(poll=int(poll_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
 	context_dict['poll'] = poll
 	more = 0
 	context_dict['check'] = len(comments)
@@ -440,8 +445,6 @@ def show_poll(request , poll_id):
 		comments = zip(comments, likes)
 	context_dict['comments'] = comments
 	return render(request,'fashionpointapp/poll.html',context_dict)
-
-
 
 
 def update_avg(request , post_id ):
@@ -516,12 +519,21 @@ def update_comments(request, post_id):
 		comments=zip(comments,likes)
 	context_dict['more'] = 0
 	context_dict['comments'] = comments
-	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+	return render(request, 'fashionpointapp/newComments.html', context_dict)
 
 def showMore(request, post_id):
 	context_dict={}
 	ind = int(request.GET['ind'])
-	comments = PostComment.objects.filter(post=int(post_id))
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PostComment.objects.filter(post=int(post_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
+
 	comments = comments[:min(ind + 5, len(comments))]
 	more = 0
 	if (ind + 5 <= len(comments)):
@@ -538,11 +550,19 @@ def showMore(request, post_id):
 		comments=zip(comments,likes)
 	context_dict['comments'] = comments
 	context_dict['more'] = more
-	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+	return render(request, 'fashionpointapp/newComments.html', context_dict)
 def showMoreP(request, poll_id):
 	context_dict={}
 	ind = int(request.GET['ind'])
-	comments = PollComment.objects.filter(poll=int(poll_id))
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PollComment.objects.filter(poll=int(poll_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
 	comments = comments[:min(ind + 5, len(comments))]
 	more = 0
 	if (ind + 5 <= len(comments)):
@@ -559,7 +579,7 @@ def showMoreP(request, poll_id):
 		comments=zip(comments,likes)
 	context_dict['comments'] = comments
 	context_dict['more'] = more
-	return render(request, 'Fashionpointapp/bewpollComments.html', context_dict)
+	return render(request, 'fashionpointapp/bewpollComments.html', context_dict)
 def updateLike(request,post_id):
 	if request.method == 'POST' and request.is_ajax():
 		userProfile = UserProfile.objects.get(user=request.user)
