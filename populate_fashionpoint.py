@@ -32,6 +32,10 @@ def populate():
 	add_post(86, u1, c, "the north remembers", "/posts/Arya-Stark.jpg")
 	add_post(85, u2, c, "edinburgh tourism", "/posts/sawiss.jpg")
 	add_post(84, u1, c, "SSE hydro", "/posts/51708350_2268310323440343_2510689292553027584_n_eIi9ZmN.jpg")
+	add_post(83, u1, c, "old city vibes", "/posts/49043015_1152067908276789_8097613756558737408_n.jpg")
+	add_post(82, u2, c, "Glasgow life", "/posts/Sawi_1oDDnWY.jpg")
+	add_post(81, u1, c, "the king in the north", "/posts/hqRMHITj_400x400_4TO8sTf.jpg")
+
 
 	add_poll(87, u1, c, "the north remembers", "/posts/Arya-Stark.jpg", "/posts/Daenerys-Targaryen-7x03-The-Queen-s-Justice-daenerys-targaryen-40617732-2995-4500_fiw7pYp.jpg")
 	add_poll(88, u2, c, "which lanister?", "/posts/download_1.jpg", "/posts/Jaime-Lannister.jpg")

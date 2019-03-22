@@ -1,5 +1,5 @@
 from django.contrib import admin
-from fashionpointapp.models import Category, Post, Poll, PostComment, PollComment, Rating, Vote, UserProfile,Like
+from fashionpointapp.models import Category, Post, Poll, PostComment, PollComment, Rating, Vote, UserProfile,Like,LikePoll
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
 
@@ -12,3 +12,4 @@ admin.site.register(PollComment)
 admin.site.register(Rating)
 admin.site.register(Vote)
 admin.site.register(Like)
+admin.site.register(LikePoll)

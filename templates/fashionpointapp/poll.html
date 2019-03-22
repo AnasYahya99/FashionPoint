@@ -11,52 +11,82 @@
 
 
     <script type="text/javascript">
-
-     $(document).ready(function() {
-
-         $("#image1").click(function (event) {
-
-                 $.ajax({
+    function likePoll(x,t,nol,nod){
+    var type = 0;
+    if((document.getElementById('dislike'+x).className === 'dislike')&&(document.getElementById('like'+x).className !== 'like')&&(t==0))
+        type = 1;
+    if((document.getElementById('dislike'+x).className !== 'dislike')&&(document.getElementById('like'+x).className === 'like')&&(t==0))
+        type = 2;
+    if((document.getElementById('dislike'+x).className === 'dislike')&&(document.getElementById('like'+x).className === 'like')&&(t!=0))
+        type = 3;
+    if((document.getElementById('dislike'+x).className === 'dislike')&&(document.getElementById('like'+x).className !== 'like')&&(t!=0))
+        type = 4;
+    if((document.getElementById('dislike'+x).className !== 'dislike')&&(document.getElementById('like'+x).className === 'like')&&(t!=0))
+        type = 5;
+     if(t==0){
+        document.getElementById('dislike'+x).className = 'dislike';
+        if(document.getElementById('like'+x).className === 'like')
+                document.getElementById('like'+x).className = 'likeClicked';
+        else
+                document.getElementById('like'+x).className = 'like';
+        }
+     else{
+      document.getElementById('like'+x).className = 'like';
+        if(document.getElementById('dislike'+x).className === 'dislike')
+                document.getElementById('dislike'+x).className = 'dislikeClicked';
+        else
+                document.getElementById('dislike'+x).className = 'dislike';
+     }
+     $.ajax({
+                url: '{% url 'updateLikeP'  poll %}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    comment: x,
+                    type: type,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+            }).always(function(){
+                        showMoreP(50);
+            });
+}
+     function clicking(c1,c2,type){
+       $.ajax({
                 url: '{% url 'click'  poll %} ',
                 type: "POST",
                 dataType: "json",
                 data: {
-
-
                     csrfmiddlewaretoken: '{{ csrf_token }}',
-                    picture:1
-                    },
-
-
+                    picture:type
+                 }
          });
+         if(type == 1)
+            c1++;
+         else
+            c2++;
+         var x = parseInt(c2/(c1+c2)*100);
+         document.getElementById("cc").innerHTML = "<div class=\"pie\" style=\"--segment1: "+ x +"; --segment2: 100;\"></div>"
+         +"<span class=\"dot\" style=\"background-color: #398AD7;\"></span> <label style=\"margin-right:10px;\">left picture</label>"
+         +"<span class=\"dot\" ></span> <label>right picture</label>";
+         document.getElementById("p1").innerHTML ="<img id=\"image1\"class = \"pollimage\" src=\"/media/{{ poll.picture1 }}\">";
+         document.getElementById("p2").innerHTML ="<img id=\"image2\" class = \"pollimage\" src=\"/media/{{ poll.picture2 }}\">";
+     }
+     var ind = 0;
+     function showMoreP(x){
+         if(x==1)
+          ind+=5;
+          $.ajax({
+					type:"GET",
+					url: "{% url 'showMoreP' poll %}",
+					data: {'ind': ind}})
+					.done(function(response) {
+					$("#commentstab").html(response);
+			});
 
-         });
-
-         $("#image2").click(function (event) {
-
-                                 $.ajax({
-
-                url: '{% url 'click'  poll %} ',
-                type: "POST",
-                dataType: "json",
-                data: {
-
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                    picture:2
-                    },
-
-
-         });
-
-
-             });
-
-            $("#commentbutton").click(function (event) {
-
-
+         }
+     function newCommentP(event) {
+        ind = 55465456;
         var comment = document.getElementById("AcutalComment").value ;
-
-
          $.ajax({
                 url: '{% url 'makepollComment' poll %} ',
                 type: "POST",
@@ -65,68 +95,87 @@
                     comment: comment ,
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     },
-
             }).always(function () {
-               $.ajax({
-                url: '{% url 'update_pollcomments' poll %} ' ,
-                type: "GET"}).done(function (response) {
-                    document.getElementById('commentstab').innerHTML=response
-                  })
+               showMoreP(50);
          });
          document.getElementById("AcutalComment").value = "";
-         });
-
-
-
-
-
-     }) ;
-
-
-
-
-
-
+     }
     </script>
 
-    <div class = "post1">
+    <div class = "post1" style="margin-bottom:100px;">
 
     <h1 id="mytitle"> {{ poll.userPofile.user.first_name }} Is Wondering :  🤔  </h1>
 
         <div class="row1">
-        <div class="column1">
-            <img id="image1" onclick="showclicks() " class = "pollimage" src="/media/{{ poll.picture1 }}">
-            <p id="clicks1"> {{ poll.picture1Clicks }} Clicks</p>
+        <div class="column1" id="p1">
+            <img id="image1" {% if vote == 0 %}
+                 onclick="clicking({{poll.picture1Clicks}},{{poll.picture2Clicks}},1)"
+                 {%endif%}
+                 class = "pollimage" src="/media/{{ poll.picture1 }}">
         </div>
-        <div style="flex: 33.3%;">
-            <h1 id="mytitle">OR</h1>
+        <div id="cc" style="margin:200px 50px 0px 55px;">
+                {% if vote == 0%}
+                <div class="circle">Or</div>
+                {% else %}
+            <div class="pie" style="--segment1: {{ratio}}; --segment2: 100;"></div>
+            <span class="dot" style="background-color: #398AD7;"></span> <label style="margin-right:10px;">left picture</label>
+            <span class="dot" ></span> <label>right picture</label>
+            {%endif%}
         </div>
-         <div class="column1">
-             <img id="image2" onclick="showclicks() " class = "pollimage" src="/media/{{ poll.picture2 }}"> <br />
-              <p id="clicks2" ONCLICK=""> {{ poll.picture2Clicks }} Clicks</p>
-        </div>
+         <div class="column1" id="p2">
+             <img id="image2" {% if vote == 0 %}
+                  onclick="clicking({{poll.picture1Clicks}},{{poll.picture2Clicks}},2)"
+                   {%endif%}
+                  class = "pollimage" src="/media/{{ poll.picture2 }}"> <br />
+         </div>
 </div>
 
 
-
-
     <h1 id="discriptionwhite"> {{ poll.description }} </h1>
-
-
+<hr/>   <div style="margin-bottom: -80px;">
+        <label style="margin: 100px 0px 200px -850px; font-size:20px;">Comments:</label></div>
            <div >
-                <div id="commentstab">
-             {% for p in Comments %}
-                     <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
-                     <hr />
-              {% endfor %}
+                <div id="commentstab" style="margin:100px 100px 100px 120px;">
+                    {% if check == 0 %}
+                    <span style="color:#8c92ac;">There are no comments...</span>
+                    {% endif %}
+
+           {% for p, a in comments %}
+            <img style="width:40px;height:40px;box-shadow: none;border-radius: 10px;margin:0px 870px -12px -25px;   animation:none;filter: none;" src="{{p.userPofile.picture.url}}">
+            <span style="margin:-20px 0px 0px 30px;font-family: 'Poppins', sans-serif;font-size:14px;" id="username"> {{p.userPofile.user.first_name }}: </span>
+            <label  style="margin:10px 0px 10px -40px;font-size:16px;" id ="comment"> {{ p.comment}} </label>
+            <hr style="margin: 0px 0px 0px 0px;width:900px"/>
+            <img style="width:30px;height:30px; margin:2px 870px 0px 0px;" id="like{{p}}" {% if a == 1%}
+                 class="likeClicked"
+                 {%else%}
+                 class="like"
+                 {%endif%}
+                 onclick="likePoll({{p}},0,{{p.nol}},{{p.nod}})" src="{% static 'images/like.png'%}">
+                    <div style="margin:-25px 0px 0px 0px;">
+                    <label style="font-size:15px ;margin:300px 820px -500px 0px;" id="likes{{p}}"> {{p.nol}}</label>
+                        </div>
+            <img style="width:30px;height:30px;  margin:-300px 750px 10px 0px;" id="dislike{{p}}" {% if a == 2%}
+                 class="dislikeClicked"
+                 {%else%}
+                 class="dislike"
+                 {%endif%} onclick="likePoll({{p}},1,{{p.nol}},{{p.nod}})" src="{% static 'images/dislike.png'%}">
+            <div style="margin:-35px 0px 0px 0px;">
+                <label style="font-size:15px ;margin:300px 700px -500px 0px;" id="dislikes{{p}}"> {{p.nod}}</label>
+            </div>
+
+            <label id="date" style="margin:0px 0px 0px 700px;">{{ p.date }}</label>
+            <hr style=" margin: 0px 0px 20px 0px;width:900px"/>
+            {% endfor %}
+            {% if more == 1 %}
+                        <a onclick="showMoreP(1)" style="cursor:pointer;">show more</a>
+            {%endif%}
 
             </div>
             <br />
-
-                <p style="font-weight: bold">Give Your Opinion</p>  <input id="AcutalComment" type="text" size="5" maxlength="265" style="max-width: 500px"/><br />
-                <button class="ratebutton"style="margin-right: 30px" id = "commentbutton" class="submit clearfix">Post it </button>
-
-
+            <hr style="margin-top:-100px;"/>
+                               <label style="font-weight: bold;margin:50px 150px 50px 0px;">Give Your Opinion:</label>
+               <input style="height:60px;width:800px;margin:0px 100px 50px -150px;" id="AcutalComment" type="text" size="5" maxlength="265"/><br />
+               <img onclick="newCommentP()" style="margin: -250px 0px 63px 910px;width:60px;height:60px;"class="arrow1" src="{% static 'images/arrow.png'%}">
              </div>
 
 

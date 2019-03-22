@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Post {{ post.id }}
+    {{ post.id }}
 {% endblock %}
 
 
@@ -137,6 +137,7 @@ function shine(ID,x){
 
          }
         function comment() {
+        ind = 4565465;
         var comment = document.getElementById("AcutalComment").value;
         if(comment){
          $.ajax({
@@ -146,7 +147,7 @@ function shine(ID,x){
                 data: {
                     comment: comment ,
                     csrfmiddlewaretoken: '{{ csrf_token }}',
-                    },
+                },
             }).always(function () {
                $.ajax({
                 url: '{% url 'update_comments'  post %} ' ,
@@ -165,40 +166,6 @@ function shine(ID,x){
         <hr style=" margin: 0px 0px 10px 30px;width:430px"/>
         <label style="size-font:25px;margin-right:-34px;">Rating:</label>
         <div id="star1" style="display:flex;flex-direction: row; margin:0px 20px 0px 50px;">
-
-    <div class="post" >
-
-
-        <img id="column" src="/media/{{ post.photo }}">
-        <div id="column">
-         <p id="discription2">{{ post.userPofile.user.first_name }} Says : </p>
-         <p id="discription">{{ post.description }}</p>
-          <div id="status"></div>
-                    <form id="ratingForm" >
-                         <fieldset class="rating">
-                         <legend>How Stylish ? </legend>
-                         <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-                         <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-                         <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-                         <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-                         <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-
-                        </fieldset>
-                        <button class = "ratebutton" id="ratebutton" class="submit clearfix">Submit</button>
-                    </form>
-            <hr>
-
-
-            <div style="float: contour" >
-                <div id="commentstab" >
-
-            {% if Comments %}
-            <div>
-                <div id="commentstab">
-             {% for p in Comments %}
-                     <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
-                     <hr />
-              {% endfor %}
 
             </div>
             <hr style=" margin: 0px 0px 90px 30px;width:430px"/>
@@ -247,8 +214,7 @@ function shine(ID,x){
             </div>
             <label style="margin-right:400px;font-size:15px;">Comments:</label>
                 <div id="commentstab"  style="margin:0px 0px 0px 40px;align-self: flex-end;width:550px;">
-
-                    {% if not comments %}
+                    {% if check == 0 %}
                     <span style="color:#8c92ac;">There are no comments...</span>
                     {% endif %}
 
@@ -292,10 +258,4 @@ function shine(ID,x){
 
     </div>
 
-
-
-
-
 {% endblock %}
-
-
