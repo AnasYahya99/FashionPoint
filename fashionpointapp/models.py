@@ -9,6 +9,7 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
 	dateOfBirth = models.DateField(null=True);
+	fashionista = models.BooleanField(default=False)
 	class Meta: 
 		verbose_name_plural = 'Users'
 	def __str__(self):
@@ -73,6 +74,8 @@ class PollComment(models.Model):
 	poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
 	comment = models.CharField(max_length=256,null=True,blank=True)
 	date = models.DateTimeField(auto_now=True)
+	nol = models.PositiveIntegerField(default=0)
+	nod = models.PositiveIntegerField(default=0)
 	class Meta: 
 		verbose_name_plural = 'Poll Comments'
 	def __str__(self):
@@ -107,4 +110,14 @@ class Like(models.Model):
 	def __str__(self):
 		stringID = str(self.id)
 		return stringID
+class LikePoll(models.Model):
+	userPofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	comment = models.ForeignKey(PollComment, on_delete=models.CASCADE)
+	type = models.PositiveIntegerField(default=0)
+	class Meta:
+		verbose_name_plural = 'likesP'
+	def __str__(self):
+		stringID = str(self.id)
+		return stringID
+
 

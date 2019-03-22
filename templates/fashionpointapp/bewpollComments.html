@@ -1,5 +1,36 @@
-             {% for p in Comments %}
-                     <span id="username"> {{p.userPofile.user.first_name }} </span>  <span id ="comment"> : {{ p.comment}} </span>  <span id="date">{{ p.date }}</span>
-                     <hr />
-              {% endfor %}
+{% load staticfiles %}
+                    {% if not comments %}
+                    <span style="color:#8c92ac;">There are no comments...</span>
+                    {% endif %}
+           {% for p, a in comments %}
+            <img style="width:40px;height:40px;box-shadow: none;border-radius: 10px;margin:0px 940px -12px -25px;   animation:none;filter: none;" src="{{p.userPofile.picture.url}}">
+            <span style="margin:-20px 0px 0px 30px;font-family: 'Poppins', sans-serif;font-size:14px;" id="username"> {{p.userPofile.user.first_name }}
+            {% if p.userPofile.fashionista == True %}
+                  ✓
+            {% endif %}: </span>
+            <label  style="margin:10px 0px 10px -40px;font-size:16px;" id ="comment"> {{ p.comment}} </label>
+            <hr style="margin: 0px 0px 0px 0px;width:900px"/>
+            <img style="width:30px;height:30px; margin:2px 870px 0px 0px;" id="like{{p}}" {% if a == 1%}
+                 class="likeClicked"
+                 {%else%}
+                 class="like"
+                 {%endif%}
+                 onclick="likePoll({{p}},0,{{p.nol}},{{p.nod}})" src="{% static 'images/like.png'%}">
+                    <div style="margin:-25px 0px 0px 0px;">
+                    <label style="font-size:15px ;margin:300px 820px -500px 0px;" id="likes{{p}}"> {{p.nol}}</label>
+                        </div>
+            <img style="width:30px;height:30px;  margin:-300px 750px 10px 0px;" id="dislike{{p}}" {% if a == 2%}
+                 class="dislikeClicked"
+                 {%else%}
+                 class="dislike"
+                 {%endif%} onclick="likePoll({{p}},1,{{p.nol}},{{p.nod}})" src="{% static 'images/dislike.png'%}">
+            <div style="margin:-35px 0px 0px 0px;">
+                <label style="font-size:15px ;margin:300px 700px -500px 0px;" id="dislikes{{p}}"> {{p.nod}}</label>
+            </div>
 
+            <label id="date" style="margin:0px 0px 0px 700px;">{{ p.date }}</label>
+            <hr style=" margin: 0px 0px 20px 0px;width:900px"/>
+            {% endfor %}
+            {% if more == 1 %}
+                    <a onclick="showMoreP(1)" style="cursor:pointer;">show more</a>
+            {%endif%}

@@ -204,6 +204,15 @@ border-left: 1px solid #8c92ac ;
 height: 100px;
 }
 
+.pollimage {
+width:350px;
+height:350px;
+    border-radius: 15px;
+}
+
+.pollimage:hover {
+transform:scale(1.2);
+}
 /* Set a style for the submit/register button */
 .registerbtn {
   background-color: #4CAF50;
@@ -266,20 +275,13 @@ a {
 }
 
 .post1 {
-
-
     margin-top: 100px;
   background-color: white;
-
-
   border-top: 1px solid #dce8f1;
     max-width: 90%;
-
   text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
   border-color: black;
   border-radius: 3em;
-
   margin-left: 20px;
 box-shadow: 5px 5px 5px 5px #0d0d0d;
 
@@ -288,7 +290,7 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 
 #commentstab {
 
-  animation: arrive 1000ms ease-in-out 0s forwards;
+  animation: arrive 300ms ease-in-out 0s forwards;
   margin-top: 50px;
   display: flex;
   background-color: #f6f6f6;
@@ -354,9 +356,6 @@ margin-left:-10px;
     text-justify: initial;
 
 }
-
-#discription2 p{
-=======
 #discriptionwhite{
 
     margin-left: 50px;
@@ -711,21 +710,6 @@ transform: scale(1.2);
 
 
 
-.pollimage {
-
-    max-width: 350px;
-    border-radius: 15px;
-
-
-
-}
-
-.pollimage:hover {
-
-
-
-transform:scale(1.2);
-}
 
 
 .row1 {
@@ -733,26 +717,52 @@ transform:scale(1.2);
     max-width: 80%;
     margin-left :100px;
     max-height: 35%;
-
-
 }
 
 .column1 {
-
-  flex: 33.33%;
-  animation: arrive 3000ms ease-in-out 0s forwards;
+  animation: arrive 500ms ease-in-out 0s forwards;
   margin-top: 50px;
-  display: flex;
-  background-color: black;
-  border-top: 1px solid #dce8f1;
+  background-color: White;
   padding: 25px;
   text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
-  border-color: black;
-  border-radius: 3em;
-  max-width: 40%;
+  max-width: 450px;
   max-height:450px;
-   box-shadow: 5px 5px 5px 5px #0d0d0d;
+}
+.pie {
+  animation: arrive 300ms ease-in-out 0s forwards;
+  display: inline-block;
+  width: 7em;
+  height: 7em;
+  border-radius: 50%;
+  border: .15em solid #fff;
+  box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
+  background-origin: border-box;
+  background-image: conic-gradient(
+    #d44 calc(3.6deg * var(--segment1)),
+    #398AD7 0 calc(3.6deg * var(--segment2)),
+    #ac0 0
+  );
+}
+.dot {
+  animation: arrive 300ms ease-in-out 0s forwards;
 
+  height: 15px;
+  width: 15px;
+  background-color: #d44;
+  border-radius: 50%;
+  display: inline-block;
+}
+.circle {
+  animation: arrive 300ms ease-in-out 0s forwards;
 
+  width: 3.75em;
+  height: 3.75em;
+  border-radius: 50%;
+  font-size: 30px;
+  box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background:#1e2832;
+  line-height: 110px;
+  text-align: center;
 }
