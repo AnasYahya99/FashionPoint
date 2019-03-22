@@ -12,6 +12,7 @@ from fashionpointapp.forms import PostForm,EditForm
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from itertools import chain
+from PIL import  Image
 from django.views.generic import (
     UpdateView,
     DeleteView
@@ -201,7 +202,7 @@ def register(request):
 			if 'picture' in request.FILES:
 				profile.picture = request.FILES['picture']
 			else:
-				profile.picture = Image.open("/static/images/default.jpg")
+				profile.picture = "/profile_images/default.jpg"
 			profile.save()
 			registered = True
 			username = request.POST.get('username')
@@ -354,7 +355,7 @@ def startate(x):
 
 
 @login_required	
-def edit_profile(request,user_n):
+def edit_profile(request):
     if request.method == 'POST':
         form = EditForm(request.POST, instance=request.user)
         if form.is_valid():

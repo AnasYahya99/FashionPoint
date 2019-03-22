@@ -37,7 +37,6 @@ urlpatterns = [
     url(r'^polls/(?P<poll_id>[0-9]+)/showMoreP/$', views.showMoreP, name='showMoreP'),
     url(r'^posts/(?P<post_id>[0-9]+)/updateLike/$', views.updateLike, name='updateLike'),
     url(r'^polls/(?P<poll_id>[0-9]+)/updateLikeP/$', views.updateLikeP, name='updateLikeP'),
-    url(r'^pic/$', views.edit_pic, name='edit_pic'),
     url(r'^(?P<user_n>[A-Za-z0-9]+)/$', views.view_profile, name='view_profile'),
     url(r'^posts/(?P<pk>\d+)/update/$', PostUpdateView.as_view(), name='post_update'),
     url(r'^posts/(?P<pk>\d+)/delete/$', PostDeleteView.as_view(), name='Post_Delete'),
