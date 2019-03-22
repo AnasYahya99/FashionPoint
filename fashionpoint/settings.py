@@ -25,7 +25,11 @@ SECRET_KEY = '1%v^-mcw#w*+ldz3(9u#o_w6xf&%+5+l70bk^lp%rl+cea0-bs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+
+
+ALLOWED_HOSTS = ['ahmadsawi.pythonanywhere.com', '127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -123,7 +127,16 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'fashionpointapp.pipeline.save_profile',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -156,3 +169,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='814511528983-flsnth5k58rfquadd6jeihc1r6q5qs9e.ap
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'pH3P2zDPejq2sTaNkX--5nsX'
 SOCIAL_AUTH_FACEBOOK_KEY = '2476640362406516'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'bc7069e1df34fc42433a9dadebd14ddb'  # App Secret
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+   'fields': 'id, name, email, age_range'
+}
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+

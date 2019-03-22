@@ -55,9 +55,9 @@
 
 			</script>
 	<div class="main">
-	<div id="formContent2" style="max-height:90px;max-width:960px;margin:50px 0px 50px 110px;text-align:top;background: #d0f8ff;" >
-<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">Review Posts
-</label></div>
+	<div id="formContent2" style="max-height:90px;max-width:960px;margin:0px 0px 50px 110px;text-align:top;background: #d0f8ff;" >
+	<label style="Color:Black; font-size:20px;font-family: 'Poppins', sans-serif; ">Review Posts
+	</label></div>
         <div class=whitehead id="everything">
 		{% if state1 != 1 %}
 		<div id="formContent2" style="margin-left:20px; margin-right:-80px;max-width:70px; margin-top:190px;animation:arrive 800ms ease-in-out 0s forwards;">
@@ -81,12 +81,11 @@
 			{%endfor%}
 			</div>
 			<hr/>
-			<img class="postPic" src="/media/{{post1.photo}}">
+			<a href="{% url 'show_post' post1%}"><img class="postPic" src="/media/{{post1.photo}}"></a>
 			<hr/>
 			<label>{{post1.description}}</label>
 			<hr/>
-		{{post1}}
-		</div>
+			</div>
 		<div id="formContent2" style="margin-right:-80px;animation: arrive 1200ms ease-in-out 0s forwards;">
 			<div id="ties2">
 			{% for i in onp2%}
@@ -100,11 +99,10 @@
 			{%endfor%}
 			</div>
 			<hr/>
-			<img class="postPic" src="/media/{{post2.photo}}">
+            <a href="{% url 'show_post' post2%}"><img class="postPic" src="/media/{{post2.photo}}"></a>
 			<hr/>
 			<label>{{post2.description}}</label>
 			<hr/>
-			{{post2}}
 		</div>
 		<div id="formContent2" style="margin-right:-80px;animation: arrive 1400ms ease-in-out 0s forwards;">
 			<div id="ties3">
@@ -119,13 +117,10 @@
 			{%endfor%}
 			</div>
 			<hr/>
-			<div class="dim">
-			<img class="postPic" src="/media/{{post3.photo}}">
-			</div>
+			<a href="{% url 'show_post' post3%}" ><img class="postPic" src="/media/{{post3.photo}}"></a>
 			<hr/>
 			<label>{{post3.description}}</label>
 			<hr/>
-			{{post3}}
 		</div>
 			{% if state2 != 1 %}
 			<div id="formContent2" style="max-width:70px; margin-top:190px;animation:arrive 1600ms ease-in-out 0s forwards;">
@@ -153,26 +148,29 @@
 			 margin-right:-80px;max-width:463px">
 			<hr/>
 			<div id="poll" style="display: inline-block;margin-top:15px;margin-bottom:15px;transition-duration: 0.25s;">
-			<img class="pollPic" src="/media/{{poll1.picture1}}">
+			<a href="{% url 'show_poll' poll1%}">
+                <img class="pollPic" src="/media/{{poll1.picture1}}">
 			<img class="pollPic" src="/media/{{poll1.picture2}}">
+                                </a>
+
 			</div>
 			<hr/>
 			<label>{{poll1.description}}</label>
 			<hr/>
-		{{poll1}}
 		</div>
 			<div id="formContent2" style="margin-right:-80px;max-width:463px">
 			<hr/>
 			<div id="poll" style="display: inline-block;margin-top:15px;margin-bottom:15px;transition-duration: 0.25s;">
+                <a href="{% url 'show_poll' poll2%}">
 			<img class="pollPic" src="/media/{{poll2.picture1}}">
 			<img class="pollPic" src="/media/{{poll2.picture2}}">
+                                    </a>
+
 			</div>
 			<hr/>
 			<label>{{poll2.description}}</label>
 			<hr/>
-		{{poll2}}
 		</div>
-
 			{% if state4 != 1 %}
 			<div id="formContent2" style="max-width:70px; margin-top:140px;animation:arrive 1400ms ease-in-out 0s forwards;">
 			<img class="arrow"

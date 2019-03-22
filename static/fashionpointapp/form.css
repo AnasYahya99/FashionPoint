@@ -30,17 +30,8 @@
   animation: arrive 1000ms ease-in-out 0s forwards;
   text-align: center;
 }
-.dim{
-position: relative;
-}
-.dim label{
-position:relative;
-z-index: 1;
-text-align: center;
-top: 50%;
-right: 50%
 
-}
+
 .postPic:hover{
 height: 350px;
 margin-bottom:20px;
@@ -48,6 +39,9 @@ margin-top :30px;
 object-fit: scale-down;
 transform:scale(1.2);
 cursor: pointer ;
+filter: brightness(50%) blur(1px);
+    box-shadow:0 0 5px cyan;
+
 
  }
 .arrow:hover{
@@ -78,7 +72,9 @@ object-fit: cover;
 #poll:hover{
 transform: scale(1.15);
 cursor: pointer ;
-filter: brightness(50%);
+filter: brightness(50%) blur(1px);
+    box-shadow:0 0 5px cyan;
+
 }
 .pollPic{
 display:inline-block

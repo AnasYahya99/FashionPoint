@@ -1,21 +1,23 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from fashionpointapp.models import Category , Post ,PostComment ,Poll ,PollComment
+from fashionpointapp.models import Category , Post ,PostComment ,Poll ,PollComment,Like,UserProfile,Rating,Vote,LikePoll
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
+from fashionpointapp.forms import UserForm,UserProfileForm,PollForm,EditForm
 from fashionpointapp.forms import PostForm,EditForm
-from fashionpointapp.models import UserProfile,Post, Rating, Poll, Category
 from datetime import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from itertools import chain
+from PIL import  Image
 from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from fashionpointapp.forms import UserForm,UserProfileForm,PollForm
+
 def updatePosts(request):
 	context_dict = {}
 	ind = int(request.GET['inc'])
@@ -200,7 +202,7 @@ def register(request):
 			if 'picture' in request.FILES:
 				profile.picture = request.FILES['picture']
 			else:
-				profile.picture = Image.open("/static/images/default.jpg")
+				profile.picture = "/profile_images/default.jpg"
 			profile.save()
 			registered = True
 			username = request.POST.get('username')
@@ -241,7 +243,7 @@ def Post_form(request):
 			print(form.errors)
 
 	context_dict['pos']=3
-	return render(request, 'fashionpointapp/post_form.html', context_dict)
+	return render(request, 'fashionpointapp/Post_form.html', context_dict)
 
 @login_required
 def PollaPoll(request):
@@ -262,9 +264,9 @@ def PollaPoll(request):
 			return index(request)
 		else:
 			print(form.errors)
-
 	context_dict['pos']=6
 	return render(request, 'fashionpointapp/PollaPoll.html', context_dict)
+
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['description','photo']
@@ -302,19 +304,19 @@ def user_login(request):
 				return HttpResponseRedirect(reverse('index'))
 			else:
 				context_dict['type'] = "Account is Disabled";
-				return render(request, 'Fashionpointapp/login.html', context_dict)
+				return render(request, 'fashionpointapp/login.html', context_dict)
 		else:
 			context_dict['type'] = "Invalid login details";
 			print("Invalid login details: {0}, {1}".format(username, password))
-			return render(request, 'Fashionpointapp/login.html', context_dict)
+			return render(request, 'fashionpointapp/login.html', context_dict)
 	else:
-		return render(request, 'Fashionpointapp/login.html', context_dict)
+		return render(request, 'fashionpointapp/login.html', context_dict)
+
 @login_required
 def view_profile(request):
 	context_dict = {}
 	user = request.user
 	print(user)
-	
 	userProfile = UserProfile.objects.get(user=user)
 	context_dict['userProfile'] = userProfile
 	logged_in_user_posts = Post.objects.filter(userPofile=userProfile)	
@@ -345,7 +347,6 @@ def get_server_side_cookie(request, cookie, default_val=None):
 		val = default_val
 	return val
 
-
 def startate(x):
 	text=""
 	for i in  range(0,x):
@@ -357,52 +358,94 @@ def startate(x):
 def edit_profile(request):
     if request.method == 'POST':
         form = EditForm(request.POST, instance=request.user)
-
         if form.is_valid():
             form.save()
-            return  HttpResponseRedirect(reverse('view_profile'))
+            return  render(request, 'fashionpointapp/myaccount.html')
     else:
         form = EditForm(instance=request.user)
         args = {'form': form}
         return render(request, 'fashionpointapp/edit_profile.html', args)
-def edit_pic(request):
-    if request.method == 'POST':
-        form = EditPic(request.POST, instance=request.user)
 
-        if form.is_valid():
-            form.save()
-            return  HttpResponseRedirect(reverse('view_profile'))
-    else:
-        form = EditForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'fashionpointapp/pic.html', args)
 
 def show_post(request , post_id):
 	context_dict = {}
+	context_dict['post'] = Post.objects.get(id=int(post_id))
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PostComment.objects.filter(post=int(post_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
+	more = 0
+	if (len(comments) > 5):
+		comments = comments[:5]
+		more = 1
+	context_dict['check'] = len(comments)
+	context_dict['more'] = more
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
+		test = Rating.objects.filter(userPofile=userProfile,post=int(post_id)).count()
+		rate = 0
+		if(test == 1):
+			rate = Rating.objects.get(userPofile=userProfile,post=int(post_id)).rating;
+		context_dict['rate']=rate
 		context_dict['userProfile'] = userProfile
 		length = len(request.user.first_name)
 		context_dict['length']= 87 - length
-	context_dict['post'] = Post.objects.get(id=int(post_id))
-	comments = PostComment.objects.filter(post=int(post_id))
-	context_dict['Comments'] = comments
-	return render(request,'Fashionpointapp/post.html',context_dict)
-
+		likes = []
+		for i in comments:
+			test = Like.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = Like.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments = zip(comments, likes)
+	context_dict['comments'] = comments
+	return render(request,'fashionpointapp/post.html',context_dict)
 
 def show_poll(request , poll_id):
 	context_dict = {}
+	poll = Poll.objects.get(id=int(poll_id))
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PollComment.objects.filter(poll=int(poll_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
+	context_dict['poll'] = poll
+	more = 0
+	context_dict['check'] = len(comments)
+	if (len(comments) > 5):
+		comments = comments[:5]
+		more = 1
+	context_dict['more'] = more
 	if request.user.is_authenticated:
 		userProfile = UserProfile.objects.get(user=request.user)
+		vote = Vote.objects.filter(userPofile=userProfile, poll=poll).count()
+		ratio = 0
+		if(poll.picture1Clicks+poll.picture2Clicks != 0):
+			ratio = int(poll.picture2Clicks/(poll.picture1Clicks+poll.picture2Clicks) *100)
+		context_dict['ratio'] = ratio
+		context_dict['vote'] = vote
 		context_dict['userProfile'] = userProfile
 		length = len(request.user.first_name)
 		context_dict['length']= 87 - length
-	context_dict['poll'] = Poll.objects.get(id=int(poll_id))
-	comments = PollComment.objects.filter(poll=int(poll_id))
-	context_dict['Comments'] = comments
-	return render(request,'Fashionpointapp/poll.html',context_dict)
-
-
+		likes = []
+		for i in comments:
+			test = LikePoll.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = LikePoll.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments = zip(comments, likes)
+	context_dict['comments'] = comments
+	return render(request,'fashionpointapp/poll.html',context_dict)
 
 
 def update_avg(request , post_id ):
@@ -430,7 +473,6 @@ def update_avg(request , post_id ):
 
 
 def makeacomment(request , post_id ):
-
 	if request.method == 'POST' and request.is_ajax():
 		userProfile = UserProfile.objects.get(user=request.user)
 		try:
@@ -465,36 +507,179 @@ def makeapollcomment(request, poll_id):
 
 def update_comments(request, post_id):
 	context_dict={}
-	context_dict['Comments'] = PostComment.objects.filter(post=int(post_id))
-	return render(request, 'Fashionpointapp/newComments.html', context_dict)
+	comments = PostComment.objects.filter(post=int(post_id))
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		likes = []
+		for i in comments:
+			test = Like.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = Like.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments=zip(comments,likes)
+	context_dict['more'] = 0
+	context_dict['comments'] = comments
+	return render(request, 'fashionpointapp/newComments.html', context_dict)
 
+def showMore(request, post_id):
+	context_dict={}
+	ind = int(request.GET['ind'])
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PostComment.objects.filter(post=int(post_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
 
+	comments = comments[:min(ind + 5, len(comments))]
+	more = 0
+	if (ind + 5 <= len(comments)):
+		more = 1
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		likes = []
+		for i in comments:
+			test = Like.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = Like.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments=zip(comments,likes)
+	context_dict['comments'] = comments
+	context_dict['more'] = more
+	return render(request, 'fashionpointapp/newComments.html', context_dict)
+def showMoreP(request, poll_id):
+	context_dict={}
+	ind = int(request.GET['ind'])
+	fashionistas = UserProfile.objects.filter(fashionista=True)
+	allcomments = PollComment.objects.filter(poll=int(poll_id))
+	fashionistaComments = allcomments.filter(userPofile=fashionistas)
+	nonFashionistaComments = allcomments.difference(fashionistaComments)
+	comments = []
+	for c in fashionistaComments:
+		comments.append(c)
+	for c in nonFashionistaComments:
+		comments.append(c)
+	comments = comments[:min(ind + 5, len(comments))]
+	more = 0
+	if (ind + 5 <= len(comments)):
+		more = 1
+	if request.user.is_authenticated:
+		userProfile = UserProfile.objects.get(user=request.user)
+		likes = []
+		for i in comments:
+			test = LikePoll.objects.filter(userPofile=userProfile, comment=i).count()
+			type = 0
+			if (test == 1):
+				type = LikePoll.objects.get(userPofile=userProfile, comment=i).type;
+			likes.append(type)
+		comments=zip(comments,likes)
+	context_dict['comments'] = comments
+	context_dict['more'] = more
+	return render(request, 'fashionpointapp/bewpollComments.html', context_dict)
+def updateLike(request,post_id):
+	if request.method == 'POST' and request.is_ajax():
+		userProfile = UserProfile.objects.get(user=request.user)
+		commentID = request.POST.get('comment')
+		comment = PostComment.objects.get(id=commentID)
+		x = request.POST.get('type')
+		x = int(x)
+		like, created = Like.objects.get_or_create(userPofile=userProfile,comment=comment)
+		if(created):
+			like.comment = comment
+			like.userPofile = userProfile
+		if(x == 0):
+			comment.nol += 1
+		if (x == 2):
+			comment.nol += 1
+			comment.nod -= 1
+		if (x == 3):
+			comment.nod += 1
+		if (x == 4):
+			comment.nol -= 1
+			comment.nod += 1
+		if (x == 1):
+			comment.nol -= 1
+		if (x == 5):
+			comment.nod -= 1
+		comment.save()
+		if(x == 0 or x == 2):
+			like.type= 1
+		if(x == 3 or x == 4):
+			like.type= 2
+		if (x == 1 or x == 5):
+			like.type = 0
+		like.save()
+	return HttpResponse('Updated')
+def updateLikeP(request,poll_id):
+	if request.method == 'POST' and request.is_ajax():
+		userProfile = UserProfile.objects.get(user=request.user)
+		commentID = request.POST.get('comment')
+		comment = PollComment.objects.get(id=commentID)
+		x = request.POST.get('type')
+		x = int(x)
+		like, created = LikePoll.objects.get_or_create(userPofile=userProfile,comment=comment)
+		if(created):
+			like.comment = comment
+			like.userPofile = userProfile
+		if(x == 0):
+			comment.nol += 1
+		if (x == 2):
+			comment.nol += 1
+			comment.nod -= 1
+		if (x == 3):
+			comment.nod += 1
+		if (x == 4):
+			comment.nol -= 1
+			comment.nod += 1
+		if (x == 1):
+			comment.nol -= 1
+		if (x == 5):
+			comment.nod -= 1
+		comment.save()
+		if(x == 0 or x == 2):
+			like.type= 1
+		if(x == 3 or x == 4):
+			like.type= 2
+		if (x == 1 or x == 5):
+			like.type = 0
+		like.save()
+	return HttpResponse('Updated')
 
 def update_pollcomments(request , poll_id):
     context_dict={}
     context_dict['Comments'] = PollComment.objects.filter(poll=int(poll_id))
-    return render(request, 'Fashionpointapp/bewpollComments.html', context_dict)
+    return render(request, 'fashionpointapp/bewpollComments.html', context_dict)
 
 
 def click(request, poll_id):
-    if request.method == 'POST' and request.is_ajax():
-        try:
-            obj = Poll.objects.get(id=int(poll_id))
-            if (int(request.POST.get('picture') )== 1 ):
-                obj.picture1Clicks=obj.picture1Clicks+1
-                obj.save()
-                return HttpResponse("worked")
-            else :
-                obj.picture2Clicks=obj.picture2Clicks+1
-                obj.save()
-                return HttpResponse("worked")
-
-        except Poll.DoesNotExist:
-            return HttpResponse('did not work')
+	if request.method == 'POST' and request.is_ajax():
+		try:
+			obj = Poll.objects.get(id=int(poll_id))
+			userProfile = UserProfile.objects.get(user=request.user)
+			vote = Vote()
+			vote.userPofile = userProfile
+			vote.poll = obj
+			if (int(request.POST.get('picture') )== 1 ):
+				obj.picture1Clicks=obj.picture1Clicks+1
+				vote.choice = True
+				obj.save()
+				vote.save()
+				return HttpResponse("worked")
+			else:
+				obj.picture2Clicks=obj.picture2Clicks+1
+				vote.choice = False
+				vote.save()
+				obj.save()
+				return HttpResponse("worked")
+		except Poll.DoesNotExist:
+			return HttpResponse('did not work')
 
 def account_page(request):
-
-
 	return render(request, 'fashionpointapp/myaccount.html', {'posts': logged_in_user_posts})
 
 

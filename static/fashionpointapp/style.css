@@ -70,7 +70,6 @@
 
 /* Place the navbar at the bottom of the page, and make it stick */
 .navbar {
-  position: absolute;
   clear: both;
   position: relative;
   height: 57px;
@@ -192,8 +191,28 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
 }
 
+#vline{
+margin-left:40px;
+margin-right:-80px;
+border-left: 1px solid #8c92ac ;
+height: 600px;
+}
+#vline2{
+margin-left:0px;
+margin-right:-80px;
+border-left: 1px solid #8c92ac ;
+height: 100px;
+}
 
+.pollimage {
+width:350px;
+height:350px;
+    border-radius: 15px;
+}
 
+.pollimage:hover {
+transform:scale(1.2);
+}
 /* Set a style for the submit/register button */
 .registerbtn {
   background-color: #4CAF50;
@@ -241,7 +260,8 @@ a {
   animation: arrive 1500ms ease-in-out 0s forwards;
   margin-top: 50px;
   display: flex;
-  background-color: #f6f6f6;
+  align-items: center ;
+  background-color: #ffffff;
   border-top: 1px solid #dce8f1;
   padding: 25px;
   text-align: center;
@@ -250,25 +270,18 @@ a {
   border-radius: 3em;
   max-width: 85%;
   margin-left: 20px;
-box-shadow: 5px 5px 5px 5px #0d0d0d;
+  box-shadow: 5px 5px 5px 5px #0d0d0d;
 
 }
 
 .post1 {
-
-
     margin-top: 100px;
   background-color: white;
-
-
   border-top: 1px solid #dce8f1;
     max-width: 90%;
-
   text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
   border-color: black;
   border-radius: 3em;
-
   margin-left: 20px;
 box-shadow: 5px 5px 5px 5px #0d0d0d;
 
@@ -277,7 +290,7 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 
 #commentstab {
 
-  animation: arrive 3000ms ease-in-out 0s forwards;
+  animation: arrive 300ms ease-in-out 0s forwards;
   margin-top: 50px;
   display: flex;
   background-color: #f6f6f6;
@@ -299,33 +312,43 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 	font-size: 20px;
 }
 #column {
-
-  flex: 20%;
+  flex: 20px;
   padding: 5px;
-  margin-left: 20px
-
-
-
-
+  margin-left:20px;
 }
 .post img {
-    -moz-box-shadow: 5px 5px 0px #999;
-    -webkit-box-shadow: 5px 5px 0px #999;
   box-shadow: 8px 8px 8px 8px #999;
-
   border-radius: 15px;
   width: 30%;
   height: 30%;
   padding: 10px 10px 10px 10px;
   object-fit: cover;
-  animation: arrive 2000ms ease-in-out 0s forwards;
-
+  animation: arrive 1000ms ease-in-out 0s forwards;
+}
+.tie1:hover{
+    cursor:pointer;
 
 }
 
+img.tie1{
+display:flex;
+  flex-direction: row;
+box-shadow: 0px 0px 0px 0px;
+border-radius: 0px;
+height: 80px;
+width: 80px;
+}
+img.arrow1{
+cursor:pointer;
+box-shadow: 0px 0px 0px 0px;
+border-radius: 0px;
+height: 90px;
+width: 90px;
+margin-left:-10px;
+}
+
+
 #discription{
-
-
     justify-content: left;
     color: Black;
   	font-family: "Poppins", sans-serif;
@@ -333,7 +356,6 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
     text-justify: initial;
 
 }
-
 #discriptionwhite{
 
     margin-left: 50px;
@@ -364,17 +386,67 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 }
 
 #discription2{
-
-
     justify-content: left;
     color: Black;
   	font-family: "Poppins", sans-serif;
     text-align: left;
     text-justify: initial;
     font-size: 25px;
-
 }
-
+img.dislike{
+cursor:pointer;
+transition-duration: 0.25s;
+width:40px;
+height:40px;
+max-width:40px;
+max-height:40px;
+box-shadow: none;
+margin:-40px 0px -10px 0px;
+animation:none;
+filter:  contrast(2) opacity(30%);
+}
+img.dislike:hover{
+transform: scale(1.2);
+}
+img.like{
+cursor:pointer;
+transition-duration: 0.25s;
+width:40px;
+height:40px;
+max-width:40px;
+max-height:40px;
+box-shadow: none;
+margin:-40px 600px -25px -10px;
+animation:none;
+filter:  contrast(2) opacity(30%);
+}
+img.likeClicked{
+cursor:pointer;
+transition-duration: 0.25s;
+width:40px;
+height:40px;
+max-width:40px;
+max-height:40px;
+box-shadow: none;
+margin:-40px 600px -25px -10px;
+animation:none;
+filter: contrast(2) brightness(70%);
+}
+img.dislikeClicked{
+cursor:pointer;
+transition-duration: 0.25s;
+width:40px;
+height:40px;
+max-width:40px;
+max-height:40px;
+box-shadow: none;
+margin:-40px 0px -10px 0px;
+animation:none;
+filter: contrast(2) ;
+}
+img.like:hover{
+transform: scale(1.2);
+}
 
 
 @keyframes NO {
@@ -577,17 +649,18 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 
 .ratebutton{
 
-  margin-right: 350px;
+  margin: 10px 110px 20px -50px;
   background:#5fbae9;
   color:#fff;
   border:none;
-  position:relative;
+  position:flex;
   height:60px;
   font-size:1.6em;
   padding:0 2em;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
+   flex-end;
 
 }
 .ratebutton:hover{
@@ -617,9 +690,10 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 
 
 #AcutalComment {
-  width: 100%;
+  width: 77%;
   padding: 12px 20px;
   margin: 8px 0;
+  margin-left:40px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -636,21 +710,6 @@ box-shadow: 5px 5px 5px 5px #0d0d0d;
 
 
 
-.pollimage {
-
-    max-width: 350px;
-    border-radius: 15px;
-
-
-
-}
-
-.pollimage:hover {
-
-
-
-transform:scale(1.2);
-}
 
 
 .row1 {
@@ -658,26 +717,52 @@ transform:scale(1.2);
     max-width: 80%;
     margin-left :100px;
     max-height: 35%;
-
-
 }
 
 .column1 {
-
-  flex: 33.33%;
-  animation: arrive 3000ms ease-in-out 0s forwards;
+  animation: arrive 500ms ease-in-out 0s forwards;
   margin-top: 50px;
-  display: flex;
-  background-color: black;
-  border-top: 1px solid #dce8f1;
+  background-color: White;
   padding: 25px;
   text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
-  border-color: black;
-  border-radius: 3em;
-  max-width: 40%;
+  max-width: 450px;
   max-height:450px;
-   box-shadow: 5px 5px 5px 5px #0d0d0d;
+}
+.pie {
+  animation: arrive 300ms ease-in-out 0s forwards;
+  display: inline-block;
+  width: 7em;
+  height: 7em;
+  border-radius: 50%;
+  border: .15em solid #fff;
+  box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
+  background-origin: border-box;
+  background-image: conic-gradient(
+    #d44 calc(3.6deg * var(--segment1)),
+    #398AD7 0 calc(3.6deg * var(--segment2)),
+    #ac0 0
+  );
+}
+.dot {
+  animation: arrive 300ms ease-in-out 0s forwards;
 
+  height: 15px;
+  width: 15px;
+  background-color: #d44;
+  border-radius: 50%;
+  display: inline-block;
+}
+.circle {
+  animation: arrive 300ms ease-in-out 0s forwards;
 
+  width: 3.75em;
+  height: 3.75em;
+  border-radius: 50%;
+  font-size: 30px;
+  box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background:#1e2832;
+  line-height: 110px;
+  text-align: center;
 }
