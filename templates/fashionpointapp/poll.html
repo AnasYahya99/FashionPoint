@@ -141,8 +141,11 @@
                     {% endif %}
 
            {% for p, a in comments %}
-            <img style="width:40px;height:40px;box-shadow: none;border-radius: 10px;margin:0px 870px -12px -25px;   animation:none;filter: none;" src="{{p.userPofile.picture.url}}">
-            <span style="margin:-20px 0px 0px 30px;font-family: 'Poppins', sans-serif;font-size:14px;" id="username"> {{p.userPofile.user.first_name }}: </span>
+            <img style="width:40px;height:40px;box-shadow: none;border-radius: 10px;margin:0px 940px -12px -25px;   animation:none;filter: none;" src="{{p.userPofile.picture.url}}">
+            <span style="margin:-20px 0px 0px 30px;font-family: 'Poppins', sans-serif;font-size:14px;" id="username"> {{p.userPofile.user.first_name }}
+            {% if p.userPofile.fashionista == True %}
+                ✓
+            {% endif %}: </span>
             <label  style="margin:10px 0px 10px -40px;font-size:16px;" id ="comment"> {{ p.comment}} </label>
             <hr style="margin: 0px 0px 0px 0px;width:900px"/>
             <img style="width:30px;height:30px; margin:2px 870px 0px 0px;" id="like{{p}}" {% if a == 1%}
