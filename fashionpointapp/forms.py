@@ -54,14 +54,9 @@ class PollForm(forms.ModelForm):
 
 
 class EditForm(UserChangeForm):
-		template_name='/myaccount/edit'
+		template_name='/edit_profile'
 		class Meta:
 			model = User
 			fields = ('username','email','first_name','last_name','password')
-			
-class EditPic(UserChangeForm):
-	template_name='/myaccount/edit/pic'
-	class Meta:
-		model = UserProfile
-		fields = ('picture','dateOfBirth')
+
  		

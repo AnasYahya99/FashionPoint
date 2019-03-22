@@ -39,6 +39,6 @@ urlpatterns = [
     url(r'^updatePolls/$', views.updatePolls, name='updatePolls'),
     url(r'^posts/(?P<post_id>[0-9]+)/showMore/$', views.showMore, name='showMore'),
     url(r'^posts/(?P<post_id>[0-9]+)/updateLike/$', views.updateLike, name='updateLike'),
-	url(r'^pic/$', views.edit_pic, name='edit_pic'),
+	
 	
 ]

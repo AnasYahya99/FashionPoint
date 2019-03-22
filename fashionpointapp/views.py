@@ -353,7 +353,7 @@ def startate(x):
 
 
 @login_required	
-def edit_profile(request):
+def edit_profile(request,user_n):
     if request.method == 'POST':
         form = EditForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -363,17 +363,7 @@ def edit_profile(request):
         form = EditForm(instance=request.user)
         args = {'form': form}
         return render(request, 'fashionpointapp/edit_profile.html', args)
-def edit_pic(request):
-    if request.method == 'POST':
-        form = EditPic(request.POST, instance=request.user)
 
-        if form.is_valid():
-            form.save()
-            return  HttpResponseRedirect(reverse('view_profile'))
-    else:
-        form = EditForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'fashionpointapp/pic.html', args)
 
 def show_post(request , post_id):
 	context_dict = {}
