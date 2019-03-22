@@ -45,11 +45,7 @@
 	                			<p style="color:black;font-size: 16px;" >{{ p.description }}</p>
 							<p style="color:black;font-size: 16px;" >{{ p.avgRating }}</p>
 							<a class="btn btn-outline-secondary" href="{% url 'Post_Delete' p.id %}">Delete</a>
-<<<<<<< HEAD
-							<input type="button"onclick="window.location.href='{% url 'post_update' p.id %}'"value="Edit" />
-=======
 							<input type="button"onclick="window.location.href='{% url 'post_update' p.id %}'" value="edit" />
->>>>>>> 30a6d1da73b11e8c831f2bd4ec9c8deb678afbf0
 	                		</div>
 	                </a>
 	    {% endfor %}
