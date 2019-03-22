@@ -243,7 +243,7 @@ def Post_form(request):
 			print(form.errors)
 
 	context_dict['pos']=3
-	return render(request, 'fashionpointapp/post_form.html', context_dict)
+	return render(request, 'fashionpointapp/Post_form.html', context_dict)
 
 @login_required
 def PollaPoll(request):
