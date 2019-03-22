@@ -82,6 +82,7 @@
             {% endif %}
 
             {% endblock %}
+            <div style="margin:-10px -15px 100px 100px;">
             {% if user.is_authenticated %}
                 <button id="btt" style="height: 48px;" href="{% url 'categories' %}">
                     <p id="c1">{{ user.first_name }}</p>
@@ -104,7 +105,7 @@
 
                 
              {% endif %}
-
+</div>
         </div>
 
 

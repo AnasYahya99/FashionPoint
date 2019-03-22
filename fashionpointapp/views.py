@@ -358,7 +358,7 @@ def edit_profile(request):
         form = EditForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return  HttpResponseRedirect(reverse('view_profile'))
+            return  render(request, 'fashionpointapp/myaccount.html')
     else:
         form = EditForm(instance=request.user)
         args = {'form': form}
@@ -404,7 +404,6 @@ def show_post(request , post_id):
 			likes.append(type)
 		comments = zip(comments, likes)
 	context_dict['comments'] = comments
-	print(rate)
 	return render(request,'Fashionpointapp/post.html',context_dict)
 
 
